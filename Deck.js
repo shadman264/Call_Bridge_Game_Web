@@ -524,11 +524,11 @@ function winPlayer(winCard) {
 }
 
 //clearing winning card from the top left corner just showing for 1 second
-/*function clearWinningCard(winning_card) {
-		document.getElementById(winning_card).style.opacity = "0";
+function clearWinningCard(winning_card) {
+		//document.getElementById(winning_card).style.opacity = "0";
 		vanishFlag=0;
 		clearTimeout(lame);
-}*/
+}
 
 // empty board function and showing the winning card in the top left corner and eventually after 1 secong vanishing the card
 function emptyBoard(winning_card){
@@ -537,10 +537,11 @@ function emptyBoard(winning_card){
 			var x2= boardCards.pop();
 			var x3= boardCards.pop();
 			var x4= boardCards.pop();
-			//vanishFlag=1;
+			
 			//balchal = setTimeout(function(){vanishFunc(x,x2,x3,x4,winning_card);},1000);
 			if(empty_flag==0){
 				animate2 = setTimeout(function(){make_pile_to_winner(0,x,x2,x3,x4,winning_card);},1000);
+				//vanishFlag=1;
 				empty_flag = 1;
 			}
 			else{
@@ -624,51 +625,51 @@ function make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 	//NOW ALL FOUR CARD WILL BE MOVED TO THE CENTER AS PILE
 
 	if(pile_flag==0){
-		document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+		document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.2s ease-in-out");
 		document.getElementById(hand_index1).style.setProperty("top", "43%");
 		document.getElementById(hand_index1).style.setProperty("left", "41.5%");
 		document.getElementById(hand_index1).style.webkitTransform = "rotate(0deg)";
 		clearTimeout(animate2);
-		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},280); 
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},180); 
 		pile_flag = 1;
 	}
 
 
 	else if(pile_flag==1){
-		document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+		document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.2s ease-in-out");
 		document.getElementById(hand_index2).style.setProperty("top", "43%");
 		document.getElementById(hand_index2).style.setProperty("left", "41.54%");
 		document.getElementById(hand_index2).style.webkitTransform = "rotate(0deg)";
 		clearTimeout(animate2);
-		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},280); 
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},180); 
 		pile_flag = 2;
 	}
 
 	else if(pile_flag==2){
-		document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+		document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.2s ease-in-out");
 		document.getElementById(hand_index4).style.setProperty("top", "43%");
 		document.getElementById(hand_index4).style.setProperty("left", "41.58%");
 		document.getElementById(hand_index4).style.webkitTransform = "rotate(0deg)";
 		clearTimeout(animate2);
-		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},280); 
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},180); 
 		pile_flag = 3;
 	}
 
 
 	else if(pile_flag==3){
-		document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+		document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.2s ease-in-out");
 		document.getElementById(hand_index3).style.setProperty("top", "43%");
 		document.getElementById(hand_index3).style.setProperty("left", "41.62%");
 		document.getElementById(hand_index3).style.webkitTransform = "rotate(0deg)";
 		clearTimeout(animate2);
-		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},580); 
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},280); 
 		pile_flag = 4;
 
 	}
 
 	else if(pile_flag==4){
 		clearTimeout(animate2);
-		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},500); 
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},300); 
 		pile_flag = 5;
 	}
 
@@ -678,6 +679,10 @@ function make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 		clearTimeout(animate2);
 		pile_flag = 0;
 		pass_flag = 0;
+		document.getElementById(hand_index1).style.setProperty("opacity", "0");
+		document.getElementById(hand_index2).style.setProperty("opacity", "0");
+		document.getElementById(hand_index3).style.setProperty("opacity", "0");
+		document.getElementById(hand_index4).style.setProperty("opacity", "0");
 		pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card);
 	}
 
@@ -716,7 +721,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 
 		else{
 			if(pass_flag==0){
-				document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.9s ease-in-out");
+				document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
 				document.getElementById(hand_index1).style.webkitTransform = "scale(0.01)";
 				document.getElementById(hand_index1).style.setProperty("top", "75%");
 				document.getElementById(hand_index1).style.setProperty("left", "10%");
@@ -728,7 +733,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==1){
 				
 
-				document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.9s ease-in-out");
+				document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
 				document.getElementById(hand_index2).style.webkitTransform = "scale(0.01)";
 				document.getElementById(hand_index2).style.setProperty("top", "75%");
 				document.getElementById(hand_index2).style.setProperty("left", "10%");
@@ -740,7 +745,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==2){
 				
 
-				document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.9s ease-in-out");
+				document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
 				document.getElementById(hand_index3).style.webkitTransform = "scale(0.01)";
 				document.getElementById(hand_index3).style.setProperty("top", "75%");
 				document.getElementById(hand_index3).style.setProperty("left", "10%");
@@ -753,7 +758,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==3){
 				
 
-				document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.9s ease-in-out");
+				document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
 				document.getElementById(hand_index4).style.webkitTransform = "scale(0.01)";
 				document.getElementById(hand_index4).style.setProperty("top", "75%");
 				document.getElementById(hand_index4).style.setProperty("left", "10%");
@@ -765,9 +770,21 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			}
 			else if(pass_flag==4){
 				
+				
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},500); 
+				pass_flag = 5;
+				
+			}
+
+			else if(pass_flag==5){
+				
 				pass_flag = 0;
 				clearTimeout(animate2);
 				vanishFlag=0;
+				//chudi = 0;
+				//play();
+				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
 				
 			}
 			

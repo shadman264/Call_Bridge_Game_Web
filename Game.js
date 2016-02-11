@@ -119,6 +119,21 @@ function play(){
 			player4();
 		}
 	}
+
+	/*if(vanishFlag==0 && chudi==0) {
+		if(inputFlag==1) {
+			player1();
+		}
+		else if(inputFlag==2){
+			player2();
+		}
+		else if(inputFlag==3 && clickFlag==1) {
+			player3();
+		}
+		else{
+			player4();
+		}
+	}*/
 }
 
 
