@@ -169,7 +169,7 @@ function player1_play_card(card_id){
 		player1_card_play_flag = 1;	
 	}
 	else if(player1_card_play_flag==1){
-		document.getElementById("card_single").style.opacity = "0";
+		document.getElementById("card_single").style.opacity = "1";
 		document.getElementById("card_single").style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
 		document.getElementById("card_single").style.setProperty("left", "25%");
 		document.getElementById("card_single").style.webkitTransform = "scale(1.05)";
