@@ -548,6 +548,7 @@ function emptyBoard(winning_card){
 			vanishFlag=1;
 			pile_flag = 0;
 			
+
 			
 			
 		}
@@ -632,6 +633,7 @@ function make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 	
 	vanishFlag = 0;
 
+
 	if(pile_flag==0){
 		document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.2s ease-in-out");
 		document.getElementById(hand_index1).style.setProperty("top", "43%");
@@ -691,6 +693,16 @@ function make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 		document.getElementById(hand_index2).style.setProperty("opacity", "0");
 		document.getElementById(hand_index3).style.setProperty("opacity", "0");
 		document.getElementById(hand_index4).style.setProperty("opacity", "0");
+
+
+
+	
+
+
+		vanish_balloon(lastWinner);
+		
+		
+
 		pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card);
 	}
 
@@ -778,6 +790,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 				pass_flag = 0;
 				clearTimeout(animate2);
 				vanishFlag=0;
+
 				//chudi = 0;
 				//play();
 				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
@@ -988,6 +1001,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 				pass_flag = 0;
 				clearTimeout(animate2);
 				vanishFlag=0;
+
 				//chudi = 0;
 				//play();
 				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);

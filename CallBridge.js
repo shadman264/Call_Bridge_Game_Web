@@ -12,7 +12,14 @@ var card_distribute_counter = 1;
 var time_flag = 0;
 var animate;
 var inputFlag = -1;
-var player3Call;
+var player1Call=0;
+var player2Call=0;
+var player3Call=0;
+var player4Call=0;
+var remaining_call1=0;
+var remaining_call2=0;
+var remaining_call3=0;
+var remaining_call4=0;
 
 
 
@@ -332,6 +339,8 @@ function call_token_selected(call_token_id){
 	document.getElementById("call_background").style.opacity = "0";
 	document.getElementById("play_floor").style.setProperty("-webkit-transition", "opacity 0.5s ease-out");
 	document.getElementById("play_floor").style.opacity = "1";
+
+	
 	for (var i = 0; i < 14; i++) {
 		if(call_token_id!=i.toString()){
 			document.getElementById("play_floor").style.setProperty("-webkit-transition", "opacity 0.5s ease-out");
@@ -343,12 +352,93 @@ function call_token_selected(call_token_id){
 			document.getElementById(i).style.setProperty("left", "10%");
 			document.getElementById(i).style.webkitTransform = "scale(0)";
 			document.getElementById(i).style.opacity = "0";
+
+			player3Call = i;
+			
 			
 		}
 	}
+
+
+	
+	
+
+	//NOW PLAYER_3's BALLOONS ARE GOING TO BE DISPLAYED
+
+	//FIRST ROW OF 7 BALLONS DISPLAY
+	for(var i=0;i<player3Call;i++){
+		if(i==7){
+			break;
+		}
+		show_balloon('MyImage/CallDisplay/red_balloon.png', 85,19-3*i,3000+player3Call-i);
+	}
+
+	//SECOND ROW OF OTHER BALLONS
+	if(player3Call-7>0){
+		for(var i=0;i<(player3Call%7);i++){
+			show_balloon('MyImage/CallDisplay/red_balloon.png', 90,19-3*i,(3000+(player3Call%7))-i);
+		}
+	}
+	
+
+	
+
+
+	
 	inputFlag = 1;    //Now player3 can move the cards to the playfield
-	player3Call = call_token_id;
+	
 }
+
+
+
+
+
+function show_balloon(src, top, left, id) {
+
+	//THIS METHOD WILL DISPLAY IMAGE ON PLAY_FLOOR
+
+    var img = document.createElement("img");
+
+    img.src = src;
+    img.id = id;
+    img.style.setProperty("position","absolute");
+    img.style.setProperty("top",top+"%");
+    img.style.setProperty("left",left+"%");
+    img.style.setProperty("width","3%");
+    img.style.setProperty("height","auto");
+    //img.style.setProperty("opacity",opacity);
+
+
+    // This next line will just add it to the PLAY_SECTION
+    document.getElementById("play_section").appendChild(img);
+}
+
+function vanish_balloon(win_player){
+	
+	var t=win_player*1000;
+	if(win_player==1){
+		//remaining_call1++;
+		//t+=remaining_call1;
+	}
+	else if(win_player==2){
+		//remaining_call2++;
+		//t+=remaining_call2;
+	}
+	else if(win_player==3){
+		remaining_call3++;
+		t+=remaining_call3;
+		document.getElementById(t).style.setProperty("opacity","0");
+	}
+	else if(win_player==4){
+		//remaining_call4++;
+		//t+=remaining_call4;
+	}
+	
+	//document.getElementById(t).style.setProperty("opacity","0");
+	
+}
+
+
 
 
 
