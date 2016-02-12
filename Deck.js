@@ -22,7 +22,8 @@ var trumpedSuits=[];
 var pile_flag = 0;
 var pass_flag = 0;
 
-
+var audio = new Audio('audio_file.mp3');
+audio.play();
 
 
 //populating allCards array
