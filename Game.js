@@ -396,4 +396,4 @@ function player4_play_card(card_id){
 
 }
 
-var myVar = setInterval(play,2000);
+var myVar = setInterval(play,200);

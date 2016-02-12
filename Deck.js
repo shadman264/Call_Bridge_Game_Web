@@ -539,7 +539,7 @@ function emptyBoard(winning_card){
 			var x4= boardCards.pop();
 			
 			//balchal = setTimeout(function(){vanishFunc(x,x2,x3,x4,winning_card);},1000);
-			animate2 = setTimeout(function(){make_pile_to_winner(lastWinner,x,x2,x3,x4,winning_card);},3000);
+			animate2 = setTimeout(function(){make_pile_to_winner(lastWinner,x,x2,x3,x4,winning_card);},1500);
 			document.getElementById(x).style.opacity = "0.2";
 			document.getElementById(x2).style.opacity = "0.2";
 			document.getElementById(x3).style.opacity = "0.2";
