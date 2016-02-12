@@ -21,6 +21,8 @@ var leadCards=[114,214,314,414];
 var trumpedSuits=[];
 var pile_flag = 0;
 var pass_flag = 0;
+var empty_flag = 0;
+var animate2;
 
 var audio = new Audio('audio_file.mp3');
 audio.play();
@@ -523,11 +525,11 @@ function winPlayer(winCard) {
 }
 
 //clearing winning card from the top left corner just showing for 1 second
-function clearWinningCard(winning_card) {
-		document.getElementById(winning_card).style.opacity = "0";
+/*function clearWinningCard(winning_card) {
+		//document.getElementById(winning_card).style.opacity = "0";
 		vanishFlag=0;
 		clearTimeout(lame);
-}
+}*/
 
 // empty board function and showing the winning card in the top left corner and eventually after 1 secong vanishing the card
 function emptyBoard(winning_card){
@@ -536,15 +538,24 @@ function emptyBoard(winning_card){
 			var x2= boardCards.pop();
 			var x3= boardCards.pop();
 			var x4= boardCards.pop();
+			
+			//balchal = setTimeout(function(){vanishFunc(x,x2,x3,x4,winning_card);},1000);
+			animate2 = setTimeout(function(){make_pile_to_winner(lastWinner,x,x2,x3,x4,winning_card);},3000);
+			document.getElementById(x).style.opacity = "0.2";
+			document.getElementById(x2).style.opacity = "0.2";
+			document.getElementById(x3).style.opacity = "0.2";
+			document.getElementById(x4).style.opacity = "0.2";
+			document.getElementById(winning_card).style.opacity = "1";
 			vanishFlag=1;
-			balchal = setTimeout(function(){vanishFunc(x,x2,x3,x4,winning_card);},1000);
-			//pile_flag = 0;
-			//make_pile_to_winner(0,x,x2,x3,x4,winning_card);
+			pile_flag = 0;
+			
+			
+			
 		}
 }
 
 // vanishing cards graphically and showing winning card graphically
-function vanishFunc(x,x2,x3,x4,winning_card){
+/*function vanishFunc(x,x2,x3,x4,winning_card){
 		document.getElementById(x).style.opacity = "0";
 		document.getElementById(x2).style.opacity = "0";
 		document.getElementById(x3).style.opacity = "0";
@@ -562,12 +573,12 @@ function vanishFunc(x,x2,x3,x4,winning_card){
 		
 		clearTimeout(balchal);
 
-}
+}*/
 
 
 
 
-/*function make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card){
+function make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card){
 	//THIS METHOD WILL MOVE ALL FOUR BOARD CARD TOGETHER AND MAKE PILE
 	
 
@@ -613,60 +624,74 @@ function vanishFunc(x,x2,x3,x4,winning_card){
 
 	//NOW ALL FOUR CARD WILL BE MOVED TO THE CENTER AS PILE
 
+	document.getElementById(hand_index1).style.opacity = "1";
+	document.getElementById(hand_index2).style.opacity = "1";
+	document.getElementById(hand_index3).style.opacity = "1";
+	document.getElementById(hand_index4).style.opacity = "1";
+	clearTimeout(animate2);
+
+	
+	vanishFlag = 0;
+
 	if(pile_flag==0){
-		document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+		document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.2s ease-in-out");
 		document.getElementById(hand_index1).style.setProperty("top", "43%");
 		document.getElementById(hand_index1).style.setProperty("left", "41.5%");
 		document.getElementById(hand_index1).style.webkitTransform = "rotate(0deg)";
-		clearTimeout(animate);
-		animate = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},280); 
+		clearTimeout(animate2);
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},180); 
 		pile_flag = 1;
 	}
 
 
 	else if(pile_flag==1){
-		document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+		document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.2s ease-in-out");
 		document.getElementById(hand_index2).style.setProperty("top", "43%");
 		document.getElementById(hand_index2).style.setProperty("left", "41.54%");
 		document.getElementById(hand_index2).style.webkitTransform = "rotate(0deg)";
-		clearTimeout(animate);
-		animate = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},280); 
+		clearTimeout(animate2);
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},180); 
 		pile_flag = 2;
 	}
 
 	else if(pile_flag==2){
-		document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+		document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.2s ease-in-out");
 		document.getElementById(hand_index4).style.setProperty("top", "43%");
 		document.getElementById(hand_index4).style.setProperty("left", "41.58%");
 		document.getElementById(hand_index4).style.webkitTransform = "rotate(0deg)";
-		clearTimeout(animate);
-		animate = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},280); 
+		clearTimeout(animate2);
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},180); 
 		pile_flag = 3;
 	}
 
 
 	else if(pile_flag==3){
-		document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+		document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.2s ease-in-out");
 		document.getElementById(hand_index3).style.setProperty("top", "43%");
 		document.getElementById(hand_index3).style.setProperty("left", "41.62%");
 		document.getElementById(hand_index3).style.webkitTransform = "rotate(0deg)";
-		clearTimeout(animate);
-		animate = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},580); 
+		clearTimeout(animate2);
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},280); 
 		pile_flag = 4;
 
 	}
 
 	else if(pile_flag==4){
-		clearTimeout(animate);
-		animate = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},500); 
+		clearTimeout(animate2);
+		animate2 = setTimeout(function(){make_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card)},300); 
 		pile_flag = 5;
 	}
 
 	//NOW MOVE THE PILE TO THE WINNER AND VANISH IT
 
 	else if(pile_flag==5){
-		clearTimeout(animate);
+		clearTimeout(animate2);
 		pile_flag = 0;
+		pass_flag = 0;
+		document.getElementById(hand_index1).style.setProperty("opacity", "0");
+		document.getElementById(hand_index2).style.setProperty("opacity", "0");
+		document.getElementById(hand_index3).style.setProperty("opacity", "0");
+		document.getElementById(hand_index4).style.setProperty("opacity", "0");
 		pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,hand_index4,winning_card);
 	}
 
@@ -692,66 +717,282 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 
 
 	if(winner_player==1){
-			
-		}
-		
-		else if(winner_player==2){
-			
-		}
-
-		else if(winner_player==4){
-			
-		}
-
-		else{
 			if(pass_flag==0){
-				document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.9s ease-in-out");
-				document.getElementById(hand_index1).style.webkitTransform = "scale(0.5)";
-				document.getElementById(hand_index1).style.setProperty("top", "75%");
+				document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index1).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index1).style.setProperty("top", "25%");
 				document.getElementById(hand_index1).style.setProperty("left", "10%");
+				document.getElementById(hand_index1).style.setProperty("opacity", "0");
 				
-				animate = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
 				pass_flag = 1;
 			}
 			else if(pass_flag==1){
-				document.getElementById(hand_index1).style.setProperty("opacity", "0");
+				
 
-				document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.9s ease-in-out");
-				document.getElementById(hand_index2).style.webkitTransform = "scale(0.5)";
-				document.getElementById(hand_index2).style.setProperty("top", "75%");
+				document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index2).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index2).style.setProperty("top", "25%");
 				document.getElementById(hand_index2).style.setProperty("left", "10%");
+				document.getElementById(hand_index2).style.setProperty("opacity", "0");
 
-				animate = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
 				pass_flag = 2;
 			}
 			else if(pass_flag==2){
-				document.getElementById(hand_index2).style.setProperty("opacity", "0");
+				
 
-				document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.9s ease-in-out");
-				document.getElementById(hand_index3).style.webkitTransform = "scale(0.5)";
-				document.getElementById(hand_index3).style.setProperty("top", "75%");
+				document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index3).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index3).style.setProperty("top", "25%");
 				document.getElementById(hand_index3).style.setProperty("left", "10%");
+				document.getElementById(hand_index3).style.setProperty("opacity", "0");
 
-				clearTimeout(animate);
-				animate = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
 				pass_flag = 3;
 			}
 			else if(pass_flag==3){
-				document.getElementById(hand_index3).style.setProperty("opacity", "0");
+				
 
-				document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.9s ease-in-out");
-				document.getElementById(hand_index4).style.webkitTransform = "scale(0.5)";
-				document.getElementById(hand_index4).style.setProperty("top", "75%");
+				document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index4).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index4).style.setProperty("top", "25%");
 				document.getElementById(hand_index4).style.setProperty("left", "10%");
+				document.getElementById(hand_index4).style.setProperty("opacity", "0");
 
-				clearTimeout(animate);
-				animate = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
 				pass_flag = 4;
 			}
 			else if(pass_flag==4){
-				document.getElementById(hand_index4).style.setProperty("opacity", "0");
+				
+				
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},500); 
+				pass_flag = 5;
+				
+			}
+
+			else if(pass_flag==5){
+				
 				pass_flag = 0;
-				clearTimeout(animate);
+				clearTimeout(animate2);
+				vanishFlag=0;
+				//chudi = 0;
+				//play();
+				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
+				
+			}
+		}
+		
+		else if(winner_player==2){
+			if(pass_flag==0){
+				document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index1).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index1).style.setProperty("top", "25%");
+				document.getElementById(hand_index1).style.setProperty("left", "75%");
+				document.getElementById(hand_index1).style.setProperty("opacity", "0");
+				
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 1;
+			}
+			else if(pass_flag==1){
+				
+
+				document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index2).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index2).style.setProperty("top", "25%");
+				document.getElementById(hand_index2).style.setProperty("left", "75%");
+				document.getElementById(hand_index2).style.setProperty("opacity", "0");
+
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 2;
+			}
+			else if(pass_flag==2){
+				
+
+				document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index3).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index3).style.setProperty("top", "25%");
+				document.getElementById(hand_index3).style.setProperty("left", "75%");
+				document.getElementById(hand_index3).style.setProperty("opacity", "0");
+
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 3;
+			}
+			else if(pass_flag==3){
+				
+
+				document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index4).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index4).style.setProperty("top", "25%");
+				document.getElementById(hand_index4).style.setProperty("left", "75%");
+				document.getElementById(hand_index4).style.setProperty("opacity", "0");
+
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 4;
+			}
+			else if(pass_flag==4){
+				
+				
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},500); 
+				pass_flag = 5;
+				
+			}
+
+			else if(pass_flag==5){
+				
+				pass_flag = 0;
+				clearTimeout(animate2);
+				vanishFlag=0;
+				//chudi = 0;
+				//play();
+				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
+				
+			}
+		}
+
+		else if(winner_player==4){
+			if(pass_flag==0){
+				document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index1).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index1).style.setProperty("top", "75%");
+				document.getElementById(hand_index1).style.setProperty("left", "75%");
+				document.getElementById(hand_index1).style.setProperty("opacity", "0");
+				
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 1;
+			}
+			else if(pass_flag==1){
+				
+
+				document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index2).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index2).style.setProperty("top", "75%");
+				document.getElementById(hand_index2).style.setProperty("left", "75%");
+				document.getElementById(hand_index2).style.setProperty("opacity", "0");
+
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 2;
+			}
+			else if(pass_flag==2){
+				
+
+				document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index3).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index3).style.setProperty("top", "75%");
+				document.getElementById(hand_index3).style.setProperty("left", "75%");
+				document.getElementById(hand_index3).style.setProperty("opacity", "0");
+
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 3;
+			}
+			else if(pass_flag==3){
+				
+
+				document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index4).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index4).style.setProperty("top", "75%");
+				document.getElementById(hand_index4).style.setProperty("left", "75%");
+				document.getElementById(hand_index4).style.setProperty("opacity", "0");
+
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 4;
+			}
+			else if(pass_flag==4){
+				
+				
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},500); 
+				pass_flag = 5;
+				
+			}
+
+			else if(pass_flag==5){
+				
+				pass_flag = 0;
+				clearTimeout(animate2);
+				vanishFlag=0;
+				//chudi = 0;
+				//play();
+				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
+				
+			}
+		}
+
+		else if(winner_player==3){
+			if(pass_flag==0){
+				document.getElementById(hand_index1).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index1).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index1).style.setProperty("top", "75%");
+				document.getElementById(hand_index1).style.setProperty("left", "10%");
+				document.getElementById(hand_index1).style.setProperty("opacity", "0");
+				
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 1;
+			}
+			else if(pass_flag==1){
+				
+
+				document.getElementById(hand_index2).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index2).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index2).style.setProperty("top", "75%");
+				document.getElementById(hand_index2).style.setProperty("left", "10%");
+				document.getElementById(hand_index2).style.setProperty("opacity", "0");
+
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 2;
+			}
+			else if(pass_flag==2){
+				
+
+				document.getElementById(hand_index3).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index3).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index3).style.setProperty("top", "75%");
+				document.getElementById(hand_index3).style.setProperty("left", "10%");
+				document.getElementById(hand_index3).style.setProperty("opacity", "0");
+
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 3;
+			}
+			else if(pass_flag==3){
+				
+
+				document.getElementById(hand_index4).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(hand_index4).style.webkitTransform = "scale(0.01)";
+				document.getElementById(hand_index4).style.setProperty("top", "75%");
+				document.getElementById(hand_index4).style.setProperty("left", "10%");
+				document.getElementById(hand_index4).style.setProperty("opacity", "0");
+
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},0); 
+				pass_flag = 4;
+			}
+			else if(pass_flag==4){
+				
+				
+				clearTimeout(animate2);
+				animate2 = setTimeout(function(){pass_pile_to_winner(winner_player,hand_index)},500); 
+				pass_flag = 5;
+				
+			}
+
+			else if(pass_flag==5){
+				
+				pass_flag = 0;
+				clearTimeout(animate2);
+				vanishFlag=0;
+				//chudi = 0;
+				//play();
+				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
+				
 			}
 			
 			
@@ -770,7 +1011,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			//document.getElementById(card3).style.setProperty("left", "10%");
 			
 		}
-}*/
+}
 
 
 
