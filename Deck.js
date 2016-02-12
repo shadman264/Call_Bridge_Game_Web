@@ -24,8 +24,7 @@ var pass_flag = 0;
 var empty_flag = 0;
 var animate2;
 
-var audio = new Audio('audio_file.mp3');
-audio.play();
+
 
 
 //populating allCards array
