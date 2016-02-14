@@ -20,6 +20,8 @@ var remaining_call1=0;
 var remaining_call2=0;
 var remaining_call3=0;
 var remaining_call4=0;
+var negetive_call3 =0;
+
 
 
 
@@ -216,10 +218,10 @@ function player3_card_display(){
 		clearTimeout(animate);
 		call_subwindow();
 	}
-	var left_flag = 24.0;
+	var left_flag = 22.6;
 	var time_flag2 = 1;
 	for (var i = 0; i < 13; i++) {
-		left_flag += 2.5; 
+		left_flag += 2.6; 
 		document.getElementById(player3Cards[i]).addEventListener("click",function(){player3_select_card(this.id);},false);
 		document.getElementById(player3Cards[i]).addEventListener("mouseover",function(){mouse_over_card(this.id);},false);
 		document.getElementById(player3Cards[i]).addEventListener("mouseleave",function(){mouse_out_card(this.id);},false);
@@ -244,7 +246,11 @@ function player3_select_card(clicked_id){
 	//top: 49%;       left:  34%;
 	//DESIRED POSTION FOR PLAYER4
 	//top: 49%;       left:  50%;
+
+
 	if(inputFlag==3 && clickFlag==0){
+
+
 			if(boardCards.length!=0) {
 				var clickIndex = clicked_id.toString()[0]-'1';
 				var suitIndex = boardCards[0].toString()[0]-'1';
@@ -252,6 +258,8 @@ function player3_select_card(clicked_id){
 
 				}
 				else{
+					player3_card_rearrange(clicked_id);
+
 					curClick = clicked_id;
 					var temp = curClick;
 					clickFlag=1;
@@ -260,11 +268,17 @@ function player3_select_card(clicked_id){
 				}
 			}
 			else{
+				player3_card_rearrange(clicked_id);
+
 				curClick = clicked_id;
 				var temp = curClick;
 				clickFlag=1;
 				cardShowOnBoard(temp,"rotate(45deg)","49%","34.5%");	
 			}
+
+			//card rearrange
+			
+			
 	}
 }
 
@@ -370,13 +384,13 @@ function call_token_selected(call_token_id){
 		if(i==7){
 			break;
 		}
-		show_balloon('MyImage/CallDisplay/red_balloon.png', 85,19-3*i,3000+player3Call-i);
+		show_balloon('MyImage/CallDisplay/beer.png', 85,19-3*i,3000+player3Call-i,3);
 	}
 
 	//SECOND ROW OF OTHER BALLONS
 	if(player3Call-7>0){
 		for(var i=0;i<(player3Call%7);i++){
-			show_balloon('MyImage/CallDisplay/red_balloon.png', 90,19-3*i,(3000+(player3Call%7))-i);
+			show_balloon('MyImage/CallDisplay/beer.png', 91.3,19-3*i,(3000+(player3Call%7))-i,3);
 		}
 	}
 	
@@ -393,7 +407,7 @@ function call_token_selected(call_token_id){
 
 
 
-function show_balloon(src, top, left, id) {
+function show_balloon(src, top, left, id, width) {
 
 	//THIS METHOD WILL DISPLAY IMAGE ON PLAY_FLOOR
 
@@ -404,7 +418,7 @@ function show_balloon(src, top, left, id) {
     img.style.setProperty("position","absolute");
     img.style.setProperty("top",top+"%");
     img.style.setProperty("left",left+"%");
-    img.style.setProperty("width","3%");
+    img.style.setProperty("width",width+"%");
     img.style.setProperty("height","auto");
     //img.style.setProperty("opacity",opacity);
 
@@ -426,8 +440,24 @@ function vanish_balloon(win_player){
 	}
 	else if(win_player==3){
 		remaining_call3++;
-		t+=remaining_call3;
-		document.getElementById(t).style.setProperty("opacity","0");
+		if(player3Call-remaining_call3>=0){
+			//still within the limit of call
+			t+=remaining_call3;
+			document.getElementById(t).style.setProperty("opacity","0");
+		}
+		else{
+			//out of call
+			if(negetive_call3<7){
+				//first row of skull draw
+				show_balloon('MyImage/CallDisplay/skull3.png', 85,19-3*negetive_call3,3000+negetive_call3,3);	
+			}
+			else{
+				show_balloon('MyImage/CallDisplay/skull3.png', 90,19-3*(negetive_call3-7),3000+negetive_call3,3);
+			}
+			negetive_call3++;
+			
+		}
+		
 	}
 	else if(win_player==4){
 		//remaining_call4++;
@@ -436,6 +466,48 @@ function vanish_balloon(win_player){
 	
 	//document.getElementById(t).style.setProperty("opacity","0");
 	
+}
+
+
+function player3_card_rearrange(selected_card_id){
+
+	//THIS METHOD WILL REARRANGE PLAYER 3'S CARDS AFTER EACH ROUND OF PLAY
+
+
+	
+	//Now determine how many cards have been played
+
+	var played_cards=0;
+	for(var i=0;i<4;i++){
+		for(var j=0;j<player3Suits[i].length;j++){
+			if(selected_card_id!=player3Suits[i][j].toString()){
+				played_cards++;	
+			}
+			
+			
+		}
+	}
+
+	played_cards=13-played_cards;
+
+	var left_start = 25.2 + (1.3*played_cards);
+
+	//var audio = new Audio('beep2.mp3');
+	//var audio2 = new Audio('beep1.mp3');
+	
+
+	
+	for(var i=0;i<4;i++){
+		for(var j=0;j<player3Suits[i].length;j++){
+			if(selected_card_id!=player3Suits[i][j].toString()){
+				document.getElementById(player3Suits[i][j]).style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById(player3Suits[i][j]).style.setProperty("left", left_start+"%");
+				left_start+=2.6;	
+			}
+		}
+	}
+
+
 }
 
 
