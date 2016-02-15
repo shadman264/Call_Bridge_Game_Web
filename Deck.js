@@ -27,6 +27,7 @@ var animate2;
 
 
 
+
 //populating allCards array
 function populateAllCards(allCards) {
 	for(var i=0;i<4;i++) {

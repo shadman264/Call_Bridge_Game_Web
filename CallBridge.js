@@ -30,6 +30,9 @@ function display_start(){
 	//var scrollH = ;
 	window.scrollTo(0, 0);
 	window.scrollTo(0, window.innerHeight*0.23);    //162px is target
+
+	cusion_point_display(-12,0,3);
+	
 	
 	move_card_suit();
 }
@@ -384,13 +387,15 @@ function call_token_selected(call_token_id){
 		if(i==7){
 			break;
 		}
-		show_balloon('MyImage/CallDisplay/beer.png', 85,19-3*i,3000+player3Call-i,3);
+		show_balloon('MyImage/CallDisplay/chip.png', 85,19-3*i,3000+player3Call-i,3);
+		
 	}
 
 	//SECOND ROW OF OTHER BALLONS
 	if(player3Call-7>0){
 		for(var i=0;i<(player3Call%7);i++){
-			show_balloon('MyImage/CallDisplay/beer.png', 91.3,19-3*i,(3000+(player3Call%7))-i,3);
+			show_balloon('MyImage/CallDisplay/chip.png', 91.3,19-3*i,(3000+(player3Call%7))-i,3);
+			
 		}
 	}
 	
@@ -400,6 +405,9 @@ function call_token_selected(call_token_id){
 
 	
 	inputFlag = 1;    //Now player3 can move the cards to the playfield
+
+
+	
 	
 }
 
@@ -509,6 +517,350 @@ function player3_card_rearrange(selected_card_id){
 
 
 }
+
+
+function cusion_point_display(present_point,previous_point,player_no){
+	
+	//THIS METHOD WILL DISPLAY POINT ON THE CUSION
+
+	//NB-- NEGETIVE POINT ER KAJ KORA HYNAI
+
+	var first_ball;
+	var second_ball;
+	var img0 = document.createElement("img");
+	var img1 = document.createElement("img");
+	var img2 = document.createElement("img");
+
+	if(player_no==1){
+
+	}
+	else if(player_no==2){
+
+	}
+	else if(player_no==3){
+
+
+		//ID--->FIRST DIGIT  -->3101-3109
+		//ID-->SECOND DIGIT  -->3200-3209
+		//ID--->MINUS SIGN   -->3100
+
+
+		//FIRST CHECK MINUS SIGN CASE
+
+
+		//1. IF IT WAS +VE,NOW +VE, DO NOTHING
+
+		//2. IF IT WAS +VE,NOW -VE
+		if(previous_point>=0 && present_point<0){
+			img0.src = 'MyImage/Point/minus.png';
+    		img0.id = 3100;
+    		img0.style.setProperty("position","absolute");
+    		img0.style.setProperty("top","73%");
+    		img0.style.setProperty("left","7.5%");
+    		img0.style.setProperty("width","3%");
+    		img0.style.setProperty("height","auto");
+
+    		document.getElementById("play_section").appendChild(img0);
+		}
+
+		//3. IF IT WAS -VE,NOW +VE
+		if(previous_point<0 && present_point>=0){
+			document.getElementById("3100").style.opacity = "0";
+		}
+
+		//4. IF IT WAS -VE,NOW -VE, DO NOTHING
+
+
+		//NOW CHECK IF PRESENT_POINT AND PREVIOUS_POINT HAS SAME FIRST DIGIT
+		//SECOND DIGIT CAN NEVER BE SAME
+
+		if(Math.abs(present_point).toString()[0]!=Math.abs(previous_point).toString()[0]){
+			//NOT SAME,YOU HAVE TO REMOVE PREVIOUS BALL OF FIRST DIGIT
+
+			//HIDE PREVIOUS CUSION POINTS
+			if(Math.abs(previous_point)>0){
+				//NOT FIRST TIME ENTRY OF BALLS
+
+				first_ball = 3100 + parseInt(Math.abs(previous_point).toString()[0]);
+				document.getElementById(first_ball).style.opacity = "0";
+
+				//TWO DIGIT LENGTH
+				if(Math.abs(previous_point).toString().length>1){
+					second_ball = 3100 + parseInt(Math.abs(previous_point).toString()[1]);
+					document.getElementById(second_ball).style.opacity = "0";
+				}
+			}
+
+		
+
+		
+
+
+			//FOR FIRST DIGIT
+
+			if(Math.abs(present_point).toString()[0]=='1'){
+
+
+    			img1.src = 'MyImage/Point/1.png';
+    			img1.id = 3101;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11%");
+    			img1.style.setProperty("width","5%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+			}
+			else if(Math.abs(present_point).toString()[0]=='2'){
+				img1.src = 'MyImage/Point/2.png';
+    			img1.id = 3102;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","70%");
+    			img1.style.setProperty("left","15%");
+    			img1.style.setProperty("width","5%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+			else if(Math.abs(present_point).toString()[0]=='3'){
+				img1.src = 'MyImage/Point/3.png';
+    			img1.id = 3103;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","70%");
+    			img1.style.setProperty("left","15%");
+    			img1.style.setProperty("width","5%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+			else if(Math.abs(present_point).toString()[0]=='4'){
+				img1.src = 'MyImage/Point/4.png';
+    			img1.id = 3104;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","70%");
+    			img1.style.setProperty("left","15%");
+    			img1.style.setProperty("width","5%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+			else if(Math.abs(present_point).toString()[0]=='5'){
+				img1.src = 'MyImage/Point/5.png';
+    			img1.id = 3105;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","70%");
+    			img1.style.setProperty("left","15%");
+    			img1.style.setProperty("width","5%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+			else if(Math.abs(present_point).toString()[0]=='6'){
+				img1.src = 'MyImage/Point/6.png';
+    			img1.id = 3106;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","70%");
+    			img1.style.setProperty("left","15%");
+    			img1.style.setProperty("width","5%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+			else if(Math.abs(present_point).toString()[0]=='7'){
+				img1.src = 'MyImage/Point/7.png';
+    			img1.id = 3107;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","70%");
+    			img1.style.setProperty("left","15%");
+    			img1.style.setProperty("width","5%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+			else if(Math.abs(present_point).toString()[0]=='8'){
+				img1.src = 'MyImage/Point/8.png';
+    			img1.id = 3108;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","70%");
+    			img1.style.setProperty("left","15%");
+    			img1.style.setProperty("width","5%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+			else if(Math.abs(present_point).toString()[0]=='9'){
+				img1.src = 'MyImage/Point/9.png';
+    			img1.id = 3109;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","70%");
+    			img1.style.setProperty("left","15%");
+    			img1.style.setProperty("width","5%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+
+
+		}
+
+
+		//FOR 2ND DIGIT
+
+
+		//TWO DIGIT LENGTH
+		if(Math.abs(present_point).toString().length>1){
+			if(previous_point>0){
+				//not first time
+				second_ball = 3200 + parseInt(Math.abs(present_point).toString()[1]);
+				document.getElementById(second_ball).style.opacity = "0";
+			}
+			
+		
+
+
+			if(Math.abs(present_point).toString()[1]=='0'){
+				img2.src = 'MyImage/Point/0.png';
+    			img2.id = 3200;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","70%");
+    			img2.style.setProperty("left","22%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+
+			}
+			else if(Math.abs(present_point).toString()[1]=='1'){
+				img2.src = 'MyImage/Point/1.png';
+    			img2.id = 3201;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","17%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+			else if(Math.abs(present_point).toString()[1]=='2'){
+				img2.src = 'MyImage/Point/2.png';
+    			img2.id = 3202;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","16%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+			else if(Math.abs(present_point).toString()[1]=='3'){
+				img2.src = 'MyImage/Point/3.png';
+    			img2.id = 3203;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","70%");
+    			img2.style.setProperty("left","22%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+			else if(Math.abs(present_point).toString()[1]=='4'){
+				img2.src = 'MyImage/Point/4.png';
+    			img2.id = 3204;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","70%");
+    			img2.style.setProperty("left","22%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+			else if(Math.abs(present_point).toString()[1]=='5'){
+				img2.src = 'MyImage/Point/5.png';
+    			img2.id = 3205;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","70%");
+    			img2.style.setProperty("left","22%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+			else if(present_2oint.toString()[1]=='6'){
+				img2.src = 'MyImage/Point/6.png';
+    			img2.id = 3206;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","70%");
+    			img2.style.setProperty("left","22%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+			else if(Math.abs(present_point).toString()[1]=='7'){
+				img2.src = 'MyImage/Point/7.png';
+    			img2.id = 3207;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","70%");
+    			img2.style.setProperty("left","22%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+			else if(Math.abs(present_point).toString()[1]=='8'){
+				img2.src = 'MyImage/Point/8.png';
+    			img2.id = 3208;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","70%");
+    			img2.style.setProperty("left","22%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+			else if(Math.abs(present_point).toString()[1]=='9'){
+				img2.src = 'MyImage/Point/9.png';
+    			img2.id = 3209;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","70%");
+    			img2.style.setProperty("left","22%");
+    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
+	}
+
+		
+		
+	
+	else if(player_no==4){
+
+	}
+}
+
+
+
 
 
 
