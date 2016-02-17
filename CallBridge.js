@@ -31,7 +31,9 @@ function display_start(){
 	window.scrollTo(0, 0);
 	window.scrollTo(0, window.innerHeight*0.23);    //162px is target
 
-	cusion_point_display(-12,0,3);
+
+	cusion_point_display(29,0,3);
+	//cusion_point_display(-49,20,3);
 	
 	
 	move_card_suit();
@@ -525,11 +527,16 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 	//NB-- NEGETIVE POINT ER KAJ KORA HYNAI
 
+
+	var audio = new Audio('beep2.mp3');
+
 	var first_ball;
 	var second_ball;
 	var img0 = document.createElement("img");
 	var img1 = document.createElement("img");
 	var img2 = document.createElement("img");
+	var first_time_flag = 0;
+	var working_string = "0";
 
 	if(player_no==1){
 
@@ -540,35 +547,101 @@ function cusion_point_display(present_point,previous_point,player_no){
 	else if(player_no==3){
 
 
-		//ID--->FIRST DIGIT  -->3101-3109
+		//ID--->FIRST DIGIT  -->3100-3109
 		//ID-->SECOND DIGIT  -->3200-3209
-		//ID--->MINUS SIGN   -->3100
+		//ID--->MINUS SIGN   -->3110
+		
 
 
-		//FIRST CHECK MINUS SIGN CASE
+
+
+		//PREPARE THE WORKING STRING
+		if(present_point.toString().length==1){
+			working_string = working_string.concat(present_point.toString());
+		}
+		else{
+			working_string = present_point.toString();
+		}
+
+
+		//CHECK IF IT IS THE FIRST TIME OF CUSION_POINT_SHOW
+		//first_time_flag=0 if it is first time
+
+		if(present_point==previous_point){
+			//first time,both are zero
+			
+
+			//first zero show
+			img1.src = 'MyImage/Point/0.png';
+    		img1.id = 3100;
+    		img1.style.setProperty("position","absolute");
+    		img1.style.setProperty("top","71%");
+    		img1.style.setProperty("left","11.5%");
+    		img1.style.setProperty("width","2.6%");
+    		img1.style.setProperty("height","auto");
+    	
+    		document.getElementById("play_section").appendChild(img1);
+
+    		
+    		//second zero show
+    		img2.src = 'MyImage/Point/0.png';
+    		img2.id = 3200;
+    		img2.style.setProperty("position","absolute");
+    		img2.style.setProperty("top","71%");
+    		img2.style.setProperty("left","13.5%");
+    		img2.style.setProperty("width","2.6%");
+    		img2.style.setProperty("height","auto");
+    	
+    		document.getElementById("play_section").appendChild(img2);
+
+
+
+
+		}
+
+
+
+
+		//CHECK MINUS SIGN CASE
 
 
 		//1. IF IT WAS +VE,NOW +VE, DO NOTHING
 
 		//2. IF IT WAS +VE,NOW -VE
 		if(previous_point>=0 && present_point<0){
-			img0.src = 'MyImage/Point/minus.png';
-    		img0.id = 3100;
-    		img0.style.setProperty("position","absolute");
-    		img0.style.setProperty("top","73%");
-    		img0.style.setProperty("left","7.5%");
-    		img0.style.setProperty("width","3%");
-    		img0.style.setProperty("height","auto");
 
-    		document.getElementById("play_section").appendChild(img0);
+			if(document.getElementById("3110")!==null){
+				//age declare kora hoise
+				document.getElementById("3110").style.opacity="1";
+			}
+
+			else{
+				//age declare kora hynay
+				img0.src = 'MyImage/Point/minus2.png';
+    			img0.id = 3110;
+    			img0.style.setProperty("position","absolute");
+    			img0.style.setProperty("top","71%");
+    			img0.style.setProperty("left","9%");
+    			img0.style.setProperty("width","2.6%");
+    			img0.style.setProperty("height","auto");
+
+    			document.getElementById("play_section").appendChild(img0);
+
+			}
+			
 		}
+
 
 		//3. IF IT WAS -VE,NOW +VE
-		if(previous_point<0 && present_point>=0){
-			document.getElementById("3100").style.opacity = "0";
+		else if(previous_point<0 && present_point>=0){
+			document.getElementById("3110").style.opacity = "0";
 		}
 
+
 		//4. IF IT WAS -VE,NOW -VE, DO NOTHING
+
+
+
 
 
 		//NOW CHECK IF PRESENT_POINT AND PREVIOUS_POINT HAS SAME FIRST DIGIT
@@ -578,270 +651,296 @@ function cusion_point_display(present_point,previous_point,player_no){
 			//NOT SAME,YOU HAVE TO REMOVE PREVIOUS BALL OF FIRST DIGIT
 
 			//HIDE PREVIOUS CUSION POINTS
-			if(Math.abs(previous_point)>0){
+			
 				//NOT FIRST TIME ENTRY OF BALLS
 
-				first_ball = 3100 + parseInt(Math.abs(previous_point).toString()[0]);
-				document.getElementById(first_ball).style.opacity = "0";
-
-				//TWO DIGIT LENGTH
-				if(Math.abs(previous_point).toString().length>1){
-					second_ball = 3100 + parseInt(Math.abs(previous_point).toString()[1]);
-					document.getElementById(second_ball).style.opacity = "0";
-				}
+			first_ball = 3100 + parseInt(working_string[0]);
+			if(document.getElementById(first_ball)!==null){
+				document.getElementById(first_ball).style.opacity = "0";	
 			}
-
-		
-
-		
-
-
-			//FOR FIRST DIGIT
-
-			if(Math.abs(present_point).toString()[0]=='1'){
-
-
-    			img1.src = 'MyImage/Point/1.png';
-    			img1.id = 3101;
-    			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","11%");
-    			img1.style.setProperty("width","5%");
-    			img1.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img1);
-			}
-			else if(Math.abs(present_point).toString()[0]=='2'){
-				img1.src = 'MyImage/Point/2.png';
-    			img1.id = 3102;
-    			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","70%");
-    			img1.style.setProperty("left","15%");
-    			img1.style.setProperty("width","5%");
-    			img1.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img1);
-
-			}
-			else if(Math.abs(present_point).toString()[0]=='3'){
-				img1.src = 'MyImage/Point/3.png';
-    			img1.id = 3103;
-    			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","70%");
-    			img1.style.setProperty("left","15%");
-    			img1.style.setProperty("width","5%");
-    			img1.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img1);
-
-			}
-			else if(Math.abs(present_point).toString()[0]=='4'){
-				img1.src = 'MyImage/Point/4.png';
-    			img1.id = 3104;
-    			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","70%");
-    			img1.style.setProperty("left","15%");
-    			img1.style.setProperty("width","5%");
-    			img1.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img1);
-
-			}
-			else if(Math.abs(present_point).toString()[0]=='5'){
-				img1.src = 'MyImage/Point/5.png';
-    			img1.id = 3105;
-    			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","70%");
-    			img1.style.setProperty("left","15%");
-    			img1.style.setProperty("width","5%");
-    			img1.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img1);
-
-			}
-			else if(Math.abs(present_point).toString()[0]=='6'){
-				img1.src = 'MyImage/Point/6.png';
-    			img1.id = 3106;
-    			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","70%");
-    			img1.style.setProperty("left","15%");
-    			img1.style.setProperty("width","5%");
-    			img1.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img1);
-
-			}
-			else if(Math.abs(present_point).toString()[0]=='7'){
-				img1.src = 'MyImage/Point/7.png';
-    			img1.id = 3107;
-    			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","70%");
-    			img1.style.setProperty("left","15%");
-    			img1.style.setProperty("width","5%");
-    			img1.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img1);
-
-			}
-			else if(Math.abs(present_point).toString()[0]=='8'){
-				img1.src = 'MyImage/Point/8.png';
-    			img1.id = 3108;
-    			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","70%");
-    			img1.style.setProperty("left","15%");
-    			img1.style.setProperty("width","5%");
-    			img1.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img1);
-
-			}
-			else if(Math.abs(present_point).toString()[0]=='9'){
-				img1.src = 'MyImage/Point/9.png';
-    			img1.id = 3109;
-    			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","70%");
-    			img1.style.setProperty("left","15%");
-    			img1.style.setProperty("width","5%");
-    			img1.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img1);
-
-			}
-
+			
 
 		}
 
 
+
+		if(first_time_flag==1){
+			//not the first entry in this method
+			second_ball = 3200 + parseInt(Math.abs(previous_point).toString()[1]);
+			if(document.getElementById(second_ball)!==null){
+				document.getElementById(second_ball).style.opacity = "0";	
+			}
+			
+		}
+
+
+			
+
+
+
+
+		//FOR FIRST DIGIT
+
+
+		if(working_string[0]=='0'){
+			if(document.getElementById("3100")!==null){
+				//age declare kora hoise
+				document.getElementById("3100").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/0.png';
+    			img1.id = 3100;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+		}
+
+		
+		else if(working_string[0]=='1'){
+
+			if(document.getElementById("3101")!==null){
+				//age declare kora hoise
+				document.getElementById("3101").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/1.png';
+    			img1.id = 3101;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+
+
+    			
+		}
+			
+
+
+		else if(working_string[0]=='2'){
+
+			if(document.getElementById("3102")!==null){
+				//age declare kora hoise
+				document.getElementById("3102").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/2.png';
+    			img1.id = 3102;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+				
+
+		}
+		
+
+		else if(working_string[0]=='3'){
+			if(document.getElementById("3103")!==null){
+				//age declare kora hoise
+				document.getElementById("3103").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/3.png';
+    			img1.id = 3103;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+
+		}
+		
+
+		else if(working_string[0]=='4'){
+			if(document.getElementById("3104")!==null){
+				//age declare kora hoise
+				document.getElementById("3104").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/4.png';
+    			img1.id = 3104;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+
+		}
+		
+
+		else if(working_string[0]=='5'){
+			if(document.getElementById("3105")!==null){
+				//age declare kora hoise
+				document.getElementById("3105").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/5.png';
+    			img1.id = 3105;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+
+		}
+
+
+		else if(working_string[0]=='6'){
+			if(document.getElementById("3106")!==null){
+				//age declare kora hoise
+				document.getElementById("3106").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/6.png';
+    			img1.id = 3106;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+
+		}
+		
+
+		else if(working_string[0]=='7'){
+			if(document.getElementById("3107")!==null){
+				//age declare kora hoise
+				document.getElementById("3107").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/7.png';
+    			img1.id = 3107;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    
+    			document.getElementById("play_section").appendChild(img1);
+			}
+
+		}
+
+
+		else if(working_string[0]=='8'){
+			if(document.getElementById("3108")!==null){
+				//age declare kora hoise
+				document.getElementById("3108").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/8.png';
+    			img1.id = 3108;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+
+		}
+
+
+		else if(working_string[0]=='9'){
+			if(document.getElementById("3109")!==null){
+				//age declare kora hoise
+				document.getElementById("3109").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/9.png';
+    			img1.id = 3109;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","71%");
+    			img1.style.setProperty("left","11.5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+
+			}
+
+		}
+
+
+		
+
+
+		
+
 		//FOR 2ND DIGIT
 
-
-		//TWO DIGIT LENGTH
-		if(Math.abs(present_point).toString().length>1){
-			if(previous_point>0){
-				//not first time
-				second_ball = 3200 + parseInt(Math.abs(present_point).toString()[1]);
-				document.getElementById(second_ball).style.opacity = "0";
-			}
 			
 		
 
 
-			if(Math.abs(present_point).toString()[1]=='0'){
+		if(working_string[1]=='0'){
+			if(document.getElementById("3200")!==null){
+				//age declare kora hoise
+				document.getElementById("3200").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
 				img2.src = 'MyImage/Point/0.png';
     			img2.id = 3200;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","70%");
-    			img2.style.setProperty("left","22%");
-    			img2.style.setProperty("width","5%");
-    			img2.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img2);
-
-
-			}
-			else if(Math.abs(present_point).toString()[1]=='1'){
-				img2.src = 'MyImage/Point/1.png';
-    			img2.id = 3201;
-    			img2.style.setProperty("position","absolute");
     			img2.style.setProperty("top","71%");
-    			img2.style.setProperty("left","17%");
-    			img2.style.setProperty("width","5%");
-    			img2.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img2);
-
-			}
-			else if(Math.abs(present_point).toString()[1]=='2'){
-				img2.src = 'MyImage/Point/2.png';
-    			img2.id = 3202;
-    			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","71%");
-    			img2.style.setProperty("left","16%");
-    			img2.style.setProperty("width","5%");
-    			img2.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img2);
-
-			}
-			else if(Math.abs(present_point).toString()[1]=='3'){
-				img2.src = 'MyImage/Point/3.png';
-    			img2.id = 3203;
-    			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","70%");
-    			img2.style.setProperty("left","22%");
-    			img2.style.setProperty("width","5%");
-    			img2.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img2);
-
-			}
-			else if(Math.abs(present_point).toString()[1]=='4'){
-				img2.src = 'MyImage/Point/4.png';
-    			img2.id = 3204;
-    			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","70%");
-    			img2.style.setProperty("left","22%");
-    			img2.style.setProperty("width","5%");
-    			img2.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img2);
-
-			}
-			else if(Math.abs(present_point).toString()[1]=='5'){
-				img2.src = 'MyImage/Point/5.png';
-    			img2.id = 3205;
-    			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","70%");
-    			img2.style.setProperty("left","22%");
-    			img2.style.setProperty("width","5%");
-    			img2.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img2);
-
-			}
-			else if(present_2oint.toString()[1]=='6'){
-				img2.src = 'MyImage/Point/6.png';
-    			img2.id = 3206;
-    			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","70%");
-    			img2.style.setProperty("left","22%");
-    			img2.style.setProperty("width","5%");
-    			img2.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img2);
-
-			}
-			else if(Math.abs(present_point).toString()[1]=='7'){
-				img2.src = 'MyImage/Point/7.png';
-    			img2.id = 3207;
-    			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","70%");
-    			img2.style.setProperty("left","22%");
-    			img2.style.setProperty("width","5%");
-    			img2.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img2);
-
-			}
-			else if(Math.abs(present_point).toString()[1]=='8'){
-				img2.src = 'MyImage/Point/8.png';
-    			img2.id = 3208;
-    			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","70%");
-    			img2.style.setProperty("left","22%");
-    			img2.style.setProperty("width","5%");
-    			img2.style.setProperty("height","auto");
-    	
-    			document.getElementById("play_section").appendChild(img2);
-
-			}
-			else if(Math.abs(present_point).toString()[1]=='9'){
-				img2.src = 'MyImage/Point/9.png';
-    			img2.id = 3209;
-    			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","70%");
-    			img2.style.setProperty("left","22%");
-    			img2.style.setProperty("width","5%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
     			document.getElementById("play_section").appendChild(img2);
@@ -849,9 +948,206 @@ function cusion_point_display(present_point,previous_point,player_no){
 			}
 
 		}
-	}
+			
+
+		else if(working_string[1]=='1'){
+			if(document.getElementById("3201")!==null){
+				//age declare kora hoise
+				document.getElementById("3201").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/1.png';
+    			img2.id = 3201;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
+		else if(working_string[1]=='2'){
+			if(document.getElementById("3202")!==null){
+				//age declare kora hoise
+				document.getElementById("3202").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/2.png';
+    			img2.id = 3202;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
+		else if(working_string[1]=='3'){
+			if(document.getElementById("3203")!==null){
+				//age declare kora hoise
+				document.getElementById("3203").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/3.png';
+    			img2.id = 3203;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
+		else if(working_string[1]=='4'){
+			if(document.getElementById("3204")!==null){
+				//age declare kora hoise
+				document.getElementById("3204").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/4.png';
+    			img2.id = 3204;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
+		else if(working_string[1]=='5'){
+			if(document.getElementById("3205")!==null){
+				//age declare kora hoise
+				document.getElementById("3205").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/5.png';
+    			img2.id = 3205;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
+		else if(working_string[1]=='6'){
+			if(document.getElementById("3206")!==null){
+				//age declare kora hoise
+				document.getElementById("3206").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/6.png';
+    			img2.id = 3206;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
+		else if(working_string[1]=='7'){
+			if(document.getElementById("3207")!==null){
+				//age declare kora hoise
+				document.getElementById("3207").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/7.png';
+    			img2.id = 3207;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
+		else if(working_string[1]=='8'){
+			if(document.getElementById("3208")!==null){
+				//age declare kora hoise
+				document.getElementById("3208").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/8.png';
+    			img2.id = 3208;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
+		else if(working_string[1]=='9'){
+			if(document.getElementById("3209")!==null){
+				//age declare kora hoise
+				document.getElementById("3209").style.opacity="1";
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/9.png';
+    			img2.id = 3209;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+			}
+
+		}
 
 		
+
+		
+		if(first_time_flag==0){
+			first_time_flag = 1;
+		}
+
+	}	
 		
 	
 	else if(player_no==4){
