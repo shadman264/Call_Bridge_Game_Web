@@ -1,8 +1,3 @@
-var player1_card_play_flag = 0;
-var player2_card_play_flag = 0;
-var player4_card_play_flag = 0;
-var animate;
-var chudi=0;
 function player1(){
 	
 	var temp;
@@ -105,6 +100,7 @@ function cardShowOnBoard(temp,rotate,top,left){
 }
 
 function play(){
+
 	if(vanishFlag==0 && chudi==0) {
 		if(inputFlag==1 && player1_card_play_flag==0) {
 			player1();
@@ -118,6 +114,7 @@ function play(){
 		else if(inputFlag==4 && player4_card_play_flag==0) {
 			player4();
 		}
+		
 	}
 
 	/*if(vanishFlag==0 && chudi==0) {
@@ -149,6 +146,10 @@ function player1_play_card(card_id){
 	//top: 18%; left:  23%;
 	//DESIRED POSITION
 	//top: 33%;   left:  34.5%;
+
+
+
+	
 
 	
 	
@@ -196,6 +197,13 @@ function player1_play_card(card_id){
 	}
 
 	else if(player1_card_play_flag==3){
+
+		//CHECK IF IT IS THE LAST CARD
+		if(player1Suits[0].length+player1Suits[1].length+player1Suits[2].length+player1Suits[3].length == 0) {
+			document.getElementById("player1_fixed_card").style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+			document.getElementById("player1_fixed_card").style.opacity = "0";
+		}
+
 		document.getElementById(card_id).style.opacity = "1";
 		document.getElementById("card_single").style.opacity = "0";
 		document.getElementById(card_id).style.setProperty("-webkit-transition", "all 0.6s ease-in-out");
@@ -233,6 +241,7 @@ function player2_play_card(card_id){
 	//top: 18%; left:  60%;
 	//DESIRED POSITION
 	//top: 33%;  left:  45.5%;
+
 
 	
 	
@@ -281,6 +290,14 @@ function player2_play_card(card_id){
 	}
 
 	else if(player2_card_play_flag==3){
+
+		//CHECK IF IT IS THE LAST CARD
+		if(player2Suits[0].length+player2Suits[1].length+player2Suits[2].length+player2Suits[3].length == 0) {
+			document.getElementById("player2_fixed_card").style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+			document.getElementById("player2_fixed_card").style.opacity = "0";
+		}
+
+
 		document.getElementById(card_id).style.opacity = "1";
 		document.getElementById("card_single").style.opacity = "0";
 		document.getElementById(card_id).style.setProperty("-webkit-transition", "all 0.6s ease-in-out");
@@ -295,9 +312,11 @@ function player2_play_card(card_id){
 			curTurn=1;			
 			emptyBoard(winning_card(boardCards));
 			inputFlag=lastWinner;
+			//inputFlag=1000;
 		}
 		else{
 			inputFlag=1;
+			//inputFlag=1000;
 		}
 
 		clearTimeout(animate);
@@ -364,6 +383,13 @@ function player4_play_card(card_id){
 	}
 
 	else if(player4_card_play_flag==3){
+
+		//CHECK IF IT IS THE LAST CARD
+		if(player4Suits[0].length+player4Suits[1].length+player4Suits[2].length+player4Suits[3].length == 0) {
+			document.getElementById("player4_fixed_card").style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
+			document.getElementById("player4_fixed_card").style.opacity = "0";
+		}
+
 		document.getElementById(card_id).style.opacity = "1";
 		document.getElementById("card_single").style.opacity = "0";
 		document.getElementById(card_id).style.setProperty("-webkit-transition", "all 0.6s ease-in-out");

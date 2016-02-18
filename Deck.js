@@ -1,33 +1,3 @@
-var deck = [102,103,104,105,106,107,108,109,110,111,112,113,114,202,203,204,205,206,207,208,209,210,211,212,213,214
-,302,303,304,305,306,307,308,309,310,311,312,313,314,402,403,404,405,406,407,408,409,410,411,412,413,414];
-var player1Cards=[];
-var player2Cards=[];
-var player3Cards=[];
-var player4Cards=[];
-var player1Suits=[[],[],[],[]];
-var player2Suits=[[],[],[],[]];
-var player3Suits=[[],[],[],[]];
-var player4Suits=[[],[],[],[]];
-var boardCards=[];
-var balchal;
-var lame;
-var lastWinner=1;
-var curTurn=1;
-var curClick;
-var clickFlag=0;
-var vanishFlag=0;
-var allCards=[[],[],[],[]];
-var leadCards=[114,214,314,414];
-var trumpedSuits=[];
-var pile_flag = 0;
-var pass_flag = 0;
-var empty_flag = 0;
-var animate2;
-
-
-
-
-
 //populating allCards array
 function populateAllCards(allCards) {
 	for(var i=0;i<4;i++) {
@@ -789,12 +759,18 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==5){
 				
 				pass_flag = 0;
+				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
+					reinitialize();
+				}
 				clearTimeout(animate2);
 				vanishFlag=0;
 
 				//chudi = 0;
 				//play();
 				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
+
+				// jodi eitai shesh hand hoi mane player 3 er total card 0 hoye jai taile abar khela shuru
+				
 				
 			}
 		}
@@ -860,11 +836,17 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==5){
 				
 				pass_flag = 0;
+				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
+					reinitialize();
+				}
 				clearTimeout(animate2);
 				vanishFlag=0;
 				//chudi = 0;
 				//play();
 				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
+				// jodi eitai shesh hand hoi mane player 3 er total card 0 hoye jai taile abar khela shuru
+				
+
 				
 			}
 		}
@@ -930,11 +912,16 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==5){
 				
 				pass_flag = 0;
+				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
+					reinitialize();
+				}
 				clearTimeout(animate2);
 				vanishFlag=0;
 				//chudi = 0;
 				//play();
 				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
+// jodi eitai shesh hand hoi mane player 3 er total card 0 hoye jai taile abar khela shuru
+				
 				
 			}
 		}
@@ -1000,8 +987,13 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==5){
 				
 				pass_flag = 0;
+				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
+					reinitialize();
+				}
 				clearTimeout(animate2);
 				vanishFlag=0;
+				// ek game shesh so reinitialize kortesi
+				// jodi eitai shesh hand hoi mane player 3 er total card 0 hoye jai taile abar khela shuru
 
 				//chudi = 0;
 				//play();
@@ -1025,6 +1017,9 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			//document.getElementById(card3).style.setProperty("left", "10%");
 			
 		}
+		// ek game shesh so reinitialize kortesi
+
+
 }
 
 

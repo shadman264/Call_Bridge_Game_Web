@@ -1,31 +1,3 @@
-//These variable are for move_card_suit function
-var animate_move_card_suit;
-var move_card_suit_top_flag = 0;
-//These variable are for move_card_single function
-var animate_move_card_single;
-var move_card_single_top_flag = 43;
-//These variable are for move_player_1st_card function
-var animate_move_player_1st_card;
-var move_player_1st_card_top_flag = 39;
-var move_player_1st_card_left_flag = 41.5;
-var card_distribute_counter = 1;
-var time_flag = 0;
-var animate;
-var inputFlag = -1;
-var player1Call=0;
-var player2Call=0;
-var player3Call=0;
-var player4Call=0;
-var remaining_call1=0;
-var remaining_call2=0;
-var remaining_call3=0;
-var remaining_call4=0;
-var negetive_call3 =0;
-var cusion_point_display_animate;
-var first_time_flag = 0;
-
-
-
 function display_start(){
 	//THESE ARE FOR SCROLLING TO CERTAIN HEIGHT
 	//var scrollH = ;
@@ -43,7 +15,7 @@ function move_card_suit(){
 	//DESIRED POSITION
 	//top: 43%; left:  41.0156%;
 	
-	
+	document.getElementById("card_suit").style.opacity = "1";
 	document.getElementById("card_suit").style.setProperty("-webkit-transition", "top 1s ease-out");
 	document.getElementById("card_suit").style.setProperty("top", "43%");
 	if(time_flag==0){
@@ -310,10 +282,12 @@ function call_subwindow(){
 	//STARTING POSITION OF FIRST CALL BLOCK
 	//top: 35%;       left:  27.8%;
 
+
 	document.getElementById("play_floor").style.setProperty("-webkit-transition", "opacity 1.3s ease");
 	document.getElementById("play_floor").style.setProperty("opacity", "0.6");
 	document.getElementById("call_background").style.setProperty("-webkit-transition", "opacity 1.3s ease");
 	document.getElementById("call_background").style.setProperty("opacity", "0.9");
+
 
 
 	//FOR 1ST ROW FROM "NIL" TO "5"
@@ -322,6 +296,7 @@ function call_subwindow(){
 		document.getElementById(i).style.opacity = "1";
 		document.getElementById(i).style.top = "35%";
 		document.getElementById(i).style.left = left_flag_call + "%";
+
 		
 		left_flag_call+=5.8;
 	};
@@ -380,26 +355,8 @@ function call_token_selected(call_token_id){
 
 	
 	
-
-	//NOW PLAYER_3's BALLOONS ARE GOING TO BE DISPLAYED
-
-	//FIRST ROW OF 7 BALLONS DISPLAY
-	for(var i=0;i<player3Call;i++){
-		if(i==7){
-			break;
-		}
-		show_balloon('MyImage/CallDisplay/chip.png', 85,19-3*i,3000+player3Call-i,3);
-		
-	}
-
-	//SECOND ROW OF OTHER BALLONS
-	if(player3Call-7>0){
-		for(var i=0;i<(player3Call%7);i++){
-			show_balloon('MyImage/CallDisplay/chip.png', 91.3,19-3*i,(3000+(player3Call%7))-i,3);
-			
-		}
-	}
-	
+	//NOW ALL PLAYER's BALLOONS ARE GOING TO BE DISPLAYED
+	showAllPlayerBalloon(player3Call);	
 
 	
 
@@ -441,10 +398,48 @@ function vanish_balloon(win_player){
 	if(win_player==1){
 		//remaining_call1++;
 		//t+=remaining_call1;
+		remaining_call1++;
+		if(player1Call-remaining_call1>=0){
+			//still within the limit of call
+			t+=remaining_call1;
+			document.getElementById(t).style.setProperty("opacity","0");
+		}
+		else{
+			//out of call
+			if(negetive_call1<7){
+				//first row of skull draw
+				show_balloon('MyImage/CallDisplay/skull3.png', 44,19-3*negetive_call1,1000+negetive_call1,3);	
+			}
+			else{
+				show_balloon('MyImage/CallDisplay/skull3.png', 49,19-3*(negetive_call1-7),1000+negetive_call1,3);
+			}
+			negetive_call1++;
+			
+		}
+
 	}
 	else if(win_player==2){
 		//remaining_call2++;
 		//t+=remaining_call2;
+		remaining_call2++;
+		if(player2Call-remaining_call2>=0){
+			//still within the limit of call
+			t+=remaining_call2;
+			document.getElementById(t).style.setProperty("opacity","0");
+		}
+		else{
+			//out of call
+			if(negetive_call2<7){
+				//first row of skull draw
+				show_balloon('MyImage/CallDisplay/skull3.png', 44,90-3*negetive_call2,2000+negetive_call2,3);	
+			}
+			else{
+				show_balloon('MyImage/CallDisplay/skull3.png', 49,90-3*(negetive_call2-7),2000+negetive_call2,3);
+			}
+			negetive_call2++;
+			
+		}
+
 	}
 	else if(win_player==3){
 		remaining_call3++;
@@ -470,6 +465,25 @@ function vanish_balloon(win_player){
 	else if(win_player==4){
 		//remaining_call4++;
 		//t+=remaining_call4;
+		remaining_call4++;
+		if(player4Call-remaining_call4>=0){
+			//still within the limit of call
+			t+=remaining_call4;
+			document.getElementById(t).style.setProperty("opacity","0");
+		}
+		else{
+			//out of call
+			if(negetive_call4<7){
+				//first row of skull draw
+				show_balloon('MyImage/CallDisplay/skull3.png', 85,90-3*negetive_call4,4000+negetive_call4,3);	
+			}
+			else{
+				show_balloon('MyImage/CallDisplay/skull3.png', 90,90-3*(negetive_call4-7),4000+negetive_call4,3);
+			}
+			negetive_call4++;
+			
+		}
+
 	}
 	
 	//document.getElementById(t).style.setProperty("opacity","0");
@@ -508,7 +522,7 @@ function player3_card_rearrange(selected_card_id){
 	for(var i=0;i<4;i++){
 		for(var j=0;j<player3Suits[i].length;j++){
 			if(selected_card_id!=player3Suits[i][j].toString()){
-				document.getElementById(player3Suits[i][j]).style.setProperty("-webkit-transition","all 3.0s ease-out");
+				document.getElementById(player3Suits[i][j]).style.setProperty("-webkit-transition","all .3s ease-out");
 				document.getElementById(player3Suits[i][j]).style.setProperty("left", left_start+"%");
 				left_start+=2.6;	
 			}
