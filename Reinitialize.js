@@ -1,6 +1,20 @@
 function reinitialize(){
 	// *********************************** DECK.JS ER SHOKOL VARIABLE
 
+player1Cards=[];
+player2Cards=[];
+player3Cards=[];
+player4Cards=[];
+player1Suits=[[],[],[],[]];
+player2Suits=[[],[],[],[]];
+player3Suits=[[],[],[],[]];
+player4Suits=[[],[],[],[]];
+boardCards=[];
+allCards=[[],[],[],[]];
+
+
+
+
 lastWinner=1;
 curTurn=1;
 clickFlag=0;
@@ -176,6 +190,28 @@ for(var i = 0; i < elems.length; i++) {
     elems[i].style.transitionDuration = "0s";
     elems[i].style.webkitTransform = "rotate(0deg)";
 }
+
+
+
+//balloon vanish
+/*for(var i=1;i<=4;i++){
+	for(var k=1;k<=26;k++){
+		var temp_balloon = 1000*i+k;
+		if(document.getElementById(temp_balloon)!==null){
+			document.getElementById(temp_balloon).style.opacity = '0';
+		}
+		else{
+			break;
+		}
+		
+	}
+}*/
+
+//document.getElementById("3002").style.opacity = "0";
+//document.getElementById(temp_balloon).style.opacity = "0";
+//document.getElementById(temp_balloon).style.opacity = "0";
+//document.getElementById(temp_balloon).style.opacity = "0";
+
 
 
 

@@ -836,7 +836,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==5){
 				
 				pass_flag = 0;
-				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
+				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 12) {
 					reinitialize();
 				}
 				clearTimeout(animate2);
@@ -912,7 +912,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==5){
 				
 				pass_flag = 0;
-				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
+				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 12) {
 					reinitialize();
 				}
 				clearTimeout(animate2);
@@ -987,7 +987,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			else if(pass_flag==5){
 				
 				pass_flag = 0;
-				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
+				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 12) {
 					reinitialize();
 				}
 				clearTimeout(animate2);

@@ -2,6 +2,14 @@ function showAllPlayerBalloon(player3Call){
 	//NOW ALL PLAYER's BALLOONS ARE GOING TO BE DISPLAYED
 
 	//player1 balloon display
+
+	//BALLOON-ID
+
+	//PLAYER1 ---> 1000 SERIES
+	//PLAYER2 ---> 2000 SERIES
+	//PLAYER3 ---> 3000 SERIES
+	//PLAYER4 ---> 4000 SERIES
+	
 	player1Call= callGenerator(player1Suits);
 	ShowAllBalloon(44,19,1,player1Call);
 

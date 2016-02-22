@@ -199,7 +199,7 @@ function player1_play_card(card_id){
 	else if(player1_card_play_flag==3){
 
 		//CHECK IF IT IS THE LAST CARD
-		if(player1Suits[0].length+player1Suits[1].length+player1Suits[2].length+player1Suits[3].length == 0) {
+		if(player1Suits[0].length+player1Suits[1].length+player1Suits[2].length+player1Suits[3].length == 12) {
 			document.getElementById("player1_fixed_card").style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
 			document.getElementById("player1_fixed_card").style.opacity = "0";
 		}
@@ -292,7 +292,7 @@ function player2_play_card(card_id){
 	else if(player2_card_play_flag==3){
 
 		//CHECK IF IT IS THE LAST CARD
-		if(player2Suits[0].length+player2Suits[1].length+player2Suits[2].length+player2Suits[3].length == 0) {
+		if(player2Suits[0].length+player2Suits[1].length+player2Suits[2].length+player2Suits[3].length == 12) {
 			document.getElementById("player2_fixed_card").style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
 			document.getElementById("player2_fixed_card").style.opacity = "0";
 		}
@@ -311,12 +311,12 @@ function player2_play_card(card_id){
 			lastWinner = winPlayer(winning_card(boardCards));			
 			curTurn=1;			
 			emptyBoard(winning_card(boardCards));
-			inputFlag=lastWinner;
-			//inputFlag=1000;
+			//inputFlag=lastWinner;
+			inputFlag=1000;
 		}
 		else{
-			inputFlag=1;
-			//inputFlag=1000;
+			//inputFlag=1;
+			inputFlag=1000;
 		}
 
 		clearTimeout(animate);
@@ -385,7 +385,7 @@ function player4_play_card(card_id){
 	else if(player4_card_play_flag==3){
 
 		//CHECK IF IT IS THE LAST CARD
-		if(player4Suits[0].length+player4Suits[1].length+player4Suits[2].length+player4Suits[3].length == 0) {
+		if(player4Suits[0].length+player4Suits[1].length+player4Suits[2].length+player4Suits[3].length == 12) {
 			document.getElementById("player4_fixed_card").style.setProperty("-webkit-transition", "all 0.3s ease-in-out");
 			document.getElementById("player4_fixed_card").style.opacity = "0";
 		}

@@ -346,7 +346,7 @@ function call_token_selected(call_token_id){
 			document.getElementById(i).style.webkitTransform = "scale(0)";
 			document.getElementById(i).style.opacity = "0";
 
-			player3Call = i;
+			player3Call = parseInt(i);
 			
 			
 		}
@@ -376,20 +376,28 @@ function show_balloon(src, top, left, id, width) {
 
 	//THIS METHOD WILL DISPLAY IMAGE ON PLAY_FLOOR
 
-    var img = document.createElement("img");
 
-    img.src = src;
-    img.id = id;
-    img.style.setProperty("position","absolute");
-    img.style.setProperty("top",top+"%");
-    img.style.setProperty("left",left+"%");
-    img.style.setProperty("width",width+"%");
-    img.style.setProperty("height","auto");
-    //img.style.setProperty("opacity",opacity);
+	if(document.getElementById(id)!==null){
+		//age declare kora hoise
+		document.getElementById(id).style.opacity = "1";
+	}
+	else{
+		var img = document.createElement("img");
+
+    	img.src = src;
+    	img.id = id;
+    	img.style.setProperty("position","absolute");
+    	img.style.setProperty("top",top+"%");
+    	img.style.setProperty("left",left+"%");
+    	img.style.setProperty("width",width+"%");
+    	img.style.setProperty("height","auto");
+    	//img.style.setProperty("opacity",opacity);
 
 
-    // This next line will just add it to the PLAY_SECTION
-    document.getElementById("play_section").appendChild(img);
+    	// This next line will just add it to the PLAY_SECTION
+    	document.getElementById("play_section").appendChild(img);
+	}
+
 }
 
 function vanish_balloon(win_player){
@@ -408,10 +416,10 @@ function vanish_balloon(win_player){
 			//out of call
 			if(negetive_call1<7){
 				//first row of skull draw
-				show_balloon('MyImage/CallDisplay/skull3.png', 44,19-3*negetive_call1,1000+negetive_call1,3);	
+				show_balloon('MyImage/CallDisplay/skull3.png', 44,19-3*negetive_call1,1000+negetive_call1+14,3);	
 			}
 			else{
-				show_balloon('MyImage/CallDisplay/skull3.png', 49,19-3*(negetive_call1-7),1000+negetive_call1,3);
+				show_balloon('MyImage/CallDisplay/skull3.png', 49,19-3*(negetive_call1-7),1000+negetive_call1+14,3);
 			}
 			negetive_call1++;
 			
@@ -431,10 +439,10 @@ function vanish_balloon(win_player){
 			//out of call
 			if(negetive_call2<7){
 				//first row of skull draw
-				show_balloon('MyImage/CallDisplay/skull3.png', 44,90-3*negetive_call2,2000+negetive_call2,3);	
+				show_balloon('MyImage/CallDisplay/skull3.png', 44,90-3*negetive_call2,2000+negetive_call2+14,3);	
 			}
 			else{
-				show_balloon('MyImage/CallDisplay/skull3.png', 49,90-3*(negetive_call2-7),2000+negetive_call2,3);
+				show_balloon('MyImage/CallDisplay/skull3.png', 49,90-3*(negetive_call2-7),2000+negetive_call2+14,3);
 			}
 			negetive_call2++;
 			
@@ -452,10 +460,10 @@ function vanish_balloon(win_player){
 			//out of call
 			if(negetive_call3<7){
 				//first row of skull draw
-				show_balloon('MyImage/CallDisplay/skull3.png', 85,19-3*negetive_call3,3000+negetive_call3,3);	
+				show_balloon('MyImage/CallDisplay/skull3.png', 85,19-3*negetive_call3,3000+negetive_call3+14,3);	
 			}
 			else{
-				show_balloon('MyImage/CallDisplay/skull3.png', 90,19-3*(negetive_call3-7),3000+negetive_call3,3);
+				show_balloon('MyImage/CallDisplay/skull3.png', 90,19-3*(negetive_call3-7),3000+negetive_call3+14,3);
 			}
 			negetive_call3++;
 			
@@ -475,10 +483,10 @@ function vanish_balloon(win_player){
 			//out of call
 			if(negetive_call4<7){
 				//first row of skull draw
-				show_balloon('MyImage/CallDisplay/skull3.png', 85,90-3*negetive_call4,4000+negetive_call4,3);	
+				show_balloon('MyImage/CallDisplay/skull3.png', 85,90-3*negetive_call4,4000+negetive_call4+14,3);	
 			}
 			else{
-				show_balloon('MyImage/CallDisplay/skull3.png', 90,90-3*(negetive_call4-7),4000+negetive_call4,3);
+				show_balloon('MyImage/CallDisplay/skull3.png', 90,90-3*(negetive_call4-7),4000+negetive_call4+14,3);
 			}
 			negetive_call4++;
 			
