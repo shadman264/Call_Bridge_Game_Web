@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="Declare.js"></script>
+	<script type="text/javascript" src="Deck.js"></script>
+	<script type="text/javascript" src="CallBridge.js"></script>
+	<script type="text/javascript" src="Game.js"></script>
+	<script type="text/javascript" src="Call.js"></script>
+	<script type="text/javascript" src="Reinitialize.js"></script>
+	<link rel="stylesheet" type="text/css" href="callBridge.css">
+
+	<!--THESE ARE FOR NAVIGATION BAR STARTS-->
+	<meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="script.js"></script>
+    <!--THESE ARE FOR NAVIGATION BAR ENDS-->
+
+    <!--THESE ARE FOR FOOTER STARTS-->
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, links, icons" />
+    <!--<link rel="stylesheet" href="footer-basic-centered.css">-->
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="footer-distributed.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <!--THESE ARE FOR FOOTER ENDS-->
+
+	<title>Call Bridge</title>
+</head>
+<body>
+
+	
+	<div id="parent_div">
+   		<div id='cssmenu'>
+			<ul>
+			   <li class='active'><a href='#'><span>Home</span></a></li>
+			   <li><a href='#'><span>Play</span></a></li>
+			   <li class='last'><a href='#'><span>About</span></a></li>
+			</ul>
+		</div>
+
+		<div id="main_body_div">
+			<div id="floor_div">
+				<section id="play_section">		
+					<img id="play_floor" src="MyImage/trial 4 with ashtray+cgrt.png">
+					<img id="card_suit" src="MyImage/card_suit.png">
+					<img id="card_single" src="MyImage/card_single.png">
+					<img id="player1_card_single" src="MyImage/card_single.png">
+					<img id="player2_card_single" src="MyImage/card_single.png">
+					<img id="player3_card_single" src="MyImage/card_single.png">
+					<img id="player4_card_single" src="MyImage/card_single.png">
+					<img id="player1_fixed_card" src="MyImage/card_single.png">
+					<img id="player2_fixed_card" src="MyImage/card_single.png">
+					<img id="player3_fixed_card" src="MyImage/card_single.png">
+					<img id="player4_fixed_card" src="MyImage/card_single.png">
+
+					
+					<!--CARD IMAGES ARE ADDED HERE-->
+
+					<!--HEARTS-->
+					<img id="102" class="cards" src="MyImage/Cards/2_of_hearts.png" >
+					<img id="103" class="cards" src="MyImage/Cards/3_of_hearts.png" >
+					<img id="104" class="cards" src="MyImage/Cards/4_of_hearts.png" >
+					<img id="105" class="cards" src="MyImage/Cards/5_of_hearts.png" >
+					<img id="106" class="cards" src="MyImage/Cards/6_of_hearts.png" >
+					<img id="107" class="cards" src="MyImage/Cards/7_of_hearts.png" >
+					<img id="108" class="cards" src="MyImage/Cards/8_of_hearts.png" >
+					<img id="109" class="cards" src="MyImage/Cards/9_of_hearts.png" >
+					<img id="110" class="cards" src="MyImage/Cards/10_of_hearts.png" >
+					<img id="111" class="cards" src="MyImage/Cards/jack_of_hearts.png" >
+					<img id="112" class="cards" src="MyImage/Cards/queen_of_hearts.png" >
+					<img id="113" class="cards" src="MyImage/Cards/king_of_hearts.png" >
+					<img id="114" class="cards" src="MyImage/Cards/ace_of_hearts.png" >	
+
+					<!--CLUBS-->
+					<img id="202" class="cards" src="MyImage/Cards/2_of_clubs.png" >
+					<img id="203" class="cards" src="MyImage/Cards/3_of_clubs.png" >
+					<img id="204" class="cards" src="MyImage/Cards/4_of_clubs.png" >
+					<img id="205" class="cards" src="MyImage/Cards/5_of_clubs.png" >
+					<img id="206" class="cards" src="MyImage/Cards/6_of_clubs.png" >
+					<img id="207" class="cards" src="MyImage/Cards/7_of_clubs.png" >
+					<img id="208" class="cards" src="MyImage/Cards/8_of_clubs.png" >
+					<img id="209" class="cards" src="MyImage/Cards/9_of_clubs.png" >
+					<img id="210" class="cards" src="MyImage/Cards/10_of_clubs.png" >
+					<img id="211" class="cards" src="MyImage/Cards/jack_of_clubs.png" >
+					<img id="212" class="cards" src="MyImage/Cards/queen_of_clubs.png" >
+					<img id="213" class="cards" src="MyImage/Cards/king_of_clubs.png" >
+					<img id="214" class="cards" src="MyImage/Cards/ace_of_clubs.png" >
+
+					<!--DIAMONDS-->
+					<img id="302" class="cards" src="MyImage/Cards/2_of_diamonds.png" >
+					<img id="303" class="cards" src="MyImage/Cards/3_of_diamonds.png" >
+					<img id="304" class="cards" src="MyImage/Cards/4_of_diamonds.png" >
+					<img id="305" class="cards" src="MyImage/Cards/5_of_diamonds.png" >
+					<img id="306" class="cards" src="MyImage/Cards/6_of_diamonds.png" >
+					<img id="307" class="cards" src="MyImage/Cards/7_of_diamonds.png" >
+					<img id="308" class="cards" src="MyImage/Cards/8_of_diamonds.png" >
+					<img id="309" class="cards" src="MyImage/Cards/9_of_diamonds.png" >
+					<img id="310" class="cards" src="MyImage/Cards/10_of_diamonds.png" >
+					<img id="311" class="cards" src="MyImage/Cards/jack_of_diamonds.png" >
+					<img id="312" class="cards" src="MyImage/Cards/queen_of_diamonds.png" >
+					<img id="313" class="cards" src="MyImage/Cards/king_of_diamonds.png" >
+					<img id="314" class="cards" src="MyImage/Cards/ace_of_diamonds.png" >	
+										
+					<!--SPADES-->
+					<img id="402" class="cards" src="MyImage/Cards/2_of_spades.png" >
+					<img id="403" class="cards" src="MyImage/Cards/3_of_spades.png" >
+					<img id="404" class="cards" src="MyImage/Cards/4_of_spades.png" >
+					<img id="405" class="cards" src="MyImage/Cards/5_of_spades.png" >
+					<img id="406" class="cards" src="MyImage/Cards/6_of_spades.png" >
+					<img id="407" class="cards" src="MyImage/Cards/7_of_spades.png" >
+					<img id="408" class="cards" src="MyImage/Cards/8_of_spades.png" >
+					<img id="409" class="cards" src="MyImage/Cards/9_of_spades.png" >
+					<img id="410" class="cards" src="MyImage/Cards/10_of_spades.png" >
+					<img id="411" class="cards" src="MyImage/Cards/jack_of_spades.png" >
+					<img id="412" class="cards" src="MyImage/Cards/queen_of_spades.png" >
+					<img id="413" class="cards" src="MyImage/Cards/king_of_spades.png" >
+					<img id="414" class="cards" src="MyImage/Cards/ace_of_spades.png" >
+
+					<!--Button image add to make call-->
+					<img id="call_background" src="MyImage/Black-And-Red-Wallpaper-Abstract-7.jpg">
+
+					
+					<img id="0" class="call_token" src="MyImage/Buttons/0.png" onmouseover='this.src="MyImage/Buttons/0_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/0.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="1" class="call_token" src="MyImage/Buttons/1.png" onmouseover='this.src="MyImage/Buttons/1_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/1.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="2" class="call_token" src="MyImage/Buttons/2.png" onmouseover='this.src="MyImage/Buttons/2_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/2.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="3" class="call_token" src="MyImage/Buttons/3.png" onmouseover='this.src="MyImage/Buttons/3_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/3.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="4" class="call_token" src="MyImage/Buttons/4.png" onmouseover='this.src="MyImage/Buttons/4_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/4.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="5" class="call_token" src="MyImage/Buttons/5.png" onmouseover='this.src="MyImage/Buttons/5_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/5.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="6" class="call_token" src="MyImage/Buttons/6.png" onmouseover='this.src="MyImage/Buttons/6_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/6.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="7" class="call_token" src="MyImage/Buttons/7.png" onmouseover='this.src="MyImage/Buttons/7_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/7.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="8" class="call_token" src="MyImage/Buttons/8.png" onmouseover='this.src="MyImage/Buttons/8_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/8.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="9" class="call_token" src="MyImage/Buttons/9.png" onmouseover='this.src="MyImage/Buttons/9_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/9.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="10" class="call_token" src="MyImage/Buttons/10.png" onmouseover='this.src="MyImage/Buttons/10_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/10.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="11" class="call_token" src="MyImage/Buttons/11.png" onmouseover='this.src="MyImage/Buttons/11_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/11.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="12" class="call_token" src="MyImage/Buttons/12.png" onmouseover='this.src="MyImage/Buttons/12_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/12.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+					<img id="13" class="call_token" src="MyImage/Buttons/13.png" onmouseover='this.src="MyImage/Buttons/13_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/13.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
+
+
+
+					
+
+
+
+					
+					
+					
+					
+					
+					
+				</section>
+
+			</div>
+
+			<div>
+				<section>
+
+				</section>
+			</di		</div>
+
+		<footer class="footer-distributed">
+
+			<div class="footer-right">
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+				<a href="#"><i class="fa fa-github"></i></a>
+			</div>
+
+			<div class="footer-left">
+				<p class="footer-links">
+					<a href="#">Home</a>
+					·
+					<a href="#">Blog</a>
+					·
+					<a href="#">Pricing</a>
+					·
+					<a href="#">About</a>
+					·
+					<a href="#">Faq</a>
+					·
+					<a href="#">Contact</a>
+				</p>
+				<p>Company Name &copy; 2015</p>
+			</div>
+
+		</footer>
+
+
+	</div>
+</body>
+</html>

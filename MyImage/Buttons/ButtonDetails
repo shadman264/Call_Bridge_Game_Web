@@ -1,0 +1,24 @@
+Text
+
+Text Size:20
+Color:#FF001E
+Font:GameCuben
+
+
+
+Button
+
+Shape:Rounded
+Width:75
+Height:Auto
+Mirror:None
+
+
+
+
+
+Image
+
+Render Effect:Bordered
+Mouse Over:Emboss
+

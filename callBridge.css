@@ -1,0 +1,165 @@
+*{
+	margin: 0px;
+	padding: 0px;
+
+}
+*:focus {
+    outline: none;
+}
+nav,footer,section{
+	display: block;
+}
+body{
+	width: 100%;
+	display: -webkit-box;
+	
+	background-color: #C7C2BF;
+}
+
+
+#parent_div{
+	
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-flex: 1;
+
+
+}
+#cssmenu{
+	width: 100%;
+	
+}
+#main_body{
+
+}
+#floor_div{
+	position: relative;
+}
+#play_floor{
+	width: 100%;
+	position: relative;
+	top: 0%;
+	left: 0%;
+	/*opacity: 0.8;*/
+	/*padding-left: 2%; 
+	padding-top: 4%;
+	padding-right: 2%;
+	padding-bottom: 5%;*/
+}
+#card_suit{
+	position: absolute;
+	top: 0%;               
+	left:  41.0156%;   
+	width: 8%;
+
+
+}
+#card_single{
+	position: absolute;
+	top: 43%; 
+	left:  41.5%;
+	opacity: 0;
+	width: 7.2%;
+}
+#player1_card_single{
+	position: absolute;
+	top: 39%; 
+	left:  41.5%;
+	opacity: 0;
+	/*top: 18%;       
+	left:  24%;
+	opacity: 1;
+	top: 32%;       
+	left:  34%;
+	opacity: 1;*/
+	width: 7.2%;
+}
+#player1_fixed_card{
+	position: absolute;
+	top: 18%;       
+	left:  24%;
+	opacity: 0;
+	width: 7.2%;
+}
+#player2_card_single{
+	position: absolute;
+	top: 39%; 
+	left:  41.5%;
+	opacity: 0;
+	/*top: 18%;       
+	left:  59%;   
+	opacity: 1;
+	top: 32%;       
+	left:  50%;   
+	opacity: 1;*/
+	width: 7.2%;
+}
+#player2_fixed_card{
+	position: absolute;
+	top: 18%;       
+	left:  59%;   
+	opacity: 0;
+	width: 7.2%;
+}
+#player3_card_single{
+	position: absolute;
+	top: 39%; 
+	left:  41.5%;
+	opacity: 0;
+	/*top: 60%;       
+	left:  24%;   
+	opacity: 1;
+	top: 49%;       
+	left:  34%;
+	opacity: 1;*/
+	width: 7.2%;
+}
+#player3_fixed_card{
+	position: absolute;
+	top: 60%;       
+	left:  24%;   
+	opacity: 0;
+	width: 7.2%;
+}
+#player4_card_single{
+	position: absolute;
+	top: 39%; 
+	left:  41.5%;
+	opacity: 0;
+	/*top: 60%;       
+	left:  59%;   
+	opacity: 1;
+	top: 49%;       
+	left:  50%;   
+	opacity: 1;*/
+	width: 7.2%;
+}
+#player4_fixed_card{
+	position: absolute;
+	top: 60%;       
+	left:  59%;   
+	opacity: 0;
+	width: 7.2%;
+}
+.cards{
+	position: absolute;
+	top: 60%;       
+	left:  24%;   
+	opacity: 0;
+	width: 7.2%;
+}
+#call_background{
+	position: absolute;
+	top: 30%;       
+	left:  25%;   
+	/*opacity: 0.9;*/
+	opacity: 0;
+	width: 40%;
+}
+.call_token{
+	position: absolute;
+	opacity: 0;
+	width: 5.5%;
+
+
+}
