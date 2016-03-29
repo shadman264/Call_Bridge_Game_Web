@@ -4,18 +4,6 @@ function display_start(){
 	window.scrollTo(0, 0);
 	window.scrollTo(0, window.innerHeight*0.23);    //162px is target
 
-
-	if(player3_present_point==player3_previous_point){
-		//var audio = new Audio('beep2.mp3');
-		//audio.play();
-		cusion_point_display(player3_present_point,player3_previous_point,3);	
-	}
-
-	if(player4_present_point==player4_previous_point){
-		//var audio = new Audio('beep2.mp3');
-		//audio.play();
-		cusion_point_display(player4_present_point,player4_previous_point,4);	
-	}
 	move_card_suit();
 }
 
@@ -35,6 +23,21 @@ function move_card_suit(){
 		time_flag = 0;
 		clearTimeout(animate_move_card_suit);
 		move_card_single();
+
+
+		//SHOW POINT BALLS FOR THE FIRST TIME
+
+		if(player3_present_point==player3_previous_point){
+			//var audio = new Audio('beep2.mp3');
+			//audio.play();
+			cusion_point_display(player3_present_point,player3_previous_point,3);	
+		}
+
+		if(player4_present_point==player4_previous_point){
+			//var audio = new Audio('beep2.mp3');
+			//audio.play();
+			cusion_point_display(player4_present_point,player4_previous_point,4);	
+		}
 	}
 	
 }
@@ -571,7 +574,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 	//NB-- NEGETIVE POINT ER KAJ KORA HYNAI
 
 
-	//var audio = new Audio('beep2.mp3');
+	var audio = new Audio('beep2.mp3');
 	//audio.play();
 
 	var first_ball;
@@ -580,6 +583,29 @@ function cusion_point_display(present_point,previous_point,player_no){
 	var img1 = document.createElement("img");
 	var img2 = document.createElement("img");
 	var working_string = "0";
+	var previous_working_string = "0";
+
+
+
+	//PREPARE THE WORKING STRING
+	if(Math.abs(present_point).toString().length==1){
+		working_string = working_string.concat(Math.abs(present_point).toString());
+	}
+	else{
+		working_string = Math.abs(present_point).toString();
+	}
+
+
+	//PREPARE PREVIOUS_WORKING_STRING
+	if(Math.abs(previous_point).toString().length==1){
+		previous_working_string = previous_working_string.concat(Math.abs(previous_point).toString());
+	}
+	else{
+		previous_working_string = Math.abs(previous_point).toString();
+	}
+
+
+
 
 	if(player_no==1){
 
@@ -598,17 +624,9 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 
 
-		//PREPARE THE WORKING STRING
-		if(Math.abs(present_point).toString().length==1){
-			working_string = working_string.concat(Math.abs(present_point).toString());
-		}
-		else{
-			working_string = Math.abs(present_point).toString();
-		}
-
-
+		
 		//CHECK IF IT IS THE FIRST TIME OF CUSION_POINT_SHOW
-		//first_time_flag=0 if it is first time
+		//first_time_flag3=0 if it is first time
 
 		if(present_point==previous_point){
 			//first time,both are zero
@@ -714,14 +732,16 @@ function cusion_point_display(present_point,previous_point,player_no){
 		//NOW CHECK IF PRESENT_POINT AND PREVIOUS_POINT HAS SAME FIRST DIGIT
 		//SECOND DIGIT CAN NEVER BE SAME
 
-		if(Math.abs(present_point).toString()[0]!=Math.abs(previous_point).toString()[0]){
+		if(working_string[0]!==previous_working_string[0]){
 			//NOT SAME,YOU HAVE TO REMOVE PREVIOUS BALL OF FIRST DIGIT
 
 			//HIDE PREVIOUS CUSION POINTS
 			
 				//NOT FIRST TIME ENTRY OF BALLS
 
-			first_ball = 3100 + parseInt(Math.abs(previous_point).toString()[0]);
+
+
+			first_ball = 3100 + parseInt(previous_working_string[0]);
 			if(document.getElementById(first_ball)!==null){
 				document.getElementById(first_ball).style.setProperty("-webkit-transition","all 0.3s ease-out");
 				//document.getElementById(first_ball).style.setProperty("top","110%");
@@ -734,15 +754,17 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 
 
-		if(first_time_flag==1){
+		if(first_time_flag3==1){
 			//not the first entry in this method
-			second_ball = 3200 + parseInt(Math.abs(previous_point).toString()[1]);
+			second_ball = 3200 + parseInt(previous_working_string[1]);
 			if(document.getElementById(second_ball)!==null){
 				document.getElementById(second_ball).style.setProperty("-webkit-transition","all 0.4s ease-out");
 				document.getElementById(second_ball).style.setProperty("top","100%");
 				//document.getElementById(second_ball).style.setProperty("left","-5%");
 				document.getElementById(second_ball).style.opacity = "0";	
+				//audio.play();
 			}
+			
 			
 		}
 
@@ -1318,8 +1340,9 @@ function cusion_point_display(present_point,previous_point,player_no){
 		
 
 		
-		if(first_time_flag==0){
-			first_time_flag = 1;
+		if(first_time_flag3==0){
+			first_time_flag3 = 1;
+
 		}
 
 	}	
@@ -1339,22 +1362,18 @@ function cusion_point_display(present_point,previous_point,player_no){
 		//ID--->MINUS SIGN   -->4110
 		
 
-		//var audio = new Audio('beep2.mp3');
+		var audio = new Audio('beep2.mp3');
 		
 
 
-		//PREPARE THE WORKING STRING
-		if(Math.abs(present_point).toString().length==1){
-			working_string = working_string.concat(Math.abs(present_point).toString());
-		}
-		else{
-			working_string = Math.abs(present_point).toString();
-		}
+
 
 		
 
 		//CHECK IF IT IS THE FIRST TIME OF CUSION_POINT_SHOW
-		//first_time_flag=0 if it is first time
+		//first_time_flag4=0 if it is first time
+
+
 
 		if(present_point==previous_point){
 			//first time,both are zero
@@ -1409,7 +1428,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		}
 
 
-		/*
+		
 
 		//CHECK MINUS SIGN CASE
 
@@ -1434,7 +1453,7 @@ function cusion_point_display(present_point,previous_point,player_no){
     			img0.id = 4110;
     			img0.style.setProperty("position","absolute");
     			img0.style.setProperty("top","110%");
-    			img0.style4setProperty("left","105%");
+    			img0.style.setProperty("left","105%");
     			img0.style.setProperty("width","2.6%");
     			img0.style.setProperty("height","auto");
 
@@ -1444,6 +1463,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 			}
 			
 		}
+
 
 
 		//3. IF IT WAS -VE,NOW +VE
@@ -1465,14 +1485,14 @@ function cusion_point_display(present_point,previous_point,player_no){
 		//NOW CHECK IF PRESENT_POINT AND PREVIOUS_POINT HAS SAME FIRST DIGIT
 		//SECOND DIGIT CAN NEVER BE SAME
 
-		if(Math.abs(present_point).toString()[0]!=Math.abs(previous_point).toString()[0]){
+		if(working_string[0]!==previous_working_string[0]){
 			//NOT SAME,YOU HAVE TO REMOVE PREVIOUS BALL OF FIRST DIGIT
 
 			//HIDE PREVIOUS CUSION POINTS
 			
 				//NOT FIRST TIME ENTRY OF BALLS
 
-			first_ball = 4100 + parseInt(Math.abs(previous_point).toString()[0]);
+			first_ball = 4100 + parseInt(previous_working_string[0]);
 			if(document.getElementById(first_ball)!==null){
 				document.getElementById(first_ball).style.setProperty("-webkit-transition","all 0.3s ease-out");
 				//document.getElementById(first_ball).style.setProperty("top","110%");
@@ -1485,9 +1505,9 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 
 
-		if(first_time_flag==1){
+		if(first_time_flag4==1){
 			//not the first entry in this method
-			second_ball = 4200 + parseInt(Math.abs(previous_point).toString()[1]);
+			second_ball = 4200 + parseInt(previous_working_string[1]);
 			if(document.getElementById(second_ball)!==null){
 				document.getElementById(second_ball).style.setProperty("-webkit-transition","all 0.4s ease-out");
 				document.getElementById(second_ball).style.setProperty("top","100%");
@@ -1514,7 +1534,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				document.getElementById("4100").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				//document.getElementById("4110").style.opacity="1";
 				document.getElementById("4100").style.setProperty("top","71%");
-				document.getElementById("4100").style.setProperty("left","11.5%");
+				document.getElementById("4100").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1523,8 +1543,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/0.png';
     			img1.id = 4100;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     	
@@ -1542,7 +1562,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("4101").style.opacity="1";
 				document.getElementById("4101").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4101").style.setProperty("top","71%");
-				document.getElementById("4101").style.setProperty("left","11.5%");
+				document.getElementById("4101").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1551,8 +1571,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/1.png';
     			img1.id = 4101;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     	
@@ -1574,7 +1594,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3102").style.opacity="1";
 				document.getElementById("4102").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4102").style.setProperty("top","71%");
-				document.getElementById("4102").style.setProperty("left","11.5%");
+				document.getElementById("4102").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1583,8 +1603,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/2.png';
     			img1.id = 4102;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     	
@@ -1603,7 +1623,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3103").style.opacity="1";
 				document.getElementById("4103").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4103").style.setProperty("top","71%");
-				document.getElementById("4103").style.setProperty("left","11.5%");
+				document.getElementById("4103").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1612,8 +1632,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/3.png';
     			img1.id = 4103;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     	
@@ -1631,7 +1651,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3104").style.opacity="1";
 				document.getElementById("4104").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4104").style.setProperty("top","71%");
-				document.getElementById("4104").style.setProperty("left","11.5%");
+				document.getElementById("4104").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1640,8 +1660,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/4.png';
     			img1.id = 4104;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     	
@@ -1659,7 +1679,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3105").style.opacity="1";
 				document.getElementById("4105").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4105").style.setProperty("top","71%");
-				document.getElementById("4105").style.setProperty("left","11.5%");
+				document.getElementById("4105").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1668,8 +1688,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/5.png';
     			img1.id = 4105;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     	
@@ -1687,7 +1707,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3106").style.opacity="1";
 				document.getElementById("4106").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4106").style.setProperty("top","71%");
-				document.getElementById("4106").style.setProperty("left","11.5%");
+				document.getElementById("4106").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1696,8 +1716,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/6.png';
     			img1.id = 4106;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     	
@@ -1715,7 +1735,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3107").style.opacity="1";
 				document.getElementById("4107").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4107").style.setProperty("top","71%");
-				document.getElementById("4107").style.setProperty("left","11.5%");
+				document.getElementById("4107").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1724,8 +1744,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/7.png';
     			img1.id = 4107;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     
@@ -1742,7 +1762,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3108").style.opacity="1";
 				document.getElementById("4108").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4108").style.setProperty("top","71%");
-				document.getElementById("4108").style.setProperty("left","11.5%");
+				document.getElementById("4108").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1751,8 +1771,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/8.png';
     			img1.id = 4108;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     	
@@ -1770,7 +1790,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3109").style.opacity="1";
 				document.getElementById("4109").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4109").style.setProperty("top","71%");
-				document.getElementById("4109").style.setProperty("left","11.5%");
+				document.getElementById("4109").style.setProperty("left","74%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1779,8 +1799,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img1.src = 'MyImage/Point/9.png';
     			img1.id = 4109;
     			img1.style.setProperty("position","absolute");
-    			img1.style.setProperty("top","71%");
-    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("top","110%");
+    			img1.style.setProperty("left","74%");
     			img1.style.setProperty("width","2.6%");
     			img1.style.setProperty("height","auto");
     	
@@ -1809,7 +1829,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3200").style.opacity="1";
 				document.getElementById("4200").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4200").style.setProperty("top","71%");
-				document.getElementById("4200").style.setProperty("left","13.5%");
+				document.getElementById("4200").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1818,8 +1838,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/0.png';
     			img2.id = 4200;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -1837,7 +1857,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3201").style.opacity="1";
 				document.getElementById("4201").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4201").style.setProperty("top","71%");
-				document.getElementById("4201").style.setProperty("left","13.5%");
+				document.getElementById("4201").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1846,8 +1866,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/1.png';
     			img2.id = 4201;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -1863,7 +1883,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3202").style.opacity="1";
 				document.getElementById("4202").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4202").style.setProperty("top","71%");
-				document.getElementById("4202").style.setProperty("left","13.5%");
+				document.getElementById("4202").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1872,8 +1892,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/2.png';
     			img2.id = 4202;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -1889,7 +1909,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3203").style.opacity="1";
 				document.getElementById("4203").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4203").style.setProperty("top","71%");
-				document.getElementById("4203").style.setProperty("left","13.5%");
+				document.getElementById("4203").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1898,8 +1918,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/3.png';
     			img2.id = 4203;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -1915,7 +1935,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3204").style.opacity="1";
 				document.getElementById("4204").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4204").style.setProperty("top","71%");
-				document.getElementById("4204").style.setProperty("left","13.5%");
+				document.getElementById("4204").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1924,8 +1944,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/4.png';
     			img2.id = 4204;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -1939,9 +1959,9 @@ function cusion_point_display(present_point,previous_point,player_no){
 			if(document.getElementById("4205")!==null){
 				//age declare kora hoise
 				//document.getElementById("3205").style.opacity="1";
-				document.getElementById("4205").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("4205").style.setProperty("-webkit76nsition","all 0.3s ease-out");
 				document.getElementById("4205").style.setProperty("top","71%");
-				document.getElementById("4205").style.setProperty("left","13.5%");
+				document.getElementById("4205").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1950,8 +1970,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/5.png';
     			img2.id = 4205;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -1967,7 +1987,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3206").style.opacity="1";
 				document.getElementById("4206").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4206").style.setProperty("top","71%");
-				document.getElementById("4206").style.setProperty("left","13.5%");
+				document.getElementById("4206").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -1976,8 +1996,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/6.png';
     			img2.id = 4206;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -1993,7 +2013,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3207").style.opacity="1";
 				document.getElementById("4207").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4207").style.setProperty("top","71%");
-				document.getElementById("4207").style.setProperty("left","13.5%");
+				document.getElementById("4207").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -2002,8 +2022,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/7.png';
     			img2.id = 4207;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -2019,7 +2039,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3208").style.opacity="1";
 				document.getElementById("4208").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4208").style.setProperty("top","71%");
-				document.getElementById("4208").style.setProperty("left","13.5%");
+				document.getElementById("4208").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -2028,8 +2048,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/8.png';
     			img2.id = 4208;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -2045,7 +2065,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 				//document.getElementById("3209").style.opacity="1";
 				document.getElementById("4209").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4209").style.setProperty("top","71%");
-				document.getElementById("4209").style.setProperty("left","13.5%");
+				document.getElementById("4209").style.setProperty("left","76%");
 				clearTimeout(cusion_point_display_animate);
 
 			}
@@ -2054,8 +2074,8 @@ function cusion_point_display(present_point,previous_point,player_no){
 				img2.src = 'MyImage/Point/9.png';
     			img2.id = 4209;
     			img2.style.setProperty("position","absolute");
-    			img2.style.setProperty("top","110%");
-    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("top","71%");
+    			img2.style.setProperty("left","105%");
     			img2.style.setProperty("width","2.6%");
     			img2.style.setProperty("height","auto");
     	
@@ -2069,9 +2089,9 @@ function cusion_point_display(present_point,previous_point,player_no){
 		
 
 		
-		if(first_time_flag==0){
-			first_time_flag = 1;
-		}*/
+		if(first_time_flag4==0){
+			first_time_flag4 = 1;
+		}
 		
 
 	}	

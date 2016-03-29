@@ -25,13 +25,15 @@ var pass_flag = 0;
 var empty_flag = 0;
 var animate2;
 
-
+var anim;
+var anim_flag = 0;
 
 
 
 
 
 // ********************** CALLBRIDGE.JS ER SHOKOL VARIABLE ******************************
+
 //These variable are for move_card_suit function
 var animate_move_card_suit;
 var move_card_suit_top_flag = 0;
@@ -60,7 +62,10 @@ var negetive_call3 =0;
 var negetive_call4 =0;
 
 var cusion_point_display_animate;
-var first_time_flag = 0;
+var first_time_flag1 = 0;
+var first_time_flag2 = 0;
+var first_time_flag3 = 0;
+var first_time_flag4 = 0;
 
 
 

@@ -762,34 +762,8 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
 					
 
-					//point calculation of player3
-
-					player3_previous_point = player3_present_point;
-					if(player3Call-remaining_call3==-1 || player3Call-remaining_call3==0){
-						if(player3Call==0){
-							player3_present_point+=5;	
-						}
-						else if(player3Call==8){
-							player3_present_point+=13;
-						}
-						else{
-							player3_present_point += player3Call;	
-						}
-						
-					}
-					else{
-						if(player3Call==0){
-							player3_present_point-=5;	
-						}
-						else{
-							player3_present_point -= player3Call;	
-						}	
-					}
+					players_point_calculate();
 					
-					//player3_present_point = 5;
-					//player3_previous_point = 2;
-					cusion_point_display(player3_present_point,player3_previous_point,3);
-					reinitialize();
 				}
 				clearTimeout(animate2);
 				vanishFlag=0;
@@ -866,33 +840,7 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 				
 				pass_flag = 0;
 				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
-					//point calculation of player3
-
-					player3_previous_point = player3_present_point;
-					if(player3Call-remaining_call3==-1 || player3Call-remaining_call3==0){
-						if(player3Call==0){
-							player3_present_point+=5;	
-						}
-						else if(player3Call==8){
-							player3_present_point+=13;
-						}
-						else{
-							player3_present_point += player3Call;	
-						}
-						
-					}
-					else{
-						if(player3Call==0){
-							player3_present_point-=5;	
-						}
-						else{
-							player3_present_point -= player3Call;	
-						}	
-					}
-
-					//player3_present_point = 5;
-					//player3_previous_point = 2;
-					cusion_point_display(player3_present_point,player3_previous_point,3);
+					players_point_calculate();
 					reinitialize();
 				}
 				clearTimeout(animate2);
@@ -970,34 +918,8 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 				pass_flag = 0;
 				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
 
-					//point calculation of player3
-
-					player3_previous_point = player3_present_point;
-					if(player3Call-remaining_call3==-1 || player3Call-remaining_call3==0){
-						if(player3Call==0){
-							player3_present_point+=5;	
-						}
-						else if(player3Call==8){
-							player3_present_point+=13;
-						}
-						else{
-							player3_present_point += player3Call;	
-						}
-						
-					}
-					else{
-						if(player3Call==0){
-							player3_present_point-=5;	
-						}
-						else{
-							player3_present_point -= player3Call;	
-						}	
-					}
-
-					//player3_present_point = 5;
-					//player3_previous_point = 2;
-					cusion_point_display(player3_present_point,player3_previous_point,3);
-					reinitialize();
+					players_point_calculate();
+					
 				}
 				clearTimeout(animate2);
 				vanishFlag=0;
@@ -1073,36 +995,9 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 				pass_flag = 0;
 				if(player3Suits[0].length+player3Suits[1].length+player3Suits[2].length+player3Suits[3].length == 0) {
 					
-					//point calculation of player3
-
-					player3_previous_point = player3_present_point;
-					if(player3Call-remaining_call3==-1 || player3Call-remaining_call3==0){
-						if(player3Call==0){
-							player3_present_point+=5;	
-						}
-						else if(player3Call==8){
-							player3_present_point+=13;
-						}
-						else{
-							player3_present_point += player3Call;	
-						}
-						
-					}
-					else{
-						if(player3Call==0){
-							player3_present_point-=5;	
-						}
-						else{
-							player3_present_point -= player3Call;	
-						}
-							
-					}
-
-					//player3_present_point = 5;
-					//player3_previous_point = 2;
-					cusion_point_display(player3_present_point,player3_previous_point,3);
+					players_point_calculate();
 					
-					reinitialize();
+					
 				}
 				
 					
@@ -1148,7 +1043,112 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 
 
 
+function players_point_calculate(){
 
+	var audio = new Audio('beep2.mp3');
+
+	if(anim_flag==0){
+
+		//players' point will be calculated now
+
+		//point calculation of player3
+
+		player3_previous_point = player3_present_point;
+		if(player3Call-remaining_call3==-1 || player3Call-remaining_call3==0){
+			if(player3Call==0){
+				player3_present_point+=5;	
+			}
+			else if(player3Call==8){
+				player3_present_point+=13;
+			}
+			else{
+				player3_present_point += player3Call;	
+			}
+		}
+		else{
+			if(player3Call==0){
+				player3_present_point-=5;	
+			}
+			else{
+				player3_present_point -= player3Call;	
+			}
+				
+		}
+		
+
+
+		
+
+		//point calculation of player4
+
+		player4_previous_point = player4_present_point;
+		if(player4Call-remaining_call4==-1 || player4Call-remaining_call4==0){
+			if(player4Call==0){
+				player4_present_point+=5;	
+			}
+			else if(player4Call==8){
+				player4_present_point+=13;
+			}
+			else{
+				player4_present_point += player4Call;	
+			}
+		}
+		else{
+			if(player4Call==0){
+				player4_present_point-=5;	
+			}
+			else{
+				player4_present_point -= player4Call;	
+			}
+				
+		}
+	}
+	
+
+
+
+	//NOW CUSION_POINT_DISPLAY WILL COME TO PLAY
+
+
+	if(anim_flag==0){
+		//player1 cusion_point_display
+
+		//cusion_point_display(player1_present_point,player1_previous_point,1);
+
+		anim = setTimeout(players_point_calculate,100);
+		anim_flag = 1;
+	}
+
+	else if(anim_flag==1){
+		//player2 cusion_point_display
+
+		//cusion_point_display(player2_present_point,player2_previous_point,2);
+		anim = setTimeout(players_point_calculate,110);
+		anim_flag = 2;
+
+	}
+
+
+	else if(anim_flag==2){
+		//player2 cusion_point_display
+		anim = setTimeout(players_point_calculate,120);
+		cusion_point_display(player3_present_point,player3_previous_point,3);
+
+		anim_flag = 3;
+		//audio.play();
+	}
+
+
+	else if(anim_flag==3){
+		//player2 cusion_point_display
+
+		cusion_point_display(player4_present_point,player4_previous_point,4);
+
+		anim_flag = 0;
+		clearTimeout(anim);
+		reinitialize();
+	}
+}
 
 
 
