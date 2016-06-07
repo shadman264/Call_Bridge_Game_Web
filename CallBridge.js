@@ -27,16 +27,32 @@ function move_card_suit(){
 
 		//SHOW POINT BALLS FOR THE FIRST TIME
 
+		if(player1_present_point==player1_previous_point){
+			//var audio = new Audio('beep2.mp3');
+			//audio.play();
+			cusion_point_display(player1_present_point,player1_previous_point,1);
+			// cusion_point_display(-11,0,1);	
+		}
+
+		if(player2_present_point==player2_previous_point){
+			//var audio = new Audio('beep2.mp3');
+			//audio.play();
+			cusion_point_display(player2_present_point,player2_previous_point,2);
+			//cusion_point_display(-11,0,2);	
+		}
+
 		if(player3_present_point==player3_previous_point){
 			//var audio = new Audio('beep2.mp3');
 			//audio.play();
 			cusion_point_display(player3_present_point,player3_previous_point,3);	
+			// cusion_point_display(-25,0,3);
 		}
 
 		if(player4_present_point==player4_previous_point){
 			//var audio = new Audio('beep2.mp3');
 			//audio.play();
-			cusion_point_display(player4_present_point,player4_previous_point,4);	
+			 cusion_point_display(player4_present_point,player4_previous_point,4);
+			//cusion_point_display(-49,0,4);	
 		}
 	}
 	
@@ -240,15 +256,18 @@ function player3_select_card(clicked_id){
 	//top: 49%;       left:  50%;
 
 
-	if(inputFlag==3 && clickFlag==0){
+	if(inputFlag==3 && clickFlag==0 && nunuFlag==0){
 
-
+			// amar khela kintu first hand er khela na , board e age thekei kichu card ase
 			if(boardCards.length!=0) {
 				var clickIndex = clicked_id.toString()[0]-'1';
 				var suitIndex = boardCards[0].toString()[0]-'1';
+
+				// jei suit er khela ta amar kache ase kintu ami onno card khelar try kortesi
 				if((player3Suits[suitIndex].length!=0 && suitIndex!=clickIndex)) {
 
 				}
+				// thik moto khellam
 				else{
 					player3_card_rearrange(clicked_id);
 
@@ -259,13 +278,36 @@ function player3_select_card(clicked_id){
 
 				}
 			}
+			// ami first e khelum
 			else{
-				player3_card_rearrange(clicked_id);
+				var clickIndex = clicked_id.toString()[0]-'1';
+				// amar kache shb e trum tai jeta ichcha sheta khelbo
+				if(returnMyCardsWithoutSpade(player3Suits).length==0){
+					player3_card_rearrange(clicked_id);
 
-				curClick = clicked_id;
-				var temp = curClick;
-				clickFlag=1;
-				cardShowOnBoard(temp,"rotate(45deg)","49%","34.5%");	
+					curClick = clicked_id;
+					var temp = curClick;
+					clickFlag=1;
+					cardShowOnBoard(temp,"rotate(45deg)","49%","34.5%");	
+
+				}
+				// amar kache trum + normal card milano
+				else{
+					// trum break hoi nai kintu trump khelar try kortsi
+					if(clickIndex==3 && trumpedSuits.length==0){
+
+					}
+					else{
+						player3_card_rearrange(clicked_id);
+
+						curClick = clicked_id;
+						var temp = curClick;
+						clickFlag=1;
+						cardShowOnBoard(temp,"rotate(45deg)","49%","34.5%");	
+
+					}
+
+				}
 			}
 
 			//card rearrange
@@ -273,6 +315,7 @@ function player3_select_card(clicked_id){
 			
 	}
 }
+
 
 
 function mouse_over_card(hovered_id){
@@ -346,6 +389,10 @@ function call_subwindow(){
 	document.getElementById("13").style.opacity = "1";
 	document.getElementById("13").style.left = "42.4%";
 	document.getElementById("13").style.top = "56%";
+
+
+
+
 }
 
 function call_token_selected(call_token_id){
@@ -609,8 +656,1480 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 	if(player_no==1){
 
+
+
+		//ID--->FIRST DIGIT  -->1100-1109
+		//ID-->SECOND DIGIT  -->1200-1209
+		//ID--->MINUS SIGN   -->1110
+		
+
+
+
+
+		
+		//CHECK IF IT IS THE FIRST TIME OF CUSION_POINT_SHOW
+		//first_time_flag3=0 if it is first time
+
+		if(present_point==previous_point){
+			//first time,both are zero
+			
+
+			//first zero show
+			if(document.getElementById("1100")!==null){
+				document.getElementById("1100").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1100").style.setProperty("left","11.5%");
+				document.getElementById("1100").style.opacity = "1";
+				//clearTimeout(cusion_point_display_animate);
+			}
+			else{
+				img1.src = 'MyImage/Point/0.png';
+    			img1.id = 1100;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+			
+    		
+    		
+    		//second zero show
+    		if(document.getElementById("1200")!==null){
+    			document.getElementById("1200").style.setProperty("-webkit-transition","all 0.5s ease-out");
+				document.getElementById("1200").style.setProperty("top","31%");
+				document.getElementById("1200").style.opacity = "1";
+				clearTimeout(cusion_point_display_animate);
+			}
+			else{
+				img2.src = 'MyImage/Point/0.png';
+    			img2.id = 1200;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+    			
+			}
+ 
+		}
+
+
+
+
+		//CHECK MINUS SIGN CASE
+
+
+		//1. IF IT WAS +VE,NOW +VE, DO NOTHING
+
+		//2. IF IT WAS +VE,NOW -VE
+		if(previous_point>=0 && present_point<0){
+
+			if(document.getElementById("1110")!==null){
+				//age declare kora hoise
+				document.getElementById("1110").style.setProperty("-webkit-transition","all 0.6s ease-out");
+				document.getElementById("1110").style.opacity="1";
+				document.getElementById("1110").style.setProperty("top","31%");
+				document.getElementById("1110").style.setProperty("left","9%");
+				clearTimeout(cusion_point_display_animate);
+			}
+
+			else{
+				//age declare kora hynay
+				img0.src = 'MyImage/Point/minus2.png';
+    			img0.id = 1110;
+    			img0.style.setProperty("position","absolute");
+    			img0.style.setProperty("top","0%");
+    			img0.style.setProperty("left","-5%");
+    			img0.style.setProperty("width","2%");
+    			img0.style.setProperty("height","auto");
+
+    			document.getElementById("play_section").appendChild(img0);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+			
+		}
+
+
+		//3. IF IT WAS -VE,NOW +VE
+		else if(previous_point<0 && present_point>=0){
+			document.getElementById("1110").style.setProperty("-webkit-transition","all 0.3s ease-out");
+			document.getElementById("1110").style.opacity="0";
+			document.getElementById("1110").style.setProperty("top","0%");
+			document.getElementById("1110").style.setProperty("left","-5%");
+			
+		}
+
+
+		//4. IF IT WAS -VE,NOW -VE, DO NOTHING
+
+
+
+
+
+		//NOW CHECK IF PRESENT_POINT AND PREVIOUS_POINT HAS SAME FIRST DIGIT
+		//SECOND DIGIT CAN NEVER BE SAME
+
+		if(working_string[0]!==previous_working_string[0]){
+			//NOT SAME,YOU HAVE TO REMOVE PREVIOUS BALL OF FIRST DIGIT
+
+			//HIDE PREVIOUS CUSION POINTS
+			
+				//NOT FIRST TIME ENTRY OF BALLS
+
+
+
+			first_ball = 1100 + parseInt(previous_working_string[0]);
+			if(document.getElementById(first_ball)!==null){
+				document.getElementById(first_ball).style.setProperty("-webkit-transition","all 0.3s ease-out");
+				//document.getElementById(first_ball).style.setProperty("top","110%");
+				document.getElementById(first_ball).style.setProperty("left","-5%");
+				//document.getElementById(first_ball).style.opacity = "0";	
+			}
+			
+
+		}
+
+
+
+		if(first_time_flag1==1){
+			//not the first entry in this method
+			second_ball = 1200 + parseInt(previous_working_string[1]);
+			if(document.getElementById(second_ball)!==null){
+				document.getElementById(second_ball).style.setProperty("-webkit-transition","all 0.4s ease-out");
+				document.getElementById(second_ball).style.setProperty("top","0%");
+				//document.getElementById(second_ball).style.setProperty("left","-5%");
+				document.getElementById(second_ball).style.opacity = "0";	
+				//audio.play();
+			}
+			
+			
+		}
+
+
+			
+
+
+
+
+		//FOR FIRST DIGIT
+
+
+		if(working_string[0]=='0'){
+			if(document.getElementById("1100")!==null){
+				//age declare kora hoise
+				
+				document.getElementById("1100").style.opacity="1";
+				document.getElementById("1100").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				//document.getElementById("1110").style.opacity="1";
+				document.getElementById("1100").style.setProperty("top","31%");
+				document.getElementById("1100").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/0.png';
+    			img1.id = 1100;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+		}
+
+		
+		else if(working_string[0]=='1'){
+
+			if(document.getElementById("1101")!==null){
+				//age declare kora hoise
+				document.getElementById("1101").style.opacity="1";
+				document.getElementById("1101").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1101").style.setProperty("top","31%");
+				document.getElementById("1101").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/1.png';
+    			img1.id = 1101;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+
+    			
+		}
+			
+
+
+		else if(working_string[0]=='2'){
+
+			if(document.getElementById("1102")!==null){
+				//age declare kora hoise
+				document.getElementById("1102").style.opacity="1";
+				document.getElementById("1102").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1102").style.setProperty("top","31%");
+				document.getElementById("1102").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/2.png';
+    			img1.id = 1102;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+				
+
+		}
+		
+
+		else if(working_string[0]=='3'){
+			if(document.getElementById("1103")!==null){
+				//age declare kora hoise
+				document.getElementById("1103").style.opacity="1";
+				document.getElementById("1103").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1103").style.setProperty("top","31%");
+				document.getElementById("1103").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/3.png';
+    			img1.id = 1103;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+		
+
+		else if(working_string[0]=='4'){
+			if(document.getElementById("1104")!==null){
+				//age declare kora hoise
+				document.getElementById("1104").style.opacity="1";
+				document.getElementById("1104").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1104").style.setProperty("top","31%");
+				document.getElementById("1104").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/4.png';
+    			img1.id = 1104;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+		
+
+		else if(working_string[0]=='5'){
+			if(document.getElementById("1105")!==null){
+				//age declare kora hoise
+				document.getElementById("1105").style.opacity="1";
+				document.getElementById("1105").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1105").style.setProperty("top","31%");
+				document.getElementById("1105").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/5.png';
+    			img1.id = 1105;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+
+
+		else if(working_string[0]=='6'){
+			if(document.getElementById("1106")!==null){
+				//age declare kora hoise
+				document.getElementById("1106").style.opacity="1";
+				document.getElementById("1106").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1106").style.setProperty("top","31%");
+				document.getElementById("1106").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/6.png';
+    			img1.id = 1106;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+		
+
+		else if(working_string[0]=='7'){
+			if(document.getElementById("1107")!==null){
+				//age declare kora hoise
+				document.getElementById("1107").style.opacity="1";
+				document.getElementById("1107").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1107").style.setProperty("top","31%");
+				document.getElementById("1107").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/7.png';
+    			img1.id = 1107;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);			}
+
+		}
+
+
+		else if(working_string[0]=='8'){
+			if(document.getElementById("1108")!==null){
+				//age declare kora hoise
+				document.getElementById("1108").style.opacity="1";
+				document.getElementById("1108").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1108").style.setProperty("top","31%");
+				document.getElementById("1108").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/8.png';
+    			img1.id = 1108;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+
+
+		else if(working_string[0]=='9'){
+			if(document.getElementById("1109")!==null){
+				//age declare kora hoise
+				document.getElementById("1109").style.opacity="1";
+				document.getElementById("1109").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1109").style.setProperty("top","31%");
+				document.getElementById("1109").style.setProperty("left","11.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/9.png';
+    			img1.id = 1109;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","31%");
+    			img1.style.setProperty("left","-5%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+
+
+		
+
+
+		
+
+		//FOR 2ND DIGIT
+
+			
+		
+
+
+		if(working_string[1]=='0'){
+			if(document.getElementById("1200")!==null){
+				//age declare kora hoise
+				document.getElementById("1200").style.opacity="1";
+				document.getElementById("1200").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1200").style.setProperty("top","31%");
+				document.getElementById("1200").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/0.png';
+    			img2.id = 1200;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+			
+
+		else if(working_string[1]=='1'){
+			if(document.getElementById("1201")!==null){
+				//age declare kora hoise
+				document.getElementById("1201").style.opacity="1";
+				document.getElementById("1201").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1201").style.setProperty("top","31%");
+				document.getElementById("1201").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/1.png';
+    			img2.id = 1201;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='2'){
+			if(document.getElementById("1202")!==null){
+				//age declare kora hoise
+				document.getElementById("1202").style.opacity="1";
+				document.getElementById("1202").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1202").style.setProperty("top","31%");
+				document.getElementById("1202").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/2.png';
+    			img2.id = 1202;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='3'){
+			if(document.getElementById("1203")!==null){
+				//age declare kora hoise
+				document.getElementById("1203").style.opacity="1";
+				document.getElementById("1203").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1203").style.setProperty("top","31%");
+				document.getElementById("1203").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/3.png';
+    			img2.id = 1203;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='4'){
+			if(document.getElementById("1204")!==null){
+				//age declare kora hoise
+				document.getElementById("1204").style.opacity="1";
+				document.getElementById("1204").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1204").style.setProperty("top","31%");
+				document.getElementById("1204").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/4.png';
+    			img2.id = 1204;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='5'){
+			if(document.getElementById("1205")!==null){
+				//age declare kora hoise
+				document.getElementById("1205").style.opacity="1";
+				document.getElementById("1205").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1205").style.setProperty("top","31%");
+				document.getElementById("1205").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/5.png';
+    			img2.id = 1205;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='6'){
+			if(document.getElementById("1206")!==null){
+				//age declare kora hoise
+				document.getElementById("1206").style.opacity="1";
+				document.getElementById("1206").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1206").style.setProperty("top","31%");
+				document.getElementById("1206").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/6.png';
+    			img2.id = 1206;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='7'){
+			if(document.getElementById("1207")!==null){
+				//age declare kora hoise
+				document.getElementById("1207").style.opacity="1";
+				document.getElementById("1207").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1207").style.setProperty("top","31%");
+				document.getElementById("1207").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/7.png';
+    			img2.id = 1207;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='8'){
+			if(document.getElementById("1208")!==null){
+				//age declare kora hoise
+				document.getElementById("1208").style.opacity="1";
+				document.getElementById("1208").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1208").style.setProperty("top","31%");
+				document.getElementById("1208").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/8.png';
+    			img2.id = 1208;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='9'){
+			if(document.getElementById("1209")!==null){
+				//age declare kora hoise
+				document.getElementById("1209").style.opacity="1";
+				document.getElementById("1209").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("1209").style.setProperty("top","31%");
+				document.getElementById("1209").style.setProperty("left","13.5%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/9.png';
+    			img2.id = 1209;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","0%");
+    			img2.style.setProperty("left","13.5%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+
+		
+
+		
+		if(first_time_flag1==0){
+			first_time_flag1 = 1;
+
+		}
+
 	}
 	else if(player_no==2){
+
+
+		//ID--->FIRST DIGIT  -->2100-2109
+		//ID-->SECOND DIGIT  -->2200-2209
+		//ID--->MINUS SIGN   -->2110
+		
+
+		//var audio = new Audio('beep2.mp3');
+		
+
+
+
+
+		
+
+		//CHECK IF IT IS THE FIRST TIME OF CUSION_POINT_SHOW
+		//first_time_flag4=0 if it is first time
+
+
+
+		if(present_point==previous_point){
+			//first time,both are zero
+			
+
+
+			//first zero show
+			if(document.getElementById("2100")!==null){
+
+				document.getElementById("2100").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2100").style.setProperty("top","31%");
+				document.getElementById("2100").style.opacity = "1";
+				//clearTimeout(cusion_point_display_animate);
+			}
+			else{
+
+				img1.src = 'MyImage/Point/0.png';
+    			img1.id = 2100;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+				
+			}
+			
+    		
+    		
+    		//second zero show
+    		if(document.getElementById("2200")!==null){
+    			document.getElementById("2200").style.setProperty("-webkit-transition","all 0.5s ease-out");
+				document.getElementById("2200").style.setProperty("left","76%");
+				document.getElementById("2200").style.opacity = "1";
+				clearTimeout(cusion_point_display_animate);
+			}
+			else{
+				img2.src = 'MyImage/Point/0.png';
+    			img2.id = 2200;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+
+    			
+			}
+ 
+		}
+
+
+		
+
+		//CHECK MINUS SIGN CASE
+
+
+		//1. IF IT WAS +VE,NOW +VE, DO NOTHING
+
+		//2. IF IT WAS +VE,NOW -VE
+		if(previous_point>=0 && present_point<0){
+
+			if(document.getElementById("2110")!==null){
+				//age declare kora hoise
+				document.getElementById("2110").style.setProperty("-webkit-transition","all 0.6s ease-out");
+				document.getElementById("2110").style.opacity="1";
+				document.getElementById("2110").style.setProperty("top","31%");
+				document.getElementById("2110").style.setProperty("left","71.5%");
+				clearTimeout(cusion_point_display_animate);
+			}
+
+			else{
+				//age declare kora hynay
+				img0.src = 'MyImage/Point/minus2.png';
+    			img0.id = 2110;
+    			img0.style.setProperty("position","absolute");
+    			img0.style.setProperty("top","0%");
+    			img0.style.setProperty("left","105%");
+    			img0.style.setProperty("width","2%");
+    			img0.style.setProperty("height","auto");
+
+    			document.getElementById("play_section").appendChild(img0);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+			
+		}
+
+
+
+		//3. IF IT WAS -VE,NOW +VE
+		else if(previous_point<0 && present_point>=0){
+			document.getElementById("2110").style.setProperty("-webkit-transition","all 0.3s ease-out");
+			document.getElementById("2110").style.opacity="0";
+			document.getElementById("2110").style.setProperty("top","0%");
+			document.getElementById("2110").style.setProperty("left","105%");
+			
+		}
+
+
+		//4. IF IT WAS -VE,NOW -VE, DO NOTHING
+
+
+
+		
+
+		//NOW CHECK IF PRESENT_POINT AND PREVIOUS_POINT HAS SAME FIRST DIGIT
+		//SECOND DIGIT CAN NEVER BE SAME
+
+		if(working_string[0]!==previous_working_string[0]){
+			//NOT SAME,YOU HAVE TO REMOVE PREVIOUS BALL OF FIRST DIGIT
+
+			//HIDE PREVIOUS CUSION POINTS
+			
+				//NOT FIRST TIME ENTRY OF BALLS
+
+			first_ball = 2100 + parseInt(previous_working_string[0]);
+			if(document.getElementById(first_ball)!==null){
+				document.getElementById(first_ball).style.setProperty("-webkit-transition","all 0.3s ease-out");
+				//document.getElementById(first_ball).style.setProperty("top","110%");
+				document.getElementById(first_ball).style.setProperty("left","105%");
+				//document.getElementById(first_ball).style.opacity = "0";	
+			}
+			
+
+		}
+
+
+
+		if(first_time_flag2==1){
+			//not the first entry in this method
+			second_ball = 2200 + parseInt(previous_working_string[1]);
+			if(document.getElementById(second_ball)!==null){
+				document.getElementById(second_ball).style.setProperty("-webkit-transition","all 0.4s ease-out");
+				document.getElementById(second_ball).style.setProperty("top","0%");
+				//document.getElementById(second_ball).style.setProperty("left","-5%");
+				document.getElementById(second_ball).style.opacity = "0";	
+			}
+			
+		}
+
+
+			
+
+
+
+
+		//FOR FIRST DIGIT
+
+
+		if(working_string[0]=='0'){
+			if(document.getElementById("2100")!==null){
+				//age declare kora hoise
+				
+				document.getElementById("2100").style.opacity="1";
+				document.getElementById("2100").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				//document.getElementById("2110").style.opacity="1";
+				document.getElementById("2100").style.setProperty("top","31%");
+				document.getElementById("2100").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/0.png';
+    			img1.id = 2100;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+		}
+
+		
+		else if(working_string[0]=='1'){
+
+			if(document.getElementById("2101")!==null){
+				//age declare kora hoise
+				document.getElementById("2101").style.opacity="1";
+				document.getElementById("2101").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2101").style.setProperty("top","31%");
+				document.getElementById("2101").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/1.png';
+    			img1.id = 2101;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+
+    			
+		}
+			
+
+
+		else if(working_string[0]=='2'){
+
+			if(document.getElementById("2102")!==null){
+				//age declare kora hoise
+				document.getElementById("2102").style.opacity="1";
+				document.getElementById("2102").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2102").style.setProperty("top","31%");
+				document.getElementById("2102").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/2.png';
+    			img1.id = 2102;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+				
+
+		}
+		
+
+		else if(working_string[0]=='3'){
+			if(document.getElementById("2103")!==null){
+				//age declare kora hoise
+				document.getElementById("2103").style.opacity="1";
+				document.getElementById("2103").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2103").style.setProperty("top","31%");
+				document.getElementById("2103").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/3.png';
+    			img1.id = 2103;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+		
+
+		else if(working_string[0]=='4'){
+			if(document.getElementById("2104")!==null){
+				//age declare kora hoise
+				document.getElementById("2104").style.opacity="1";
+				document.getElementById("2104").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2104").style.setProperty("top","31%");
+				document.getElementById("2104").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/4.png';
+    			img1.id = 2104;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+		
+
+		else if(working_string[0]=='5'){
+			if(document.getElementById("2105")!==null){
+				//age declare kora hoise
+				document.getElementById("2105").style.opacity="1";
+				document.getElementById("2105").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2105").style.setProperty("top","31%");
+				document.getElementById("2105").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/5.png';
+    			img1.id = 2105;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+
+
+		else if(working_string[0]=='6'){
+			if(document.getElementById("2106")!==null){
+				//age declare kora hoise
+				document.getElementById("2106").style.opacity="1";
+				document.getElementById("2106").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2106").style.setProperty("top","31%");
+				document.getElementById("2106").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/6.png';
+    			img1.id = 2106;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+		
+
+		else if(working_string[0]=='7'){
+			if(document.getElementById("2107")!==null){
+				//age declare kora hoise
+				document.getElementById("2107").style.opacity="1";
+				document.getElementById("2107").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2107").style.setProperty("top","31%");
+				document.getElementById("2107").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/7.png';
+    			img1.id = 2107;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);			}
+
+		}
+
+
+		else if(working_string[0]=='8'){
+			if(document.getElementById("2108")!==null){
+				//age declare kora hoise
+				document.getElementById("2108").style.opacity="1";
+				document.getElementById("2108").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2108").style.setProperty("top","31%");
+				document.getElementById("2108").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/8.png';
+    			img1.id = 2108;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+
+
+		else if(working_string[0]=='9'){
+			if(document.getElementById("2109")!==null){
+				//age declare kora hoise
+				document.getElementById("2109").style.opacity="1";
+				document.getElementById("2109").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2109").style.setProperty("top","31%");
+				document.getElementById("2109").style.setProperty("left","74%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img1.src = 'MyImage/Point/9.png';
+    			img1.id = 2109;
+    			img1.style.setProperty("position","absolute");
+    			img1.style.setProperty("top","0%");
+    			img1.style.setProperty("left","74%");
+    			img1.style.setProperty("width","2.6%");
+    			img1.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img1);
+				
+				cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+			}
+
+		}
+
+
+		
+
+
+		
+
+		//FOR 2ND DIGIT
+
+			
+		
+
+
+		if(working_string[1]=='0'){
+			if(document.getElementById("2200")!==null){
+				//age declare kora hoise
+				document.getElementById("2200").style.opacity="1";
+				document.getElementById("2200").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2200").style.setProperty("top","31%");
+				document.getElementById("2200").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/0.png';
+    			img2.id = 2200;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+			
+
+		else if(working_string[1]=='1'){
+			if(document.getElementById("2201")!==null){
+				//age declare kora hoise
+				document.getElementById("2201").style.opacity="1";
+				document.getElementById("2201").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2201").style.setProperty("top","31%");
+				document.getElementById("2201").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/1.png';
+    			img2.id = 2201;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='2'){
+			if(document.getElementById("2202")!==null){
+				//age declare kora hoise
+				document.getElementById("2202").style.opacity="1";
+				document.getElementById("2202").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2202").style.setProperty("top","31%");
+				document.getElementById("2202").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/2.png';
+    			img2.id = 2202;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='3'){
+			if(document.getElementById("2203")!==null){
+				//age declare kora hoise
+				document.getElementById("2203").style.opacity="1";
+				document.getElementById("2203").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2203").style.setProperty("top","31%");
+				document.getElementById("2203").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/3.png';
+    			img2.id = 2203;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='4'){
+			if(document.getElementById("2204")!==null){
+				//age declare kora hoise
+				document.getElementById("2204").style.opacity="1";
+				document.getElementById("2204").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2204").style.setProperty("top","31%");
+				document.getElementById("2204").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/4.png';
+    			img2.id = 2204;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='5'){
+			if(document.getElementById("2205")!==null){
+				//age declare kora hoise
+				document.getElementById("2205").style.opacity="1";
+				document.getElementById("2205").style.setProperty("-webkit76nsition","all 0.3s ease-out");
+				document.getElementById("2205").style.setProperty("top","31%");
+				document.getElementById("2205").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/5.png';
+    			img2.id = 2205;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='6'){
+			if(document.getElementById("2206")!==null){
+				//age declare kora hoise
+				document.getElementById("2206").style.opacity="1";
+				document.getElementById("2206").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2206").style.setProperty("top","31%");
+				document.getElementById("2206").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/6.png';
+    			img2.id = 2206;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='7'){
+			if(document.getElementById("2207")!==null){
+				//age declare kora hoise
+				document.getElementById("2207").style.opacity="1";
+				document.getElementById("2207").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2207").style.setProperty("top","31%");
+				document.getElementById("2207").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/7.png';
+    			img2.id = 2207;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='8'){
+			if(document.getElementById("2208")!==null){
+				//age declare kora hoise
+				document.getElementById("2208").style.opacity="1";
+				document.getElementById("2208").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2208").style.setProperty("top","31%");
+				document.getElementById("2208").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/8.png';
+    			img2.id = 2208;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+		else if(working_string[1]=='9'){
+			if(document.getElementById("2209")!==null){
+				//age declare kora hoise
+				document.getElementById("2209").style.opacity="1";
+				document.getElementById("2209").style.setProperty("-webkit-transition","all 0.3s ease-out");
+				document.getElementById("2209").style.setProperty("top","31%");
+				document.getElementById("2209").style.setProperty("left","76%");
+				clearTimeout(cusion_point_display_animate);
+
+			}
+			else{
+				//age declare kora hynay
+				img2.src = 'MyImage/Point/9.png';
+    			img2.id = 2209;
+    			img2.style.setProperty("position","absolute");
+    			img2.style.setProperty("top","31%");
+    			img2.style.setProperty("left","105%");
+    			img2.style.setProperty("width","2.6%");
+    			img2.style.setProperty("height","auto");
+    	
+    			document.getElementById("play_section").appendChild(img2);
+    			cusion_point_display_animate = setTimeout(function(){cusion_point_display(present_point,previous_point,player_no)},50);
+
+			}
+
+		}
+
+		
+
+		
+		if(first_time_flag2==0){
+			first_time_flag2 = 1;
+		}	
+
 
 	}
 	else if(player_no==3){
@@ -636,6 +2155,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 			if(document.getElementById("3100")!==null){
 				document.getElementById("3100").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3100").style.setProperty("left","11.5%");
+				document.getElementById("3100").style.opacity = "1";
 				//clearTimeout(cusion_point_display_animate);
 			}
 			else{
@@ -657,6 +2177,7 @@ function cusion_point_display(present_point,previous_point,player_no){
     		if(document.getElementById("3200")!==null){
     			document.getElementById("3200").style.setProperty("-webkit-transition","all 0.5s ease-out");
 				document.getElementById("3200").style.setProperty("top","71%");
+				document.getElementById("3200").style.opacity = "1";
 				clearTimeout(cusion_point_display_animate);
 			}
 			else{
@@ -689,7 +2210,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 			if(document.getElementById("3110")!==null){
 				//age declare kora hoise
 				document.getElementById("3110").style.setProperty("-webkit-transition","all 0.6s ease-out");
-				//document.getElementById("3110").style.opacity="1";
+				document.getElementById("3110").style.opacity="1";
 				document.getElementById("3110").style.setProperty("top","71%");
 				document.getElementById("3110").style.setProperty("left","9%");
 				clearTimeout(cusion_point_display_animate);
@@ -702,7 +2223,7 @@ function cusion_point_display(present_point,previous_point,player_no){
     			img0.style.setProperty("position","absolute");
     			img0.style.setProperty("top","110%");
     			img0.style.setProperty("left","-5%");
-    			img0.style.setProperty("width","2.6%");
+    			img0.style.setProperty("width","2%");
     			img0.style.setProperty("height","auto");
 
     			document.getElementById("play_section").appendChild(img0);
@@ -781,7 +2302,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 			if(document.getElementById("3100")!==null){
 				//age declare kora hoise
 				
-				//document.getElementById("3100").style.opacity="1";
+				document.getElementById("3100").style.opacity="1";
 				document.getElementById("3100").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				//document.getElementById("3110").style.opacity="1";
 				document.getElementById("3100").style.setProperty("top","71%");
@@ -810,7 +2331,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 			if(document.getElementById("3101")!==null){
 				//age declare kora hoise
-				//document.getElementById("3101").style.opacity="1";
+				document.getElementById("3101").style.opacity="1";
 				document.getElementById("3101").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3101").style.setProperty("top","71%");
 				document.getElementById("3101").style.setProperty("left","11.5%");
@@ -842,7 +2363,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 			if(document.getElementById("3102")!==null){
 				//age declare kora hoise
-				//document.getElementById("3102").style.opacity="1";
+				document.getElementById("3102").style.opacity="1";
 				document.getElementById("3102").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3102").style.setProperty("top","71%");
 				document.getElementById("3102").style.setProperty("left","11.5%");
@@ -871,7 +2392,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='3'){
 			if(document.getElementById("3103")!==null){
 				//age declare kora hoise
-				//document.getElementById("3103").style.opacity="1";
+				document.getElementById("3103").style.opacity="1";
 				document.getElementById("3103").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3103").style.setProperty("top","71%");
 				document.getElementById("3103").style.setProperty("left","11.5%");
@@ -899,7 +2420,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='4'){
 			if(document.getElementById("3104")!==null){
 				//age declare kora hoise
-				//document.getElementById("3104").style.opacity="1";
+				document.getElementById("3104").style.opacity="1";
 				document.getElementById("3104").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3104").style.setProperty("top","71%");
 				document.getElementById("3104").style.setProperty("left","11.5%");
@@ -927,7 +2448,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='5'){
 			if(document.getElementById("3105")!==null){
 				//age declare kora hoise
-				//document.getElementById("3105").style.opacity="1";
+				document.getElementById("3105").style.opacity="1";
 				document.getElementById("3105").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3105").style.setProperty("top","71%");
 				document.getElementById("3105").style.setProperty("left","11.5%");
@@ -955,7 +2476,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='6'){
 			if(document.getElementById("3106")!==null){
 				//age declare kora hoise
-				//document.getElementById("3106").style.opacity="1";
+				document.getElementById("3106").style.opacity="1";
 				document.getElementById("3106").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3106").style.setProperty("top","71%");
 				document.getElementById("3106").style.setProperty("left","11.5%");
@@ -983,7 +2504,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='7'){
 			if(document.getElementById("3107")!==null){
 				//age declare kora hoise
-				//document.getElementById("3107").style.opacity="1";
+				document.getElementById("3107").style.opacity="1";
 				document.getElementById("3107").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3107").style.setProperty("top","71%");
 				document.getElementById("3107").style.setProperty("left","11.5%");
@@ -1010,7 +2531,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='8'){
 			if(document.getElementById("3108")!==null){
 				//age declare kora hoise
-				//document.getElementById("3108").style.opacity="1";
+				document.getElementById("3108").style.opacity="1";
 				document.getElementById("3108").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3108").style.setProperty("top","71%");
 				document.getElementById("3108").style.setProperty("left","11.5%");
@@ -1038,7 +2559,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='9'){
 			if(document.getElementById("3109")!==null){
 				//age declare kora hoise
-				//document.getElementById("3109").style.opacity="1";
+				document.getElementById("3109").style.opacity="1";
 				document.getElementById("3109").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3109").style.setProperty("top","71%");
 				document.getElementById("3109").style.setProperty("left","11.5%");
@@ -1077,7 +2598,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		if(working_string[1]=='0'){
 			if(document.getElementById("3200")!==null){
 				//age declare kora hoise
-				//document.getElementById("3200").style.opacity="1";
+				document.getElementById("3200").style.opacity="1";
 				document.getElementById("3200").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3200").style.setProperty("top","71%");
 				document.getElementById("3200").style.setProperty("left","13.5%");
@@ -1105,7 +2626,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='1'){
 			if(document.getElementById("3201")!==null){
 				//age declare kora hoise
-				//document.getElementById("3201").style.opacity="1";
+				document.getElementById("3201").style.opacity="1";
 				document.getElementById("3201").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3201").style.setProperty("top","71%");
 				document.getElementById("3201").style.setProperty("left","13.5%");
@@ -1131,7 +2652,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='2'){
 			if(document.getElementById("3202")!==null){
 				//age declare kora hoise
-				//document.getElementById("3202").style.opacity="1";
+				document.getElementById("3202").style.opacity="1";
 				document.getElementById("3202").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3202").style.setProperty("top","71%");
 				document.getElementById("3202").style.setProperty("left","13.5%");
@@ -1157,7 +2678,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='3'){
 			if(document.getElementById("3203")!==null){
 				//age declare kora hoise
-				//document.getElementById("3203").style.opacity="1";
+				document.getElementById("3203").style.opacity="1";
 				document.getElementById("3203").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3203").style.setProperty("top","71%");
 				document.getElementById("3203").style.setProperty("left","13.5%");
@@ -1183,7 +2704,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='4'){
 			if(document.getElementById("3204")!==null){
 				//age declare kora hoise
-				//document.getElementById("3204").style.opacity="1";
+				document.getElementById("3204").style.opacity="1";
 				document.getElementById("3204").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3204").style.setProperty("top","71%");
 				document.getElementById("3204").style.setProperty("left","13.5%");
@@ -1209,7 +2730,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='5'){
 			if(document.getElementById("3205")!==null){
 				//age declare kora hoise
-				//document.getElementById("3205").style.opacity="1";
+				document.getElementById("3205").style.opacity="1";
 				document.getElementById("3205").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3205").style.setProperty("top","71%");
 				document.getElementById("3205").style.setProperty("left","13.5%");
@@ -1235,7 +2756,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='6'){
 			if(document.getElementById("3206")!==null){
 				//age declare kora hoise
-				//document.getElementById("3206").style.opacity="1";
+				document.getElementById("3206").style.opacity="1";
 				document.getElementById("3206").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3206").style.setProperty("top","71%");
 				document.getElementById("3206").style.setProperty("left","13.5%");
@@ -1261,7 +2782,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='7'){
 			if(document.getElementById("3207")!==null){
 				//age declare kora hoise
-				//document.getElementById("3207").style.opacity="1";
+				document.getElementById("3207").style.opacity="1";
 				document.getElementById("3207").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3207").style.setProperty("top","71%");
 				document.getElementById("3207").style.setProperty("left","13.5%");
@@ -1287,7 +2808,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='8'){
 			if(document.getElementById("3208")!==null){
 				//age declare kora hoise
-				//document.getElementById("3208").style.opacity="1";
+				document.getElementById("3208").style.opacity="1";
 				document.getElementById("3208").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3208").style.setProperty("top","71%");
 				document.getElementById("3208").style.setProperty("left","13.5%");
@@ -1313,7 +2834,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='9'){
 			if(document.getElementById("3209")!==null){
 				//age declare kora hoise
-				//document.getElementById("3209").style.opacity="1";
+				document.getElementById("3209").style.opacity="1";
 				document.getElementById("3209").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("3209").style.setProperty("top","71%");
 				document.getElementById("3209").style.setProperty("left","13.5%");
@@ -1385,7 +2906,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 				document.getElementById("4100").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4100").style.setProperty("top","71%");
-
+				document.getElementById("4100").style.opacity = "1";
 				//clearTimeout(cusion_point_display_animate);
 			}
 			else{
@@ -1409,6 +2930,7 @@ function cusion_point_display(present_point,previous_point,player_no){
     		if(document.getElementById("4200")!==null){
     			document.getElementById("4200").style.setProperty("-webkit-transition","all 0.5s ease-out");
 				document.getElementById("4200").style.setProperty("left","76%");
+				document.getElementById("4200").style.opacity = "1";
 				clearTimeout(cusion_point_display_animate);
 			}
 			else{
@@ -1441,7 +2963,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 			if(document.getElementById("4110")!==null){
 				//age declare kora hoise
 				document.getElementById("4110").style.setProperty("-webkit-transition","all 0.6s ease-out");
-				//document.getElementById("4110").style.opacity="1";
+				document.getElementById("4110").style.opacity="1";
 				document.getElementById("4110").style.setProperty("top","71%");
 				document.getElementById("4110").style.setProperty("left","71.5%");
 				clearTimeout(cusion_point_display_animate);
@@ -1454,7 +2976,7 @@ function cusion_point_display(present_point,previous_point,player_no){
     			img0.style.setProperty("position","absolute");
     			img0.style.setProperty("top","110%");
     			img0.style.setProperty("left","105%");
-    			img0.style.setProperty("width","2.6%");
+    			img0.style.setProperty("width","2%");
     			img0.style.setProperty("height","auto");
 
     			document.getElementById("play_section").appendChild(img0);
@@ -1530,7 +3052,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 			if(document.getElementById("4100")!==null){
 				//age declare kora hoise
 				
-				//document.getElementById("4100").style.opacity="1";
+				document.getElementById("4100").style.opacity="1";
 				document.getElementById("4100").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				//document.getElementById("4110").style.opacity="1";
 				document.getElementById("4100").style.setProperty("top","71%");
@@ -1559,7 +3081,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 			if(document.getElementById("4101")!==null){
 				//age declare kora hoise
-				//document.getElementById("4101").style.opacity="1";
+				document.getElementById("4101").style.opacity="1";
 				document.getElementById("4101").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4101").style.setProperty("top","71%");
 				document.getElementById("4101").style.setProperty("left","74%");
@@ -1591,7 +3113,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 
 			if(document.getElementById("4102")!==null){
 				//age declare kora hoise
-				//document.getElementById("3102").style.opacity="1";
+				document.getElementById("4102").style.opacity="1";
 				document.getElementById("4102").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4102").style.setProperty("top","71%");
 				document.getElementById("4102").style.setProperty("left","74%");
@@ -1620,7 +3142,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='3'){
 			if(document.getElementById("4103")!==null){
 				//age declare kora hoise
-				//document.getElementById("3103").style.opacity="1";
+				document.getElementById("4103").style.opacity="1";
 				document.getElementById("4103").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4103").style.setProperty("top","71%");
 				document.getElementById("4103").style.setProperty("left","74%");
@@ -1648,7 +3170,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='4'){
 			if(document.getElementById("4104")!==null){
 				//age declare kora hoise
-				//document.getElementById("3104").style.opacity="1";
+				document.getElementById("4104").style.opacity="1";
 				document.getElementById("4104").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4104").style.setProperty("top","71%");
 				document.getElementById("4104").style.setProperty("left","74%");
@@ -1676,7 +3198,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='5'){
 			if(document.getElementById("4105")!==null){
 				//age declare kora hoise
-				//document.getElementById("3105").style.opacity="1";
+				document.getElementById("4105").style.opacity="1";
 				document.getElementById("4105").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4105").style.setProperty("top","71%");
 				document.getElementById("4105").style.setProperty("left","74%");
@@ -1704,7 +3226,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='6'){
 			if(document.getElementById("4106")!==null){
 				//age declare kora hoise
-				//document.getElementById("3106").style.opacity="1";
+				document.getElementById("4106").style.opacity="1";
 				document.getElementById("4106").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4106").style.setProperty("top","71%");
 				document.getElementById("4106").style.setProperty("left","74%");
@@ -1732,7 +3254,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='7'){
 			if(document.getElementById("4107")!==null){
 				//age declare kora hoise
-				//document.getElementById("3107").style.opacity="1";
+				document.getElementById("4107").style.opacity="1";
 				document.getElementById("4107").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4107").style.setProperty("top","71%");
 				document.getElementById("4107").style.setProperty("left","74%");
@@ -1759,7 +3281,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='8'){
 			if(document.getElementById("4108")!==null){
 				//age declare kora hoise
-				//document.getElementById("3108").style.opacity="1";
+				document.getElementById("4108").style.opacity="1";
 				document.getElementById("4108").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4108").style.setProperty("top","71%");
 				document.getElementById("4108").style.setProperty("left","74%");
@@ -1787,7 +3309,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[0]=='9'){
 			if(document.getElementById("4109")!==null){
 				//age declare kora hoise
-				//document.getElementById("3109").style.opacity="1";
+				document.getElementById("4109").style.opacity="1";
 				document.getElementById("4109").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4109").style.setProperty("top","71%");
 				document.getElementById("4109").style.setProperty("left","74%");
@@ -1826,7 +3348,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		if(working_string[1]=='0'){
 			if(document.getElementById("4200")!==null){
 				//age declare kora hoise
-				//document.getElementById("3200").style.opacity="1";
+				document.getElementById("4200").style.opacity="1";
 				document.getElementById("4200").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4200").style.setProperty("top","71%");
 				document.getElementById("4200").style.setProperty("left","76%");
@@ -1854,7 +3376,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='1'){
 			if(document.getElementById("4201")!==null){
 				//age declare kora hoise
-				//document.getElementById("3201").style.opacity="1";
+				document.getElementById("4201").style.opacity="1";
 				document.getElementById("4201").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4201").style.setProperty("top","71%");
 				document.getElementById("4201").style.setProperty("left","76%");
@@ -1880,7 +3402,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='2'){
 			if(document.getElementById("4202")!==null){
 				//age declare kora hoise
-				//document.getElementById("3202").style.opacity="1";
+				document.getElementById("4202").style.opacity="1";
 				document.getElementById("4202").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4202").style.setProperty("top","71%");
 				document.getElementById("4202").style.setProperty("left","76%");
@@ -1906,7 +3428,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='3'){
 			if(document.getElementById("4203")!==null){
 				//age declare kora hoise
-				//document.getElementById("3203").style.opacity="1";
+				document.getElementById("4203").style.opacity="1";
 				document.getElementById("4203").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4203").style.setProperty("top","71%");
 				document.getElementById("4203").style.setProperty("left","76%");
@@ -1932,7 +3454,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='4'){
 			if(document.getElementById("4204")!==null){
 				//age declare kora hoise
-				//document.getElementById("3204").style.opacity="1";
+				document.getElementById("4204").style.opacity="1";
 				document.getElementById("4204").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4204").style.setProperty("top","71%");
 				document.getElementById("4204").style.setProperty("left","76%");
@@ -1958,7 +3480,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='5'){
 			if(document.getElementById("4205")!==null){
 				//age declare kora hoise
-				//document.getElementById("3205").style.opacity="1";
+				document.getElementById("4205").style.opacity="1";
 				document.getElementById("4205").style.setProperty("-webkit76nsition","all 0.3s ease-out");
 				document.getElementById("4205").style.setProperty("top","71%");
 				document.getElementById("4205").style.setProperty("left","76%");
@@ -1984,7 +3506,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='6'){
 			if(document.getElementById("4206")!==null){
 				//age declare kora hoise
-				//document.getElementById("3206").style.opacity="1";
+				document.getElementById("4206").style.opacity="1";
 				document.getElementById("4206").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4206").style.setProperty("top","71%");
 				document.getElementById("4206").style.setProperty("left","76%");
@@ -2010,7 +3532,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='7'){
 			if(document.getElementById("4207")!==null){
 				//age declare kora hoise
-				//document.getElementById("3207").style.opacity="1";
+				document.getElementById("4207").style.opacity="1";
 				document.getElementById("4207").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4207").style.setProperty("top","71%");
 				document.getElementById("4207").style.setProperty("left","76%");
@@ -2036,7 +3558,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='8'){
 			if(document.getElementById("4208")!==null){
 				//age declare kora hoise
-				//document.getElementById("3208").style.opacity="1";
+				document.getElementById("4208").style.opacity="1";
 				document.getElementById("4208").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4208").style.setProperty("top","71%");
 				document.getElementById("4208").style.setProperty("left","76%");
@@ -2062,7 +3584,7 @@ function cusion_point_display(present_point,previous_point,player_no){
 		else if(working_string[1]=='9'){
 			if(document.getElementById("4209")!==null){
 				//age declare kora hoise
-				//document.getElementById("3209").style.opacity="1";
+				document.getElementById("4209").style.opacity="1";
 				document.getElementById("4209").style.setProperty("-webkit-transition","all 0.3s ease-out");
 				document.getElementById("4209").style.setProperty("top","71%");
 				document.getElementById("4209").style.setProperty("left","76%");

@@ -42,6 +42,7 @@ function player3(){
 			if(boardCards[0].toString()[0]!=curClick.toString()[0]) {
 				trumpedSuitFunc(trumpedSuits,curClick.toString()[0]-'1');
 			}
+			
 		}
 		boardCards.push((temp));
 		curTurn++;		
@@ -58,7 +59,7 @@ function player3(){
 		}
 
 	}
-	clickFlag=0;
+	//clickFlag=0;
 }
 
 function player4(){
@@ -108,7 +109,7 @@ function play(){
 		else if(inputFlag==2 && player2_card_play_flag==0){
 			player2();
 		}
-		else if(inputFlag==3 && clickFlag==1) {
+		else if(inputFlag==3 && clickFlag==1 && nunuFlag==0) {
 			player3();
 		}
 		else if(inputFlag==4 && player4_card_play_flag==0) {

@@ -82,7 +82,7 @@ player1_card_play_flag = 0;
 player2_card_play_flag = 0;
 player4_card_play_flag = 0;
 chudi=0;
-
+nunuFlag=0;
 
 
 

@@ -24,7 +24,6 @@ var pile_flag = 0;
 var pass_flag = 0;
 var empty_flag = 0;
 var animate2;
-
 var anim;
 var anim_flag = 0;
 
@@ -68,7 +67,10 @@ var first_time_flag3 = 0;
 var first_time_flag4 = 0;
 
 
-
+var player1_previous_point = 0;
+var player1_present_point = 0;
+var player2_previous_point = 0;
+var player2_present_point = 0;
 var player3_previous_point = 0;
 var player3_present_point = 0;
 var player4_previous_point = 0;
@@ -84,7 +86,7 @@ var player2_card_play_flag = 0;
 var player4_card_play_flag = 0;
 var animate;
 var chudi=0;
-
+var nunuFlag=0;
 
 
 

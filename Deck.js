@@ -130,7 +130,7 @@ function hand1(playerSuits) {
 		var tempMax;
 		//bazare kono trump na thakle
 		if(playerSuits[3].length==allCards[3].length) {
-			var flag=0;;
+			var flag=0;
 			for(var i=0;i<playerSuits.length;i++){
 				if(playerSuits[i].indexOf(leadCards[i])>=0) {
 					var index = playerSuits[i].indexOf(leadCards[i]);
@@ -164,13 +164,22 @@ function hand1(playerSuits) {
 					break;
 				}
 			}
-			if(flag==0) {
+			if(flag==0 && trumpedSuits.length!=0) {
 				if(playerSuits[3].indexOf(leadCards[3])>=0) {
 						var index = playerSuits[3].indexOf(leadCards[3]);
 						tempMax=playerSuits[3][index];
 						flag=1;
 
 				}
+			}
+			if(flag==0 && returnMyCardsWithoutSpade(playerSuits).length==0){
+				if(playerSuits[3].indexOf(leadCards[3])>=0) {
+						var index = playerSuits[3].indexOf(leadCards[3]);
+						tempMax=playerSuits[3][index];
+						flag=1;
+
+				}
+
 			}
 			if(flag==0) {
 				var myCards = returnMyCardsWithoutSpade(playerSuits);
@@ -504,6 +513,10 @@ function winPlayer(winCard) {
 // empty board function and showing the winning card in the top left corner and eventually after 1 secong vanishing the card
 function emptyBoard(winning_card){
 		if(boardCards.length==4) {
+			// if player3 (user) wins he needs to wait to play the next hand until the animation finishes 
+			if(lastWinner==3){
+				nunuFlag=1;
+			}
 			var x = boardCards.pop();
 			var x2= boardCards.pop();
 			var x3= boardCards.pop();
@@ -1011,7 +1024,9 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 				//chudi = 0;
 				//play();
 				//lame = setTimeout(function(){clearWinningCard(winning_card);},1000);
-				
+				if(lastWinner==3){
+					nunuFlag=0;	
+				}
 			}
 
 			
@@ -1030,7 +1045,8 @@ function pass_pile_to_winner(winner_player,hand_index1,hand_index2,hand_index3,h
 			//document.getElementById(card3).style.webkitTransform = "scale(0)";
 			//document.getElementById(card3).style.setProperty("top", "75%");
 			//document.getElementById(card3).style.setProperty("left", "10%");
-			
+			// ######################## Now plater3(user) is ready for the next move so his click flag is set to on
+
 		}
 		// ek game shesh so reinitialize kortesi
 
@@ -1050,6 +1066,60 @@ function players_point_calculate(){
 	if(anim_flag==0){
 
 		//players' point will be calculated now
+
+
+
+		//point calculation of player1
+
+		player1_previous_point = player1_present_point;
+		if(player1Call-remaining_call1==-1 || player1Call-remaining_call1==0){
+			if(player1Call==0){
+				player1_present_point+=5;	
+			}
+			else if(player1Call==8){
+				player1_present_point+=13;
+			}
+			else{
+				player1_present_point += player1Call;	
+			}
+		}
+		else{
+			if(player1Call==0){
+				player1_present_point-=5;	
+			}
+			else{
+				player1_present_point -= player1Call;	
+			}
+				
+		}
+
+
+
+		//point calculation of player2
+
+		player2_previous_point = player2_present_point;
+		if(player2Call-remaining_call2==-1 || player2Call-remaining_call2==0){
+			if(player2Call==0){
+				player2_present_point+=5;	
+			}
+			else if(player2Call==8){
+				player2_present_point+=13;
+			}
+			else{
+				player2_present_point += player2Call;	
+			}
+		}
+		else{
+			if(player2Call==0){
+				player2_present_point-=5;	
+			}
+			else{
+				player2_present_point -= player2Call;	
+			}
+				
+		}
+
+
 
 		//point calculation of player3
 
@@ -1113,7 +1183,7 @@ function players_point_calculate(){
 	if(anim_flag==0){
 		//player1 cusion_point_display
 
-		//cusion_point_display(player1_present_point,player1_previous_point,1);
+		cusion_point_display(player1_present_point,player1_previous_point,1);
 
 		anim = setTimeout(players_point_calculate,100);
 		anim_flag = 1;
@@ -1122,7 +1192,7 @@ function players_point_calculate(){
 	else if(anim_flag==1){
 		//player2 cusion_point_display
 
-		//cusion_point_display(player2_present_point,player2_previous_point,2);
+		cusion_point_display(player2_present_point,player2_previous_point,2);
 		anim = setTimeout(players_point_calculate,110);
 		anim_flag = 2;
 
