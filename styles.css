@@ -1,83 +1,86 @@
 @import url(http://fonts.googleapis.com/css?family=Capriola);
-#cssmenu,
-#cssmenu ul,
-#cssmenu ul li,
-#cssmenu ul li a {
+
+.cssmenu,
+.cssmenu ul,
+.cssmenu ul li,
+.cssmenu ul li a {
   margin: 0;
   padding: 0;
-  border: 0;
+  /*border: 0;*/
   list-style: none;
   line-height: 1;
-  display: inline-block;
-  float: left;
-  position: relative;
   font-family: Capriola, Helvetica, sans-serif;
+
 }
-#cssmenu {
+.cssmenu {
   width: 100%;
   height: auto;
   padding-bottom: 4px;
+  background: #1a1a1a;
+  background: -moz-linear-gradient(top, #0f0f0f 0%, #1a1a1a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0f0f0f), color-stop(100%, #1a1a1a));
+  background: -webkit-linear-gradient(top, #0f0f0f 0%, #1a1a1a 100%);
+  background: -o-linear-gradient(top, #0f0f0f 0%, #1a1a1a 100%);
+  background: -ms-linear-gradient(top, #0f0f0f 0%, #1a1a1a 100%);
+  background: linear-gradient(to bottom, #0f0f0f 0%, #1a1a1a 100%);
 }
-#cssmenu.align-right {
-  float: right;
-}
-#cssmenu.align-right ul li {
-  float: right;
+
+.cssmenu.align-right ul li {
+  /*float: right;*/
   margin-right: 0;
   margin-left: 4px;
 }
-#cssmenu.align-right ul li:first-child,
-#cssmenu.align-right ul li:first-child > a {
+.cssmenu.align-right ul li:first-child,
+.cssmenu.align-right ul li:first-child > a {
   border-bottom-right-radius: 3px;
 }
-#cssmenu #bg-one,
-#cssmenu #bg-two,
-#cssmenu #bg-three,
-#cssmenu #bg-four {
+.cssmenu #bg-one,
+.cssmenu #bg-two,
+.cssmenu #bg-three,
+.cssmenu #bg-four {
   position: absolute;
   bottom: 0;
   width: 100%;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-#cssmenu #bg-one {
+.cssmenu #bg-one {
   height: 10px;
-  background: #E0E0E0;
+  background: #000000;
 }
-#cssmenu #bg-two {
+.cssmenu #bg-two {
   height: 59px;
   z-index: 2;
   background: url('images/bg.png');
 }
-#cssmenu #bg-three {
+.cssmenu #bg-three {
   bottom: 4px;
   height: 55px;
   z-index: 3;
-  background: #222222;
-  background: -moz-linear-gradient(top, #555555 0%, #222222 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #222222));
-  background: -webkit-linear-gradient(top, #555555 0%, #222222 100%);
-  background: -o-linear-gradient(top, #555555 0%, #222222 100%);
-  background: -ms-linear-gradient(top, #555555 0%, #222222 100%);
-  background: linear-gradient(to bottom, #555555 0%, #222222 100%);
+  background: #1a1a1a;
+  background: -moz-linear-gradient(top, #0f0f0f 0%, #1a1a1a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0f0f0f), color-stop(100%, #1a1a1a));
+  background: -webkit-linear-gradient(top, #0f0f0f 0%, #1a1a1a 100%);
+  background: -o-linear-gradient(top, #0f0f0f 0%, #1a1a1a 100%);
+  background: -ms-linear-gradient(top, #0f0f0f 0%, #1a1a1a 100%);
+  background: linear-gradient(to bottom, #0f0f0f 0%, #1a1a1a 100%);
 }
-#cssmenu #bg-four {
+.cssmenu #bg-four {
   bottom: 4px;
   height: 55px;
   z-index: 4;
   background: url('images/bg.png');
 }
-#cssmenu ul {
+.cssmenu ul {
   height: 59px;
 }
-#cssmenu ul li {
-  float: left;
+.cssmenu ul li {
   margin-right: 4px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   z-index: 5;
 }
-#cssmenu ul li a {
+.cssmenu ul li a {
   padding: 24px 30px 20px 30px;
   margin-bottom: 4px;
   border-top-left-radius: 3px;
@@ -86,22 +89,86 @@
   font-size: 15px;
   text-decoration: none;
 }
-#cssmenu ul li:first-child,
-#cssmenu ul li:first-child > a {
+.cssmenu ul li:first-child,
+.cssmenu ul li:first-child > a {
   border-bottom-left-radius: 3px;
 }
-#cssmenu ul li:hover,
-#cssmenu ul li.active {
-  background: #0f71ba;
-  background: -moz-linear-gradient(top, #3fa4f0 0%, #0f71ba 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3fa4f0), color-stop(100%, #0f71ba));
-  background: -webkit-linear-gradient(top, #3fa4f0 0%, #0f71ba 100%);
-  background: -o-linear-gradient(top, #3fa4f0 0%, #0f71ba 100%);
-  background: -ms-linear-gradient(top, #3fa4f0 0%, #0f71ba 100%);
-  background: linear-gradient(to bottom, #3fa4f0 0%, #0f71ba 100%);
+.cssmenu ul li:hover,
+.cssmenu ul li.active {
+  /*background: #c7c3c3;
+  background: -moz-linear-gradient(top, #c7c3c3 0%, #c7c3c5 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c7c3c3), color-stop(100%, #c7c3c5));
+  background: -webkit-linear-gradient(top, #c7c3c3 0%, #c7c3c5 100%);
+  background: -o-linear-gradient(top, #c7c3c3 0%, #c7c3c5 100%);
+  background: -ms-linear-gradient(top, #c7c3c3 0%, #c7c3c5 100%);
+  background: linear-gradient(to bottom, #c7c3c3 0%, #c7c3-webkit-transition:-webkit-transform 0.2s ease-in; */
+
 }
-#cssmenu ul li a:hover,
-#cssmenu ul li.active > a {
-  background: url('images/bg.png');
-  color: #ffffff;
+.cssmenu ul li a{
+  -webkit-transition:-webkit-transform 0.1s ease-in;
+}
+.cssmenu ul li a:hover,
+.cssmenu ul li.active > a {
+  /*background: url('images/bg.png');*/
+  color: #E74736;
+  font-weight: bold;
+  -webkit-font-smoothing: subpixel-antialiased;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-filter: blur(0);
+  -webkit-transform:scale(1.02);
+}
+
+
+/*.navbar-default .navbar-nav >li>a {
+     color: #ffffff !important; 
+}*/
+
+.navbar-default .navbar-nav >li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+    color: #ffffff !important;
+}
+
+
+
+
+
+
+
+
+
+.navbar {
+    margin-bottom: 0;
+    border: 0px !important;
+    border-bottom: 2px solid !important;
+    border-bottom-color: #ffffff !important;
+}
+
+
+
+.cool-link {
+    display: inline-block !important;
+    /*color: #000 !important;*/
+    text-decoration: none !important;
+    margin-top: 7px;
+    padding-top: 3px;
+}
+
+.cool-link::after {
+    margin-top: 7px;
+    padding-top: 3px;
+    content: '' !important;
+    display: block !important;
+    width: 0 !important;
+    height: 1px !important;
+    background: #864ceb !important;
+    transition: width .2s !important;
+}
+
+.cool-link:hover::after {
+    margin-top: 7px;
+    padding-top: 3px;
+    width: 100% !important;
+    height: 1px;
+    transition: width .2s;
 }
