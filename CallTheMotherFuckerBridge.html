@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- PRELOADER STARTS -->
+	<script type="text/javascript">
+		window.addEventListener("load",function(){
+			var load_screen = document.getElementById("wrap");
+			document.body.removeChild(load_screen);
+		},false);
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="PreloaderDesign.css">
+	<!-- PRELOADER ENDS -->
 	<meta charset="utf-8">
 	<script type="text/javascript" src="Declare.js"></script>
 	<script type="text/javascript" src="Deck.js"></script>
@@ -9,6 +19,7 @@
 	<script type="text/javascript" src="Call.js"></script>
 	<script type="text/javascript" src="Reinitialize.js"></script>
 	<link rel="stylesheet" type="text/css" href="callBridge.css">
+	
 
 	<!--THESE ARE FOR NAVIGATION BAR STARTS-->
 	<meta charset='utf-8'>
@@ -37,6 +48,19 @@
 </head>
 <body>
 	
+	<!-- PRELOADER STARTS -->
+	<div id="wrap">
+		  <div class="preloader">
+		  <div class="lines">
+		    <div class="line line-1"></div>
+		    <div class="line line-2"></div>
+		    <div class="line line-3"></div>
+		  </div>
+		  
+		  <div class="loading-text">LOADING</div>
+		</div>
+	</div>
+	<!-- PRELOADER ENDS -->
 	
 	<div id="parent_div">
    		<nav class="navbar navbar-default" style="margin-bottom: 0;" role="navigation">

@@ -1,0 +1,139 @@
+		#wrap{
+			background: #000;
+			opacity: 1;
+			position: fixed;
+			z-index: 10;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+		}
+
+		.load_screen > .loading{
+			color: #FFF;
+			width: 120px;
+			height: 24px;
+			margin: 300px auto;
+		}
+
+
+
+
+/*PRELOADER STARTS*/
+body{
+	background: #000;
+}
+
+
+.preloader {
+	background: #000;
+	opacity: 1;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 60px;
+  margin: -30px 0 0 -40px;
+}
+.preloader .lines {
+  width: 80px;
+  height: 40px;
+  position: absolute;
+}
+.preloader .lines .line {
+  width: 80px;
+  height: 10px;
+  background-color: #fff;
+  position: absolute;
+  cl
+  clip: rect(0, 0, 20px, 0);
+}
+.preloader .lines .line.line-1 {
+  top: 0;
+  -webkit-animation: slide 2s ease 0s infinite;
+          animation: slide 2s ease 0s infinite;
+}
+.preloader .lines .line.line-2 {
+  top: 15px;
+  -webkit-animation: slide 2s ease 0.25s infinite;
+          animation: slide 2s ease 0.25s infinite;
+}
+.preloader .lines .line.line-3 {
+  top: 30px;
+  -webkit-animation: slide 2s ease 0.5s infinite;
+          animation: slide 2s ease 0.5s infinite;
+}
+.preloader .loading-text {
+  position: absolute;
+  top: 50px;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  font-size: 13px;
+  font-family: sans-serif;
+  letter-spacing: 3px;
+  line-height: 10px;
+  height: 10px;
+  -webkit-animation: fade 1s ease 0s infinite;
+          animation: fade 1s ease 0s infinite;
+}
+
+@-webkit-keyframes slide {
+  0% {
+    clip: rect(0, 0, 20px, 0);
+  }
+  30% {
+    clip: rect(0, 80px, 20px, 0);
+  }
+  50% {
+    clip: rect(0, 80px, 20px, 0);
+  }
+  80% {
+    clip: rect(0, 80px, 20px, 80px);
+  }
+  100% {
+    clip: rect(0, 80px, 20px, 80px);
+  }
+}
+
+@keyframes slide {
+  0% {
+    clip: rect(0, 0, 20px, 0);
+  }
+  30% {
+    clip: rect(0, 80px, 20px, 0);
+  }
+  50% {
+    clip: rect(0, 80px, 20px, 0);
+  }
+  80% {
+    clip: rect(0, 80px, 20px, 80px);
+  }
+  100% {
+    clip: rect(0, 80px, 20px, 80px);
+  }
+}
+@-webkit-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*PRELOADER ENDS*/

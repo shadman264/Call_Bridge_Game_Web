@@ -1,6 +1,17 @@
 <html>
 
 <head>
+
+    <!-- PRELOADER STARTS -->
+    <script type="text/javascript">
+        window.addEventListener("load",function(){
+            var load_screen = document.getElementById("wrap");
+            document.body.removeChild(load_screen);
+        },false);
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="PreloaderDesign.css">
+    <!-- PRELOADER ENDS -->
     
     <link rel="stylesheet" type="text/css" href="HomeNavDesign.css">
 
@@ -32,6 +43,21 @@
 
 
 <body>
+
+    <!-- PRELOADER STARTS -->
+    <div id="wrap">
+          <div class="preloader">
+          <div class="lines">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+          </div>
+          
+          <div class="loading-text">LOADING</div>
+        </div>
+    </div>
+    <!-- PRELOADER ENDS -->
+    
     <nav class="navbar navbar-default" style="margin-bottom: 0;" role="navigation">
       
         <a class="navbar-brand" style="font-family: Capriola, Helvetica, sans-serif; padding-top: 20px;     color: #8a7c36; font-weight: bold; font-size: 25;" onmouseover='this.style.color="#a89742"'     onmouseout='this.style.color="#8a7c36"' href="#">Call Bridge</a>
