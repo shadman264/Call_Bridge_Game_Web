@@ -6,6 +6,28 @@
 *:focus {
     outline: none;
 }
+
+/*FOR SHOWING PORTRAIT MSG*/
+#portrait_bell{
+	display: none;
+}
+#portrait_text{
+	display: none;
+}
+@media only screen and (orientation:portrait){
+    .main { display:none; }
+    #portrait_bell{ display:block; }
+    #portrait_text{ display:block; }
+    html{background-color: #1b1b1b;}
+}
+@media only screen and (orientation:landscape){
+	.main { display:block; }
+    #portrait_bell{ display:none; }
+    #portrait_text{ display:none; }
+}
+
+
+
 nav,footer,section{
 	display: block;
 }

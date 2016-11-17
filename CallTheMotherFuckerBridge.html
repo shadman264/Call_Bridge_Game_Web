@@ -5,7 +5,8 @@
 	<script type="text/javascript">
 		window.addEventListener("load",function(){
 			var load_screen = document.getElementById("wrap");
-			document.body.removeChild(load_screen);
+			// document.body.removeChild(load_screen);
+			load_screen.remove();
 		},false);
 	</script>
 
@@ -18,6 +19,7 @@
 	<script type="text/javascript" src="Game.js"></script>
 	<script type="text/javascript" src="Call.js"></script>
 	<script type="text/javascript" src="Reinitialize.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="callBridge.css">
 	
 
@@ -36,6 +38,13 @@
     <!-- WAITING DIV CSS -->
     <link rel="stylesheet" type="text/css" href="waiting_design.css">
 
+    <!-- PORTRAIT MODE CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="portrait.css">
+
     <!--THESE ARE FOR FOOTER STARTS-->
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +59,9 @@
 	<title>Call Bridge</title>
 </head>
 <body>
-	
+	<div id="container" >
+		
+
 	<!-- PRELOADER STARTS -->
 	<div id="wrap">
 		  <div class="preloader">
@@ -64,12 +75,51 @@
 		</div>
 	</div>
 	<!-- PRELOADER ENDS -->
+
+
+	<!-- PORTRAIT MODE MESSAGE DIV STARTS -->
+	<div id="portrait_bell" class="bell fa fa-bell"></div>
+
+    <div id="portrait_text" class="text-anim">
+        <span>S</span>
+        <span>W</span>
+        <span>T</span>
+        <span>C</span>
+        <span>H</span>
+        <span>&nbsp;</span>
+        <span>T</span>
+        <span>O</span>
+        <span>&nbsp;</span>
+        <span>L</span>
+        <span>A</span>
+        <span>N</span>
+        <span>D</span>
+        <span>S</span>
+        <span>C </span>
+        <span>A</span>
+        <span>P</span>
+        <span>E</span>
+        <span>&nbsp;</span>
+        <span>M</span>
+        <span>O</span>
+        <span>D</span>
+        <span>E</span>
+
+  </div>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script type="text/javascript">
+        setInterval(function(){ 
+        $('.text-anim').toggleClass('animate');
+        },2000);
+    </script>
+	<!-- PORTRAIT MODE MESSAGE DIV ENDS -->
 	
-	<div id="parent_div">
+	<div id="parent_div" class="main">
    		<nav class="navbar navbar-default" style="margin-bottom: 0;" role="navigation">
       
 	        <a class="navbar-brand" style="font-family: Capriola, Helvetica, sans-serif; padding-top: 20px; 	color: #8a7c36; font-weight: bold; font-size: x-large;" onmouseover='this.style.color="#a89742"' 	onmouseout='this.style.color="#8a7c36"' href="#">Call Bridge</a>
-	        <div class="navbar-collapse collapse cssmenu">
+	        <div class="navbar-collapse collapse cssmenu main">
 	            <ul class="nav navbar-nav navbar-left">
 	                <li><a href="CallTheMotherFuckerBridge.html" class="cool-link">Play!</a></li>
 	                <li><a href="#" class="cool-link">Rules</a></li>
@@ -83,8 +133,8 @@
 	        </div>
 	    </nav>
 
-		<div id="main_body_div">
-			<div id="floor_div">
+		<div id="main_body_div" class="main">
+			<div id="floor_div" class="main">
 				<section id="play_section">		
 					<img id="play_floor" src="MyImage/trial 4 with ashtray+cgrt.png">
 				  	<!-- <img src="MyImage/Player/bck.jpg" style="top: 17%; left: 3%; position: absolute; -webkit-transform: scale(0.1); box-shadow: 10px 10px 50px black, -10px -10px 50px black;"> -->
@@ -220,18 +270,18 @@
 				<section>
 
 				</section>
-			</di		</div>
+			</div>
 
 		<footer class="footer-distributed">
 
-			<div class="footer-right">
+			<div class="footer-right main">
 				<a href="#"><i class="fa fa-facebook"></i></a>
 				<a href="#"><i class="fa fa-twitter"></i></a>
 				<a href="#"><i class="fa fa-linkedin"></i></a>
 				<a href="#"><i class="fa fa-github"></i></a>
 			</div>
 
-			<div class="footer-left">
+			<div class="footer-left main">
 				<p class="footer-links">
 					<a href="#">Home</a>
 					·
@@ -251,6 +301,7 @@
 		</footer>
 
 
+	</div>
 	</div>
 </body>
 </html>

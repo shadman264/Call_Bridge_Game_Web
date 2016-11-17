@@ -1,0 +1,163 @@
+
+
+.bell {
+  
+  position: absolute;
+  top: 40%;
+  left: 46.5%;
+  font-size: 300% !important;
+  color: #E43; 
+  transform-origin: 50% 0;
+  animation: vibrate 0.1s linear 0s infinite both;
+}
+
+
+.bell:hover {
+  color: #E43;
+  transform-origin: 50% 0;
+  animation: vibrate 0.1s linear 0s infinite both;
+}
+
+@keyframes vibrate
+{
+  0%   {transform: rotate(10deg)}
+  25%  {transform: rotate(-10deg)}
+  50%  {transform: rotate(0)}
+  75%  {transform: rotate(10deg)}
+  100% {transform: rotate(0)}
+}
+
+
+
+
+
+
+
+/*TEXT ANIMATION STYLE STARTS*/
+.text-anim {
+  
+  color: rgb(168, 151, 66);
+  font-size: 130%;
+  text-align: center;
+  font-family: 'Oswald', sans-serif !important;
+  font-weight: 200;
+  position: absolute;
+  top: 47%;
+  left: 15.5%;
+}
+
+/* ==========================================================================
+   Main Animation  ========================================================================== */
+.text-anim span {
+  opacity: 0;
+  -webkit-transition: all, 550ms;
+  transition: all, 550ms;
+  -webkit-filter: blur(25px);
+  -moz-filter: blur(25px);
+  -ms-filter: blur(25px);
+  filter: blur(25px);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.text-anim span:nth-child(23) {
+  -webkit-transition-delay: 770ms;
+  transition-delay: 805ms;
+}
+.text-anim span:nth-child(22) {
+  -webkit-transition-delay: 770ms;
+  transition-delay: 770ms;
+}
+.text-anim span:nth-child(21) {
+  -webkit-transition-delay: 735ms;
+  transition-delay: 735ms;
+}
+.text-anim span:nth-child(20) {
+  -webkit-transition-delay: 700ms;
+  transition-delay: 700ms;
+}
+.text-anim span:nth-child(19) {
+  -webkit-transition-delay: 665ms;
+  transition-delay: 665ms;
+}
+.text-anim span:nth-child(18) {
+  -webkit-transition-delay: 630ms;
+  transition-delay: 630ms;
+}
+.text-anim span:nth-child(17) {
+  -webkit-transition-delay: 595ms;
+  transition-delay: 595ms;
+}
+.text-anim span:nth-child(16) {
+  -webkit-transition-delay: 560ms;
+  transition-delay: 560ms;
+}
+.text-anim span:nth-child(15) {
+  -webkit-transition-delay: 525ms;
+  transition-delay: 525ms;
+}
+.text-anim span:nth-child(14) {
+  -webkit-transition-delay: 490ms;
+  transition-delay: 490ms;
+}
+.text-anim span:nth-child(13) {
+  -webkit-transition-delay: 455ms;
+  transition-delay: 455ms;
+}
+.text-anim span:nth-child(12) {
+  -webkit-transition-delay: 420ms;
+  transition-delay: 420ms;
+}
+.text-anim span:nth-child(11) {
+  -webkit-transition-delay: 385ms;
+  transition-delay: 385ms;
+}
+.text-anim span:nth-child(10) {
+  -webkit-transition-delay: 350ms;
+  transition-delay: 350ms;
+}
+.text-anim span:nth-child(9) {
+  -webkit-transition-delay: 315ms;
+  transition-delay: 315ms;
+}
+.text-anim span:nth-child(8) {
+  -webkit-transition-delay: 280ms;
+  transition-delay: 280ms;
+}
+.text-anim span:nth-child(7) {
+  -webkit-transition-delay: 245ms;
+  transition-delay: 245ms;
+}
+.text-anim span:nth-child(6) {
+  -webkit-transition-delay: 210ms;
+  transition-delay: 210ms;
+}
+.text-anim span:nth-child(5) {
+  -webkit-transition-delay: 175ms;
+  transition-delay: 175ms;
+}
+.text-anim span:nth-child(4) {
+  -webkit-transition-delay: 140ms;
+  transition-delay: 140ms;
+}
+.text-anim span:nth-child(3) {
+  -webkit-transition-delay: 105ms;
+  transition-delay: 105ms;
+}
+.text-anim span:nth-child(2) {
+  -webkit-transition-delay: 70ms;
+  transition-delay: 70ms;
+}
+.text-anim span:nth-child(1) {
+  -webkit-transition-delay: 35ms;
+  transition-delay: 35ms;
+}
+
+.text-anim.animate span {
+  opacity: 1;
+  -webkit-filter: blur(0px);
+  -moz-filter: blur(0px);
+  -ms-filter: blur(0px);
+  filter: blur(0px);
+}
+
+/*TEXT ANIMATION STYLE ENDS*/
