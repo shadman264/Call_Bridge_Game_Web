@@ -264,6 +264,11 @@ function player_card_display(playerCards){
 		time_flag2+=0.03;
 		//time_flag2+=1;
 	};
+
+	document.getElementById("player1_call_bubble").style.setProperty("opacity", "1");
+	document.getElementById("player2_call_bubble").style.setProperty("opacity", "1");
+	document.getElementById("player3_call_bubble").style.setProperty("opacity", "1");
+	document.getElementById("player4_call_bubble").style.setProperty("opacity", "1");
 	
 	
 }
@@ -586,6 +591,7 @@ function call_token_selected(call_token_id){
 				document.getElementById(i).style.setProperty("left", "10%");
 				document.getElementById(i).style.webkitTransform = "scale(0)";
 				document.getElementById(i).style.opacity = "0";
+				document.getElementById("player1_call_bubble").style.setProperty("opacity", "0");
 				player1Call = i;
 			}
 			else if(ultimate==2){
@@ -594,6 +600,7 @@ function call_token_selected(call_token_id){
 				document.getElementById(i).style.setProperty("left", "80%");
 				document.getElementById(i).style.webkitTransform = "scale(0)";
 				document.getElementById(i).style.opacity = "0";
+				document.getElementById("player4_call_bubble").style.setProperty("opacity", "0");
 				player2Call = i;
 			}
 			else if(ultimate==3){
@@ -602,6 +609,7 @@ function call_token_selected(call_token_id){
 				document.getElementById(i).style.setProperty("left", "10%");
 				document.getElementById(i).style.webkitTransform = "scale(0)";
 				document.getElementById(i).style.opacity = "0";
+				document.getElementById("player2_call_bubble").style.setProperty("opacity", "0");
 				player3Call = i;
 			}
 			else{
@@ -610,6 +618,7 @@ function call_token_selected(call_token_id){
 				document.getElementById(i).style.setProperty("left", "80%");
 				document.getElementById(i).style.webkitTransform = "scale(0)";
 				document.getElementById(i).style.opacity = "0";
+				document.getElementById("player3_call_bubble").style.setProperty("opacity", "0");
 				player4Call = i;
 			}
 			

@@ -186,4 +186,9 @@ body{
 
 }
 
+#player1_call_bubble, #player2_call_bubble, 
+	#player3_call_bubble, #player4_call_bubble{
+		opacity: 0;
+	}
+
 
