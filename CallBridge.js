@@ -195,14 +195,38 @@ function player_card_push(){
 	document.getElementById("player1_fixed_card").style.setProperty("left", "23%");
 	document.getElementById("player2_fixed_card").style.setProperty("-webkit-transition", "left 1s ease-out");
 	document.getElementById("player2_fixed_card").style.setProperty("left", "60%");
-	document.getElementById("player3_fixed_card").style.setProperty("-webkit-transition", "all 1s ease-out");
-	document.getElementById("player3_fixed_card").style.webkitTransform = "scale(0)";
+	document.getElementById("player3_fixed_card").style.setProperty("-webkit-transition", "left 1s ease-out");
+	document.getElementById("player3_fixed_card").style.setProperty("left", "23%");
 	document.getElementById("player4_fixed_card").style.setProperty("-webkit-transition", "left 1s ease-out");
 	document.getElementById("player4_fixed_card").style.setProperty("left", "60%");
-	player3_card_display();
+
+	
+	
+	if(ultimate==1){
+		document.getElementById("player1_fixed_card").style.setProperty("-webkit-transition", "all 1s ease-out");
+		document.getElementById("player1_fixed_card").style.webkitTransform = "scale(0)";
+		player_card_display(player1Cards);
+	}
+	else if(ultimate==2){
+		document.getElementById("player2_fixed_card").style.setProperty("-webkit-transition", "all 1s ease-out");
+		document.getElementById("player2_fixed_card").style.webkitTransform = "scale(0)";
+		player_card_display(player2Cards);
+	}
+	else if(ultimate==3){
+		document.getElementById("player3_fixed_card").style.setProperty("-webkit-transition", "all 1s ease-out");
+		document.getElementById("player3_fixed_card").style.webkitTransform = "scale(0)";
+		player_card_display(player3Cards);
+	}
+	else if(ultimate==4){
+		document.getElementById("player4_fixed_card").style.setProperty("-webkit-transition", "all 1s ease-out");
+		document.getElementById("player4_fixed_card").style.webkitTransform = "scale(0)";
+		player_card_display(player4Cards);
+	}
+	
+
 }
 
-function player3_card_display(){
+function player_card_display(playerCards){
 	//This method will distribute and display player3's card
 	//STARTING POSITION OF ALL CARDS OF PLAYER3
 	//top: 60%; left:  24%;
@@ -215,7 +239,7 @@ function player3_card_display(){
 
 	if(time_flag==0){
 		time_flag++;
-		animate = setTimeout(player3_card_display,1500);
+		animate = setTimeout(function(){player_card_display(playerCards)},1500);
 	}
 	else{
 		time_flag = 0;
@@ -228,15 +252,15 @@ function player3_card_display(){
 	for (var i = 0; i < 13; i++) {
 		left_flag += 2.6;
 		zIndex_value+=i;
-		document.getElementById(player3Cards[i]).addEventListener("click",function(){player3_select_card(this.id);},false);
-		document.getElementById(player3Cards[i]).addEventListener("mouseover",function(){mouse_over_card(this.id);},false);
-		document.getElementById(player3Cards[i]).addEventListener("mouseleave",function(){mouse_out_card(this.id);},false);
-		document.getElementById(player3Cards[i]).style.opacity = "1";
-		document.getElementById(player3Cards[i]).style.zIndex = zIndex_value;
-		document.getElementById(player3Cards[i]).style.setProperty("-webkit-transition", "all " + time_flag2 + "s ease-out");
-		document.getElementById(player3Cards[i]).style.webkitTransform = "rotate(360deg)";
-		document.getElementById(player3Cards[i]).style.setProperty("top", "80%");
-		document.getElementById(player3Cards[i]).style.setProperty("left", left_flag+"%");
+		document.getElementById(playerCards[i]).addEventListener("click",function(){player_select_card(this.id);},false);
+		document.getElementById(playerCards[i]).addEventListener("mouseover",function(){mouse_over_card(this.id);},false);
+		document.getElementById(playerCards[i]).addEventListener("mouseleave",function(){mouse_out_card(this.id);},false);
+		document.getElementById(playerCards[i]).style.opacity = "1";
+		document.getElementById(playerCards[i]).style.zIndex = zIndex_value;
+		document.getElementById(playerCards[i]).style.setProperty("-webkit-transition", "all " + time_flag2 + "s ease-out");
+		document.getElementById(playerCards[i]).style.webkitTransform = "rotate(360deg)";
+		document.getElementById(playerCards[i]).style.setProperty("top", "80%");
+		document.getElementById(playerCards[i]).style.setProperty("left", left_flag+"%");
 		time_flag2+=0.03;
 		//time_flag2+=1;
 	};
@@ -244,7 +268,7 @@ function player3_card_display(){
 	
 }
 
-function player3_select_card(clicked_id){
+function player_select_card(clicked_id){
 	//This method will move the selected card to the playfield of player3
 	//DESIRED POSTION FOR PLAYER1
 	//top: 32%;       left:  34%;
@@ -256,7 +280,7 @@ function player3_select_card(clicked_id){
 	//top: 49%;       left:  50%;
 
 
-	if(inputFlag==3 && clickFlag==0 && nunuFlag==0){
+	if(inputFlag==ultimate && clickFlag==0 && nunuFlag==0){
 
 			// amar khela kintu first hand er khela na , board e age thekei kichu card ase
 			if(boardCards.length!=0) {
@@ -264,41 +288,140 @@ function player3_select_card(clicked_id){
 				var suitIndex = boardCards[0].toString()[0]-'1';
 
 				// jei suit er khela ta amar kache ase kintu ami onno card khelar try kortesi
-				if((player3Suits[suitIndex].length!=0 && suitIndex!=clickIndex)) {
+				if(ultimate==1){
+					if((player1Suits[suitIndex].length!=0 && suitIndex!=clickIndex)) {
 
+					}
+					// thik moto khellam
+					else{
+						players_card_rearrange(clicked_id,player1Suits);
+
+						curClick = clicked_id;
+						var temp = curClick;
+						clickFlag=1;
+						cardShowOnBoard(temp,"rotate(-45deg)","33%","34.5%");	
+
+					}
 				}
-				// thik moto khellam
+				else if(ultimate==2){
+					if((player2Suits[suitIndex].length!=0 && suitIndex!=clickIndex)) {
+
+					}
+					// thik moto khellam
+					else{
+						players_card_rearrange(clicked_id,player2Suits);
+
+						curClick = clicked_id;
+						var temp = curClick;
+						clickFlag=1;
+						cardShowOnBoard(temp,"rotate(45deg)","33%","45.5%");	
+
+					}
+				}
+				else if(ultimate==3){
+					if((player3Suits[suitIndex].length!=0 && suitIndex!=clickIndex)) {
+
+					}
+					// thik moto khellam
+					else{
+						players_card_rearrange(clicked_id,player3Suits);
+
+						curClick = clicked_id;
+						var temp = curClick;
+						clickFlag=1;
+						cardShowOnBoard(temp,"rotate(45deg)","49%","34.5%");	
+
+					}	
+				}
 				else{
-					player3_card_rearrange(clicked_id);
+					if((player4Suits[suitIndex].length!=0 && suitIndex!=clickIndex)) {
 
-					curClick = clicked_id;
-					var temp = curClick;
-					clickFlag=1;
-					cardShowOnBoard(temp,"rotate(45deg)","49%","34.5%");	
+					}
+					// thik moto khellam
+					else{
+						players_card_rearrange(clicked_id,player4Suits);
 
+						curClick = clicked_id;
+						var temp = curClick;
+						clickFlag=1;
+						cardShowOnBoard(temp,"rotate(-45deg)","49%","45.5%");	
+
+					}
 				}
+				
 			}
 			// ami first e khelum
 			else{
 				var clickIndex = clicked_id.toString()[0]-'1';
-				// amar kache shb e trum tai jeta ichcha sheta khelbo
-				if(returnMyCardsWithoutSpade(player3Suits).length==0){
-					player3_card_rearrange(clicked_id);
+				
+				if(ultimate==1){
+					// amar kache shb e trum tai jeta ichcha sheta khelbo
+					if(returnMyCardsWithoutSpade(player1Suits).length==0){
+						players_card_rearrange(clicked_id,player1Suits);
 
-					curClick = clicked_id;
-					var temp = curClick;
-					clickFlag=1;
-					cardShowOnBoard(temp,"rotate(45deg)","49%","34.5%");	
-
-				}
-				// amar kache trum + normal card milano
-				else{
-					// trum break hoi nai kintu trump khelar try kortsi
-					if(clickIndex==3 && trumpedSuits.length==0){
+						curClick = clicked_id;
+						var temp = curClick;
+						clickFlag=1;
+						cardShowOnBoard(temp,"rotate(-45deg)","33%","34.5%");	
 
 					}
+					// amar kache trum + normal card milano
 					else{
-						player3_card_rearrange(clicked_id);
+						// trum break hoi nai kintu trump khelar try kortsi
+						if(clickIndex==3 && trumpFlag==0){
+
+						}
+						else{
+							players_card_rearrange(clicked_id,player1Suits);
+
+							curClick = clicked_id;
+							var temp = curClick;
+							clickFlag=1;
+							cardShowOnBoard(temp,"rotate(-45deg)","33%","34.5%");	
+
+						}
+
+					}
+
+					// var a = document.getElementById("wrap");
+					// console.log(a);
+					// if(a!=null){
+					// 	document.body.removeChild(a);
+					// }
+				}
+				else if(ultimate==2){
+					// amar kache shb e trum tai jeta ichcha sheta khelbo
+					if(returnMyCardsWithoutSpade(player2Suits).length==0){
+						players_card_rearrange(clicked_id,player2Suits);
+
+						curClick = clicked_id;
+						var temp = curClick;
+						clickFlag=1;
+						cardShowOnBoard(temp,"rotate(45deg)","33%","45.5%");	
+
+					}
+					// amar kache trum + normal card milano
+					else{
+						// trum break hoi nai kintu trump khelar try kortsi
+						if(clickIndex==3 && trumpFlag==0){
+
+						}
+						else{
+							players_card_rearrange(clicked_id,player2Suits);
+
+							curClick = clicked_id;
+							var temp = curClick;
+							clickFlag=1;
+							cardShowOnBoard(temp,"rotate(45deg)","33%","45.5%");	
+
+						}
+
+					}
+				}
+				else if(ultimate==3){
+					// amar kache shb e trum tai jeta ichcha sheta khelbo
+					if(returnMyCardsWithoutSpade(player3Suits).length==0){
+						players_card_rearrange(clicked_id,player3Suits);
 
 						curClick = clicked_id;
 						var temp = curClick;
@@ -306,8 +429,54 @@ function player3_select_card(clicked_id){
 						cardShowOnBoard(temp,"rotate(45deg)","49%","34.5%");	
 
 					}
+					// amar kache trum + normal card milano
+					else{
+						// trum break hoi nai kintu trump khelar try kortsi
+						if(clickIndex==3 && trumpFlag==0){
 
+						}
+						else{
+							players_card_rearrange(clicked_id,player3Suits);
+
+							curClick = clicked_id;
+							var temp = curClick;
+							clickFlag=1;
+							cardShowOnBoard(temp,"rotate(45deg)","49%","34.5%");	
+
+						}
+
+					}	
 				}
+				else{
+					// amar kache shb e trum tai jeta ichcha sheta khelbo
+					if(returnMyCardsWithoutSpade(player4Suits).length==0){
+						players_card_rearrange(clicked_id,player4Suits);
+
+						curClick = clicked_id;
+						var temp = curClick;
+						clickFlag=1;
+						cardShowOnBoard(temp,"rotate(-45deg)","49%","45.5%");	
+
+					}
+					// amar kache trum + normal card milano
+					else{
+						// trum break hoi nai kintu trump khelar try kortsi
+						if(clickIndex==3 && trumpFlag==0){
+
+						}
+						else{
+							players_card_rearrange(clicked_id,player4Suits);
+
+							curClick = clicked_id;
+							var temp = curClick;
+							clickFlag=1;
+							cardShowOnBoard(temp,"rotate(-45deg)","49%","45.5%");	
+
+						}
+
+					}
+				}
+
 			}
 
 			//card rearrange
@@ -410,13 +579,40 @@ function call_token_selected(call_token_id){
 			document.getElementById(i).style.opacity = "0";
 		}
 		else{
-			document.getElementById(i).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
-			document.getElementById(i).style.setProperty("top", "75%");
-			document.getElementById(i).style.setProperty("left", "10%");
-			document.getElementById(i).style.webkitTransform = "scale(0)";
-			document.getElementById(i).style.opacity = "0";
 
-			player3Call = i;
+			if(ultimate==1){
+				document.getElementById(i).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(i).style.setProperty("top", "20%");
+				document.getElementById(i).style.setProperty("left", "10%");
+				document.getElementById(i).style.webkitTransform = "scale(0)";
+				document.getElementById(i).style.opacity = "0";
+				player1Call = i;
+			}
+			else if(ultimate==2){
+				document.getElementById(i).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(i).style.setProperty("top", "20%");
+				document.getElementById(i).style.setProperty("left", "80%");
+				document.getElementById(i).style.webkitTransform = "scale(0)";
+				document.getElementById(i).style.opacity = "0";
+				player2Call = i;
+			}
+			else if(ultimate==3){
+				document.getElementById(i).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(i).style.setProperty("top", "75%");
+				document.getElementById(i).style.setProperty("left", "10%");
+				document.getElementById(i).style.webkitTransform = "scale(0)";
+				document.getElementById(i).style.opacity = "0";
+				player3Call = i;
+			}
+			else{
+				document.getElementById(i).style.setProperty("-webkit-transition", "all 0.5s ease-in-out");
+				document.getElementById(i).style.setProperty("top", "75%");
+				document.getElementById(i).style.setProperty("left", "80%");
+				document.getElementById(i).style.webkitTransform = "scale(0)";
+				document.getElementById(i).style.opacity = "0";
+				player4Call = i;
+			}
+			
 			
 			//cusion_point_display(2,-3,3);
 		}
@@ -424,9 +620,33 @@ function call_token_selected(call_token_id){
 
 
 	
+	//CREATE WAITING DIV
+	// var innerDiv = document.createElement('div');
+	// innerDiv.id = 'waiting_div';
+
+	// var innerDiv2 = document.createElement('div');
+	// innerDiv2.id = 'loop';
+	// innerDiv2.className = 'center';
 	
+
+	// var innerDiv3 = document.createElement('div');
+	// innerDiv3.id = 'bike-wrapper';
+	// innerDiv3.className = 'center';
+
+	// var innerDiv4 = document.createElement('div');
+	// innerDiv4.id = 'bike';
+	// innerDiv4.className = 'centerBike';
+
+	// innerDiv3.appendChild(innerDiv4);
+	// innerDiv.appendChild(innerDiv2);
+	// innerDiv.appendChild(innerDiv3);
+		
+	
+
+
+
 	//NOW ALL PLAYER's BALLOONS ARE GOING TO BE DISPLAYED
-	showAllPlayerBalloon(player3Call);	
+	showAllPlayerBalloon();	
 
 	
 
@@ -572,7 +792,7 @@ function vanish_balloon(win_player){
 }
 
 
-function player3_card_rearrange(selected_card_id){
+function players_card_rearrange(selected_card_id,displaySuits){
 
 	//THIS METHOD WILL REARRANGE PLAYER 3'S CARDS AFTER EACH ROUND OF PLAY
 
@@ -582,8 +802,8 @@ function player3_card_rearrange(selected_card_id){
 
 	var played_cards=0;
 	for(var i=0;i<4;i++){
-		for(var j=0;j<player3Suits[i].length;j++){
-			if(selected_card_id!=player3Suits[i][j].toString()){
+		for(var j=0;j<displaySuits[i].length;j++){
+			if(selected_card_id!=displaySuits[i][j].toString()){
 				played_cards++;	
 			}
 			
@@ -601,10 +821,10 @@ function player3_card_rearrange(selected_card_id){
 
 	
 	for(var i=0;i<4;i++){
-		for(var j=0;j<player3Suits[i].length;j++){
-			if(selected_card_id!=player3Suits[i][j].toString()){
-				document.getElementById(player3Suits[i][j]).style.setProperty("-webkit-transition","all .3s ease-out");
-				document.getElementById(player3Suits[i][j]).style.setProperty("left", left_start+"%");
+		for(var j=0;j<displaySuits[i].length;j++){
+			if(selected_card_id!=displaySuits[i][j].toString()){
+				document.getElementById(displaySuits[i][j]).style.setProperty("-webkit-transition","all .3s ease-out");
+				document.getElementById(displaySuits[i][j]).style.setProperty("left", left_start+"%");
 				left_start+=2.6;	
 			}
 		}

@@ -33,6 +33,9 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!--THESE ARE FOR NAVIGATION BAR ENDS-->
 
+    <!-- WAITING DIV CSS -->
+    <link rel="stylesheet" type="text/css" href="waiting_design.css">
+
     <!--THESE ARE FOR FOOTER STARTS-->
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,7 +68,7 @@
 	<div id="parent_div">
    		<nav class="navbar navbar-default" style="margin-bottom: 0;" role="navigation">
       
-	        <a class="navbar-brand" style="font-family: Capriola, Helvetica, sans-serif; padding-top: 20px; 	color: #8a7c36; font-weight: bold; font-size: 25;" onmouseover='this.style.color="#a89742"' 	onmouseout='this.style.color="#8a7c36"' href="#">Call Bridge</a>
+	        <a class="navbar-brand" style="font-family: Capriola, Helvetica, sans-serif; padding-top: 20px; 	color: #8a7c36; font-weight: bold; font-size: x-large;" onmouseover='this.style.color="#a89742"' 	onmouseout='this.style.color="#8a7c36"' href="#">Call Bridge</a>
 	        <div class="navbar-collapse collapse cssmenu">
 	            <ul class="nav navbar-nav navbar-left">
 	                <li><a href="CallTheMotherFuckerBridge.html" class="cool-link">Play!</a></li>
@@ -84,6 +87,13 @@
 			<div id="floor_div">
 				<section id="play_section">		
 					<img id="play_floor" src="MyImage/trial 4 with ashtray+cgrt.png">
+				  	<!-- <img src="MyImage/Player/bck.jpg" style="top: 17%; left: 3%; position: absolute; -webkit-transform: scale(0.1); box-shadow: 10px 10px 50px black, -10px -10px 50px black;"> -->
+				
+					<!-- <img src="MyImage/Player/player1.png" style="top: 1%; left: 2.1%; position: absolute; -webkit-transform: scale(0.81); height: 65%;"> -->
+					<img id="player1_slab" src="MyImage/Player/player1.png" style="top: -8%; left: -19.25%; position: absolute; -webkit-transform: scale(0.4); height: 65%;">
+					<img id="player2_slab" src="MyImage/Player/player2.png" style="top: 25.5%; left: -27.75%; position: absolute; -webkit-transform: scale(0.4);height: 65%;">
+					<img id="player3_slab" src="MyImage/Player/player3.png" style="top: 25.5%; left: 34.5%; position: absolute; -webkit-transform: scale(0.4);height: 65%;">
+					<img id="player4_slab" src="MyImage/Player/player4.png" style="top: -14.5%; left: 34.5%; position: absolute; -webkit-transform: scale(0.4);height: 65%;">
 					<img id="card_suit" src="MyImage/card_suit.png">
 					<img id="card_single" src="MyImage/card_single.png">
 					<img id="player1_card_single" src="MyImage/card_single.png">
@@ -159,8 +169,8 @@
 					<img id="414" class="cards" src="MyImage/Cards/ace_of_spades.png" >
 
 					<!--Button image add to make call-->
-					<img id="call_background" src="MyImage/Black-And-Red-Wallpaper-Abstract-7.jpg">
-
+					<!-- <img id="call_background" src="MyImage/Black-And-Red-Wallpaper-Abstract-7.jpg"> -->
+					<img id="call_background" src="MyImage/blackwood.jpg">
 					
 					<img id="0" class="call_token" src="MyImage/Buttons/0.png" onmouseover='this.src="MyImage/Buttons/0_MouseOver.png";' onmouseout='this.src="MyImage/Buttons/0.png"' onmousedown='this.style.webkitTransform="scale(0.9)"' onmouseup='this.style.webkitTransform="scale(1)"' onclick="call_token_selected(this.id)">
 

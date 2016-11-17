@@ -26,8 +26,9 @@ var empty_flag = 0;
 var animate2;
 var anim;
 var anim_flag = 0;
-
-
+var playerPoints = [0,0,0,0];
+var trumpFlag=0;
+var ultimate = 1;	//WHO IS REAL ULTIMATE PLAYER OF THIS SOCKET
 
 
 
@@ -47,10 +48,10 @@ var card_distribute_counter = 1;
 var time_flag = 0;
 var animate;
 var inputFlag = -1;
-var player1Call=3;
-var player2Call=4;
+var player1Call=0;
+var player2Call=0;
 var player3Call=0;
-var player4Call=2;
+var player4Call=0;
 var remaining_call1=0;
 var remaining_call2=0;
 var remaining_call3=0;
@@ -83,6 +84,7 @@ var player4_present_point = 0;
 //************************************* GAME.JS ER SHOKOL VARIABLE **********************************
 var player1_card_play_flag = 0;
 var player2_card_play_flag = 0;
+var player3_card_play_flag = 0;
 var player4_card_play_flag = 0;
 var animate;
 var chudi=0;

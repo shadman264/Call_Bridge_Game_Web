@@ -1,19 +1,28 @@
-function showAllPlayerBalloon(player3Call){
+function showAllPlayerBalloon(){
 	//NOW ALL PLAYER's BALLOONS ARE GOING TO BE DISPLAYED
 
 	//player1 balloon display
-	player1Call= callGenerator(player1Suits);
+	if(ultimate!=1){
+		player1Call= callGenerator(player1Suits);
+	}
 	ShowAllBalloon(44,19,1,player1Call);
 
 	//player2 balloon display
-	player2Call= callGenerator(player2Suits);
+	if(ultimate!=2){
+		player2Call= callGenerator(player2Suits);
+	}
 	ShowAllBalloon(44,90,2,player2Call);
 
 	//player3 balloon Display
+	if(ultimate!=3){
+		player3Call= callGenerator(player3Suits);
+	}
 	ShowAllBalloon(85,19,3,player3Call);
 
 	//player4 balloon display
-	player4Call= callGenerator(player4Suits);
+	if(ultimate!=4){
+		player4Call= callGenerator(player4Suits);
+	}
 	ShowAllBalloon(85,90,4,player4Call);
 
 }

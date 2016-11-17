@@ -25,8 +25,8 @@ trumpedSuits=[];
 pile_flag = 0;
 pass_flag = 0;
 empty_flag = 0;
-
-
+playerPoints = [0,0,0,0];
+trumpFlag= 0;
 
 
 //shuffling cards here
@@ -59,10 +59,6 @@ move_player_1st_card_left_flag = 41.5;
 card_distribute_counter = 1;
 time_flag = 0;
 inputFlag = -1;
-player1Call=3;
-player2Call=4;
-//player3Call=0;
-player4Call=2;
 remaining_call1=0;
 remaining_call2=0;
 remaining_call3=0;
@@ -155,29 +151,41 @@ document.getElementById("player4_fixed_card").style.left =  "59%";
 
 //call_token
 var temp_left;
+var playerCallTemp;
+if(ultimate==1)
+	playerCallTemp = player1Call;
+else if(ultimate==2)
+	playerCallTemp = player2Call;
+else if(ultimate==3)
+	playerCallTemp = player3Call;
+else
+	playerCallTemp = player4Call;
 
-document.getElementById(player3Call).style.webkitTransform = "scale(1)";
+console.log(ultimate);
+console.log(playerCallTemp);
+document.getElementById(playerCallTemp).style.webkitTransform = "scale(1)";
 
 
-if(player3Call<6){
-	temp_left = 27.8 + player3Call*5.8;
-	document.getElementById(player3Call).style.top = "35%";
+if(playerCallTemp<6){
+	temp_left = 27.8 + playerCallTemp*5.8;
+	document.getElementById(playerCallTemp).style.top = "35%";
 }
-else if(player3Call>=6 && player3Call<11){
-	temp_left = 30.7 + (player3Call%6)*5.8;
-	document.getElementById(player3Call).style.top = "42%";
+else if(playerCallTemp>=6 && playerCallTemp<11){
+	temp_left = 30.7 + (playerCallTemp%6)*5.8;
+	document.getElementById(playerCallTemp).style.top = "42%";
 }
-else if(player3Call>=11 && player3Call<13){
-	temp_left = 39.5 + (player3Call%11)*5.8;
-	document.getElementById(player3Call).style.top = "49%";
+else if(playerCallTemp>=11 && playerCallTemp<13){
+	temp_left = 39.5 + (playerCallTemp%11)*5.8;
+	document.getElementById(playerCallTemp).style.top = "49%";
 }
 else{
 	temp_left = 42.4;
-	document.getElementById(player3Call).style.top = "56%";
+	document.getElementById(playerCallTemp).style.top = "56%";
 }
 
-document.getElementById(player3Call).style.left = temp_left+"%";
-document.getElementById(player3Call).style.transitionDuration = "0s";
+document.getElementById(playerCallTemp).style.left = temp_left+"%";
+document.getElementById(playerCallTemp).style.transitionDuration = "0s";
+
 
 
 
@@ -217,7 +225,10 @@ for(var i=1;i<=4;i++){
 reinitialize_animate = setTimeout(reinitialize,1000);
 if(reinitialize_flag ==1){
 	clearTimeout(reinitialize_animate);
-	
+	player1Call=0;
+	player2Call=0;
+	player3Call=0;
+	player4Call=0;
 	display_start();
 	reinitialize_flag = 0;
 
